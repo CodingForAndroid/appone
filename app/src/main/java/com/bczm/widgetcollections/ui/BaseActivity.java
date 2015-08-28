@@ -1,4 +1,4 @@
-package com.bczm.widgetcollections;
+package com.bczm.widgetcollections.ui;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
