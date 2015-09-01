@@ -5,19 +5,20 @@ import android.os.Handler;
 import android.os.Looper;
 
 /**
- * @author £ºJorge on 2015/8/26 17:52
+ * @author Jorge on 2015/8/26 17:52
  */
 public class BaseApplication extends Application{
-    /** È«¾ÖContext£¬Ô­ÀíÊÇÒòÎªApplicationÀàÊÇÓ¦ÓÃ×îÏÈÔËĞĞµÄ£¬ËùÒÔÔÚÎÒÃÇµÄ´úÂëµ÷ÓÃÊ±£¬¸ÃÖµÒÑ¾­±»¸³Öµ¹ıÁË */
+    /** å…¨å±€Contextï¼ŒåŸç†æ˜¯å› ä¸ºApplicationç±»æ˜¯åº”ç”¨æœ€å…ˆè¿è¡Œçš„ï¼Œæ‰€ä»¥åœ¨æˆ‘ä»¬çš„ä»£ç è°ƒç”¨æ—¶ï¼Œè¯¥å€¼å·²ç»è¢«èµ‹å€¼è¿‡äº† */
     private static BaseApplication mInstance;
-    /** Ö÷Ïß³ÌID */
+    /** ä¸»çº¿ç¨‹ID */
     private static int mMainThreadId = -1;
-    /** Ö÷Ïß³ÌID */
+    /** ä¸»çº¿ç¨‹ID */
     private static Thread mMainThread;
-    /** Ö÷Ïß³ÌHandler */
+    /** ä¸»çº¿ç¨‹Handler */
     private static Handler mMainThreadHandler;
-    /** Ö÷Ïß³ÌLooper */
+    /** ä¸»çº¿ç¨‹Looper */
     private static Looper mMainLooper;
+
     @Override
     public void onCreate() {
         mMainThreadId = android.os.Process.myTid();
@@ -32,22 +33,22 @@ public class BaseApplication extends Application{
         return mInstance;
     }
 
-    /** »ñÈ¡Ö÷Ïß³ÌID */
+    /** è·å–ä¸»çº¿ç¨‹ID */
     public static int getMainThreadId() {
         return mMainThreadId;
     }
 
-    /** »ñÈ¡Ö÷Ïß³Ì */
+    /** è·å–ä¸»çº¿ç¨‹ */
     public static Thread getMainThread() {
         return mMainThread;
     }
 
-    /** »ñÈ¡Ö÷Ïß³ÌµÄhandler */
+    /** è·å–ä¸»çº¿ç¨‹çš„handler */
     public static Handler getMainThreadHandler() {
         return mMainThreadHandler;
     }
 
-    /** »ñÈ¡Ö÷Ïß³ÌµÄlooper */
+    /** è·å–ä¸»çº¿ç¨‹çš„looper */
     public static Looper getMainThreadLooper() {
         return mMainLooper;
     }

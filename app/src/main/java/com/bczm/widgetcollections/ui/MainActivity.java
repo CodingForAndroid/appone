@@ -1,42 +1,59 @@
 package com.bczm.widgetcollections.ui;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 
 import com.bczm.widgetcollections.R;
+import com.bczm.widgetcollections.utils.AnimationUtil;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
-public class MainActivity extends ActionBarActivity {
+/**
+ *  launch page
+ */
+public class MainActivity extends BaseActivity implements View.OnClickListener {
+
+
+    @Bind(R.id.run_image)
+    ImageView runImage;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onClick(View view) {
+
+    }
+
+    @Override
+    protected void createContent() {
         setContentView(R.layout.activity_main);
-        System.out.println("i'm ok  now !");
-    }
+        ButterKnife.bind(this);
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    protected void initViews() {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
+    }
+    private void runAnimation() {
+    AnimationUtil.runAnimation(runImage);
+
+    }
+
+    @Override
+    protected void setListeners() {
+        runAnimation();
+    }
+
+    @Override
+    protected void free() {
+
     }
 }

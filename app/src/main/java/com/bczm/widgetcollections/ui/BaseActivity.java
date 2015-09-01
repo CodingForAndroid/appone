@@ -8,11 +8,11 @@ import android.support.v4.app.FragmentActivity;
  * @author Jorge on 2015/8/26 18:03
  */
 public abstract  class BaseActivity extends FragmentActivity{
-    /** 记录处于前台的Activity */
+    /** 璁板綍澶勪簬鍓嶅彴鐨凙ctivity */
     private static BaseActivity mForegroundActivity = null;
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         createContent();
         initViews();
         setListeners();
@@ -31,7 +31,7 @@ public abstract  class BaseActivity extends FragmentActivity{
         super.onPause();
     }
 
-    /** 获取当前处于前台的activity */
+    /** 鑾峰彇褰撳墠澶勪簬鍓嶅彴鐨刟ctivity */
     public static BaseActivity getForegroundActivity() {
         return mForegroundActivity;
     }

@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_blue_light" >#AEEEEE</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#ff000000</color>
+    <color name="red">#ff0000</color>
+    <color name="blue">#ff0e57c4</color>
+    <color name="gray">#ff959183</color>
+    <color name="green">#008f00</color>
+    <color name="transparent">#00000000</color>
+    <color name="text_gray">#838383</color>
+    <color name="text_green">#008f00</color>
+    <color name="text_black">#343e48</color>
+    <color name="backgroud_color">#ebedf0</color>
+    <color name="gray_light">#ffCCCCCC</color>
+    #CCCCCC
 </resources>

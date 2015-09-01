@@ -5,4 +5,9 @@
     <dimen name="comm_navigation_hei">50dp</dimen>
     <dimen name="minus_activity_horizontal_margin">-16dp</dimen>
     <dimen name="minus_activity_vertical_margin">-16dp</dimen>
+    <dimen name="txt_size_classify_high">18sp</dimen>
+    <dimen name="txt_size_classify_mid">15sp</dimen>
+    <dimen name="txt_size_classify_low">12sp</dimen>
+    <dimen name="mine_item_text_size">12sp</dimen>
+
 </resources>
