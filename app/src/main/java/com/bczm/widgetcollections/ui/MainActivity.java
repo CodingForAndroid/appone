@@ -1,17 +1,9 @@
 package com.bczm.widgetcollections.ui;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
+import android.media.MediaPlayer;
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.ui.fragment.MainFragment;
-import com.bczm.widgetcollections.utils.AnimationUtil;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 
 /**
  * launch page
@@ -29,7 +21,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initViews() {
 
-
     }
 
     @Override
@@ -43,6 +34,26 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    MediaPlayer mp;
+    @Override
+    protected void onResume() {
+        play();
+        super.onResume();
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mp.stop();
+    }
 
+    public void play(){
+        mp = MediaPlayer.create(MainActivity.this, R.raw.kiss);
+
+        new Thread(){
+            public void run() {
+                mp.start();
+            };
+        }.start();
+    }
 }
