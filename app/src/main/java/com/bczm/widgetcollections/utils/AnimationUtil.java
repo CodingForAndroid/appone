@@ -5,14 +5,14 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 
 /**
+ * 位移动画
  * @author：Jorge on 2015/9/1 16:51
  */
 public  class AnimationUtil {
 
-        static TranslateAnimation   right;
-        static TranslateAnimation    left;
+    private  static TranslateAnimation   right;
+    private   static TranslateAnimation    left;
     public  static  void runAnimation(final View view){
-
         right = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, 0f,
                 Animation.RELATIVE_TO_PARENT, -1f,
                 Animation.RELATIVE_TO_PARENT, 0f, Animation.RELATIVE_TO_PARENT,

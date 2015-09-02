@@ -14,5 +14,6 @@
     <color name="text_black">#343e48</color>
     <color name="backgroud_color">#ebedf0</color>
     <color name="gray_light">#ffCCCCCC</color>
-    #CCCCCC
+    <color name="bg_page">#ffebebeb</color>
+    <color name="bg_tab_pressed">#6633b5e5</color>
 </resources>

@@ -11,7 +11,7 @@ public abstract  class BaseActivity extends FragmentActivity{
     /** 记录处于前台的Activity */
     private static BaseActivity mForegroundActivity = null;
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createContent();
         initViews();

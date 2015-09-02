@@ -1,15 +1,12 @@
 package com.bczm.widgetcollections.ui;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.bczm.widgetcollections.R;
+import com.bczm.widgetcollections.ui.fragment.MainFragment;
 import com.bczm.widgetcollections.utils.AnimationUtil;
 
 import butterknife.Bind;
@@ -17,24 +14,16 @@ import butterknife.ButterKnife;
 
 
 /**
- *  launch page
+ * launch page
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity {
 
-
-    @Bind(R.id.run_image)
-    ImageView runImage;
-
-    @Override
-    public void onClick(View view) {
-
-    }
 
     @Override
     protected void createContent() {
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-
+    setContentView(R.layout.activity_main);
+        MainFragment fragment = new MainFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.content_frame,fragment,fragment.getClass().getName()).commit();
     }
 
     @Override
@@ -42,18 +31,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
     }
-    private void runAnimation() {
-    AnimationUtil.runAnimation(runImage);
-
-    }
 
     @Override
     protected void setListeners() {
-        runAnimation();
+
     }
+
 
     @Override
     protected void free() {
 
     }
+
+
+
 }

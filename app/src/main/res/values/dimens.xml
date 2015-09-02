@@ -9,5 +9,6 @@
     <dimen name="txt_size_classify_mid">15sp</dimen>
     <dimen name="txt_size_classify_low">12sp</dimen>
     <dimen name="mine_item_text_size">12sp</dimen>
-
+    <dimen name="list_item_loadmore_height">40dp</dimen>
+    <dimen name="list_item_margin">9dp</dimen>
 </resources>
