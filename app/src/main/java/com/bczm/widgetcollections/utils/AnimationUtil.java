@@ -57,4 +57,10 @@ public  class AnimationUtil {
         });
         view.startAnimation(right);
     }
+
+    public  static  void stopAnimation( View view){
+//        if(right!=null&&left!=null){
+//            view.clearAnimation();
+//        }
+    }
 }

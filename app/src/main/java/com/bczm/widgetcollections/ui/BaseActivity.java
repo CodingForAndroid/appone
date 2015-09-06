@@ -1,13 +1,16 @@
 package com.bczm.widgetcollections.ui;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * @author Jorge on 2015/8/26 18:03
  */
-public abstract  class BaseActivity extends FragmentActivity{
+public abstract  class BaseActivity extends AppCompatActivity{
     /** 记录处于前台的Activity */
     private static BaseActivity mForegroundActivity = null;
     @Override
@@ -15,6 +18,7 @@ public abstract  class BaseActivity extends FragmentActivity{
         super.onCreate(savedInstanceState);
         createContent();
         initViews();
+        initActionBar();
         setListeners();
         free();
     }
@@ -54,5 +58,6 @@ public abstract  class BaseActivity extends FragmentActivity{
     protected  abstract  void   free();
 
 
+    protected abstract  void  initActionBar();
 
 }
