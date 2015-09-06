@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
  * @author：Jorge on 2015/9/6 17:21
  */
 public class CategoryAdapter extends ArrayAdapter {
-    public String[] itmes = {"引导页", "标题2", "标题3", "标题4", "标题5", "标题6", "标题7", "标题8", "标题9", "标题10"};
+    public String[] itmes = {"引导页", "Material Design", "标题3", "标题4", "标题5", "标题6", "标题7", "标题8", "标题9", "标题10"};
     private Context cxt;
     public CategoryAdapter(Context context,int resource) {
         super(context, resource);

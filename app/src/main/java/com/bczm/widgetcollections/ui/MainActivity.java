@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.ui.fragment.BaseFragment;
 import com.bczm.widgetcollections.ui.fragment.FragmentFactory;
+import com.bczm.widgetcollections.ui.widget.NoScrollViewPager;
 import com.bczm.widgetcollections.ui.widget.PagerTab;
 import com.bczm.widgetcollections.utils.UIUtils;
 
@@ -30,7 +31,7 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.tabs)
     PagerTab mPageTabs;
     @Bind(R.id.viewPager)
-    ViewPager mViewPager;
+    NoScrollViewPager mViewPager;
     @Bind(R.id.start_drawer)
     FrameLayout mDrawer;
     @Bind(R.id.drawer_layout)

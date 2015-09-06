@@ -24,22 +24,22 @@ public class FragmentFactory {
 					fragment = new MainFragment();
 					break;
 				case TAB_APP:
-					fragment = new AppFragment();
+					fragment = new MainFragment();
 					break;
 				case TAB_GAME:
-					fragment = new AppFragment();
+					fragment = new MainFragment();
 					break;
 				case TAB_SUBJECT:
-					fragment = new AppFragment();
+					fragment = new MainFragment();
 					break;
 				case TAB_RECOMMEND:
-					fragment = new AppFragment();
+					fragment = new MainFragment();
 					break;
 				case TAB_CATEGORY:
-					fragment = new AppFragment();
+					fragment = new MainFragment();
 					break;
 				case TAB_TOP:
-					fragment = new AppFragment();
+					fragment = new MainFragment();
 					break;
 			}
 			mFragmentMap.put(index, fragment);
