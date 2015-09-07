@@ -25,8 +25,8 @@ public class AppFragment extends BaseFragment {
     }
 
     @Override
-    protected View createLoadedView(LayoutInflater inflater) {
-        View parentView = inflater.inflate(R.layout.fragment_main, null);
+    protected View createLoadedView() {
+        View parentView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_main, null);
         ButterKnife.bind(this, parentView);
         return parentView;
     }
@@ -41,6 +41,6 @@ public class AppFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        AnimationUtil.runAnimation(runImage);
+//        AnimationUtil.runAnimation(runImage);
     }
 }

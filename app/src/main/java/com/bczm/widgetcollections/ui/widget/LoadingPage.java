@@ -110,6 +110,8 @@ public abstract class LoadingPage extends FrameLayout {
 
     protected View createLoadingView() {
         return UIUtils.inflate(R.layout.loading_page_loading);
+
+
     }
 
     protected View createEmptyView() {
@@ -159,4 +161,3 @@ public abstract class LoadingPage extends FrameLayout {
         }
     }
 }
-

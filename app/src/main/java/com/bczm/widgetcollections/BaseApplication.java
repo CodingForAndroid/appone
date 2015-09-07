@@ -4,6 +4,10 @@ import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.bczm.widgetcollections.http.HttpUtil;
+
 /**
  * @author Jorge on 2015/8/26 17:52
  */
@@ -27,7 +31,9 @@ public class BaseApplication extends Application{
         mMainLooper = getMainLooper();
         mInstance = this;
         super.onCreate();
+        HttpUtil.init(this);
     }
+
 
     public static BaseApplication getApplication() {
         return mInstance;

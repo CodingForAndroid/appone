@@ -15,33 +15,36 @@ public abstract class BaseFragment extends Fragment {
     protected LoadingPage mContentView;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //每次ViewPager要展示该页面时，均会调用该方法获取显示的View
         if (mContentView == null) {//为null时，创建一个
             mContentView = new LoadingPage(UIUtils.getContext()) {
                 @Override
                 public LoadResult load() {
+                    UIUtils.showToastSafe("load");
                     return BaseFragment.this.load();
                 }
 
                 @Override
                 public View createLoadedView() {
-                    return BaseFragment.this.createLoadedView(inflater);
+                    UIUtils.showToastSafe("createLoadedView");
+                    return BaseFragment.this.createLoadedView();
                 }
             };
         } else {//不为null时，需要把自身从父布局中移除，因为ViewPager会再次添加
             ViewUtils.removeSelfFromParent(mContentView);
         }
-//        return mContentView;
-        return BaseFragment.this.createLoadedView(inflater);
+        return mContentView;
     }
-    public LoadingPage.LoadResult check(Object obj) {
+
+    /** 当显示的时候，加载该页面 */
+    public void show() {
+        if (mContentView != null) {
+            mContentView.show();
+        }
+    }
+
+    public LoadResult check(Object obj) {
         if (obj == null) {
             return LoadResult.ERROR;
         }
@@ -58,10 +61,5 @@ public abstract class BaseFragment extends Fragment {
     protected abstract LoadResult load();
 
     /** 加载完成的View */
-    protected abstract View createLoadedView(LayoutInflater inflater);
-
-
-
-
-
+    protected abstract View createLoadedView();
 }
