@@ -41,6 +41,7 @@ public class MainFragment extends BaseFragment {
     @Override
     protected LoadResult load() {
         LogUtils.e(" LoadResult.SUCCEED;");
+
         return LoadResult.SUCCEED;
     }
 
@@ -61,6 +62,7 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        show();
 //        AnimationUtil.runAnimation(runImage);
     }
 

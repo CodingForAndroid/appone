@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import com.bczm.widgetcollections.ui.BaseActivity;
+import com.bczm.widgetcollections.ui.activity.BaseActivity;
 import com.bczm.widgetcollections.BaseApplication;
 
 public class UIUtils {

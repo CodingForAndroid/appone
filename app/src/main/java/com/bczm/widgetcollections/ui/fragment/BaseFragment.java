@@ -18,16 +18,15 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //每次ViewPager要展示该页面时，均会调用该方法获取显示的View
         if (mContentView == null) {//为null时，创建一个
-            mContentView = new LoadingPage(UIUtils.getContext()) {
+
+            mContentView = new LoadingPage(getActivity()) {
                 @Override
                 public LoadResult load() {
-                    UIUtils.showToastSafe("load");
                     return BaseFragment.this.load();
                 }
 
                 @Override
                 public View createLoadedView() {
-                    UIUtils.showToastSafe("createLoadedView");
                     return BaseFragment.this.createLoadedView();
                 }
             };

@@ -1,32 +1,87 @@
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawer_layout"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#efefef" >
     <RelativeLayout
-        android:id="@+id/content_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/title_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@mipmap/title_bar_bg" >
 
-        <com.bczm.widgetcollections.ui.widget.PagerTab
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="42dip"
-            android:background="@drawable/bg_tab"/>
 
-        <com.bczm.widgetcollections.ui.widget.NoScrollViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/tabs"
-            tools:context=".MainActivity"/>
     </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/start_drawer"
-        android:layout_width="250dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@drawable/bg_tab"/>
 
-</android.support.v4.widget.DrawerLayout>
+    <RelativeLayout
+        android:id="@+id/rl_tab"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <LinearLayout
+            android:id="@+id/ll_tab"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/tv_home2"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+
+                android:drawableTop="@drawable/selector_main_tab"
+                android:padding="5dp"
+                android:text="约美女"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/tv_home"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="@color/transparent"
+                android:drawableTop="@drawable/selector_main_tab"
+                android:padding="5dp"
+                android:text="做任务"
+
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/tv_focus"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="@color/transparent"
+                android:drawableTop="@drawable/selector_main_tab"
+                android:padding="5dp"
+                android:text="好友"
+
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/tv_my"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="@color/transparent"
+                android:drawableTop="@drawable/selector_main_tab"
+                android:padding="5dp"
+                android:text="我的"
+
+                android:textSize="10sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/rl_tab"
+        android:layout_below="@+id/title_bar" />
+
+
+</RelativeLayout>

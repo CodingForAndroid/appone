@@ -5,25 +5,6 @@ import android.media.MediaPlayer;
 import android.view.Surface;
 import android.view.TextureView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.SuccessListener;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.bczm.widgetcollections.http.ConfigManage;
-import com.bczm.widgetcollections.http.HttpUtil;
-import com.bczm.widgetcollections.ui.BaseActivity;
-import com.bczm.widgetcollections.utils.FileUtils;
-import com.bczm.widgetcollections.utils.LogUtils;
-import com.bczm.widgetcollections.utils.SystemUtils;
-import com.bczm.widgetcollections.utils.UIUtils;
-
-import org.json.JSONObject;
-
-import java.io.File;
-import java.lang.reflect.Method;
-
 /**
  * @author：Jorge on 2015/9/6 17:37
  */

@@ -16,7 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.bczm.widgetcollections.R;
-import com.bczm.widgetcollections.ui.BaseActivity;
+import com.bczm.widgetcollections.ui.activity.BaseActivity;
 import com.bczm.widgetcollections.utils.UIUtils;
 
 public class PagerTab extends ViewGroup {
