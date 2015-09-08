@@ -85,6 +85,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onResume() {
+
 //        play();
         super.onResume();
     }
