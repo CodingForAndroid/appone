@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.bczm.widgetcollections.R;
@@ -30,6 +31,15 @@ public class MainActivity extends BaseActivity {
 
     @Bind(R.id.pager)
      ViewPager mViewPager;
+
+    @Bind(R.id.btn_cartoon)
+    Button mCartoonBtn;
+    @Bind(R.id.btn_news)
+    Button mNewsBtn;
+    @Bind(R.id.btn_novel)
+    Button mNovelBtn;
+    @Bind(R.id.btn_mine)
+    Button mMineBtn;
     private MainPagerAdapter pagerAdapter;
 
     @Override
@@ -42,8 +52,7 @@ public class MainActivity extends BaseActivity {
     protected void createContent() {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-
+        tabchange(0);
     }
 
     @Override
@@ -56,11 +65,9 @@ public class MainActivity extends BaseActivity {
         pagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(pagerAdapter);
 
-        mViewPager.setOffscreenPageLimit(0);
+//        mViewPager.setOffscreenPageLimit(0);
         mViewPager.setOnPageChangeListener(new MyOnPageChangeListener());
     }
-
-
 
     @Override
     protected void free() {
@@ -140,6 +147,56 @@ public class MainActivity extends BaseActivity {
             BaseFragment fragment = FragmentFactory.createFragment(index);
             // 当页面被选中 再显示要加载的页面....防止ViewPager提前加载(ViewPager一般加载三个，自己，左一个，右一个)
             fragment.show();// 调用show方法加载pager里面的数据
+
+               tabchange(index);
+
+        }
+    }
+
+    private void tabchange(int index) {
+        switch (index){
+            case 0:
+                mCartoonBtn.setPressed(true);
+                mCartoonBtn.setTextColor(getResources().getColor(R.color.white));
+                mNewsBtn.setPressed(false);
+                mNewsBtn.setTextColor(getResources().getColor(R.color.blue));
+                mNovelBtn.setPressed(false);
+                mNovelBtn. setTextColor(getResources().getColor(R.color.blue));
+                mMineBtn.setPressed(false);
+                mMineBtn. setTextColor(getResources().getColor(R.color.blue));
+                break;
+            case 1:
+                mCartoonBtn.setPressed(false);
+                mCartoonBtn.setTextColor(getResources().getColor(R.color.blue));
+                mNewsBtn.setPressed(true);
+                mNewsBtn.setTextColor(getResources().getColor(R.color.white));
+                mNovelBtn.setPressed(false);
+                mNovelBtn.setTextColor(getResources().getColor(R.color.blue));
+                mMineBtn.setPressed(false);
+                mMineBtn.setTextColor(getResources().getColor(R.color.blue));
+                break;
+            case 2:
+                mCartoonBtn.setPressed(false);
+                mCartoonBtn.setTextColor(getResources().getColor(R.color.blue));
+                mNewsBtn.setPressed(false);
+                mNewsBtn.setTextColor(getResources().getColor(R.color.blue));
+                mNovelBtn.setPressed(true);
+                mNovelBtn.setTextColor(getResources().getColor(R.color.white));
+                mMineBtn.setPressed(false);
+                mMineBtn.setTextColor(getResources().getColor(R.color.blue));
+                break;
+            case 3:
+                mCartoonBtn.setPressed(false);
+                mCartoonBtn.setTextColor(getResources().getColor(R.color.blue));
+                mNewsBtn.setPressed(false);
+                mNewsBtn.setTextColor(getResources().getColor(R.color.blue));
+                mNovelBtn.setPressed(false);
+                mNovelBtn.setTextColor(getResources().getColor(R.color.blue));
+                mMineBtn.setPressed(true);
+                mMineBtn.setTextColor(getResources().getColor(R.color.white));
+                break;
+            default:
+                break;
         }
     }
 }

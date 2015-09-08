@@ -16,4 +16,6 @@
     <color name="gray_light">#ffCCCCCC</color>
     <color name="bg_page">#ffebebeb</color>
     <color name="bg_tab_pressed">#6633b5e5</color>
+    <color name="btn_bg">#CFCFCF</color>
+    <color name="orange">#EE9A00</color>
 </resources>

@@ -8,12 +8,11 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@mipmap/title_bar_bg" >
-
-
     </RelativeLayout>
 
 
     <RelativeLayout
+        android:background="@mipmap/main_bottom_bg"
         android:id="@+id/rl_tab"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -27,51 +26,51 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/tv_home2"
+                android:background="@drawable/selector_btn_bg"
+                android:id="@+id/btn_cartoon"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
-
                 android:drawableTop="@drawable/selector_main_tab"
                 android:padding="5dp"
-                android:text="约美女"
+                android:text="漫画"
                 android:textColor="@color/white"
                 android:textSize="10sp" />
 
             <Button
-                android:id="@+id/tv_home"
+                android:textColor="@color/blue"
+                android:id="@+id/btn_news"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
-                android:background="@color/transparent"
+                android:background="@drawable/selector_btn_bg"
                 android:drawableTop="@drawable/selector_main_tab"
                 android:padding="5dp"
-                android:text="做任务"
-
+                android:text="新闻"
                 android:textSize="10sp" />
 
             <Button
-                android:id="@+id/tv_focus"
+                android:textColor="@color/blue"
+                android:id="@+id/btn_novel"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
-                android:background="@color/transparent"
+                android:background="@drawable/selector_btn_bg"
                 android:drawableTop="@drawable/selector_main_tab"
                 android:padding="5dp"
-                android:text="好友"
-
+                android:text="小说"
                 android:textSize="10sp" />
 
             <Button
-                android:id="@+id/tv_my"
+                android:id="@+id/btn_mine"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
-                android:background="@color/transparent"
+                android:background="@drawable/selector_btn_bg"
                 android:drawableTop="@drawable/selector_main_tab"
                 android:padding="5dp"
-                android:text="我的"
-
+                android:text="个人"
+                android:textColor="@color/blue"
                 android:textSize="10sp" />
         </LinearLayout>
     </RelativeLayout>
@@ -82,6 +81,4 @@
         android:layout_height="fill_parent"
         android:layout_above="@+id/rl_tab"
         android:layout_below="@+id/title_bar" />
-
-
 </RelativeLayout>
