@@ -1,24 +1,17 @@
 package com.bczm.widgetcollections.ui.activity;
 
 import android.media.MediaPlayer;
-import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.ui.fragment.BaseFragment;
 import com.bczm.widgetcollections.ui.fragment.FragmentFactory;
-import com.bczm.widgetcollections.ui.widget.NoScrollViewPager;
-import com.bczm.widgetcollections.ui.widget.PagerTab;
 import com.bczm.widgetcollections.utils.UIUtils;
 
 import butterknife.Bind;
@@ -31,7 +24,6 @@ public class MainActivity extends BaseActivity {
 
     @Bind(R.id.pager)
      ViewPager mViewPager;
-
     @Bind(R.id.btn_cartoon)
     Button mCartoonBtn;
     @Bind(R.id.btn_news)
@@ -43,18 +35,29 @@ public class MainActivity extends BaseActivity {
     private MainPagerAdapter pagerAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
     protected void createContent() {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        tabchange(0);
+        tabChange(0);
     }
 
+    //底部 tab 的点击事件
+    public  void onClick(View view){
+      switch (view.getId()){
+          case R.id.btn_cartoon: //第一页
+              changeFragment(FragmentFactory.TAB_FIRST);
+              break;
+          case R.id.btn_news://第2页
+              changeFragment(FragmentFactory.TAB_SECOND);
+              break;
+          case R.id.btn_novel://第3页
+              changeFragment(FragmentFactory.TAB_THIRD);
+              break;
+          case R.id.btn_mine://第4页
+              changeFragment(FragmentFactory.TAB_FOURTH);
+              break;
+      }
+    }
     @Override
     protected void initViews() {
 
@@ -65,9 +68,10 @@ public class MainActivity extends BaseActivity {
     protected void setListeners() {
         pagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(pagerAdapter);
-
 //        mViewPager.setOffscreenPageLimit(0);
         mViewPager.setOnPageChangeListener(new MyOnPageChangeListener());
+
+
     }
 
     @Override
@@ -108,6 +112,58 @@ public class MainActivity extends BaseActivity {
             ;
         }.start();
     }
+
+
+    private void tabChange(int index) {
+        switch (index){
+            case 0:
+                mCartoonBtn.setBackgroundResource(R.color.blue);
+                mCartoonBtn.setTextColor(getResources().getColor(R.color.white));
+                mNewsBtn.setBackgroundResource(R.color.transparent);
+                mNewsBtn.setTextColor(getResources().getColor(R.color.blue));
+                mNovelBtn.setBackgroundResource(R.color.transparent);
+                mNovelBtn. setTextColor(getResources().getColor(R.color.blue));
+                mMineBtn.setBackgroundResource(R.color.transparent);
+                mMineBtn. setTextColor(getResources().getColor(R.color.blue));
+                break;
+            case 1:
+                mCartoonBtn.setBackgroundResource(R.color.transparent);
+                mCartoonBtn.setTextColor(getResources().getColor(R.color.blue));
+                mNewsBtn.setBackgroundResource(R.color.blue);
+                mNewsBtn.setTextColor(getResources().getColor(R.color.white));
+                mNovelBtn.setBackgroundResource(R.color.transparent);
+                mNovelBtn.setTextColor(getResources().getColor(R.color.blue));
+                mMineBtn.setBackgroundResource(R.color.transparent);
+                mMineBtn.setTextColor(getResources().getColor(R.color.blue));
+                break;
+            case 2:
+                mCartoonBtn.setBackgroundResource(R.color.transparent);
+                mCartoonBtn.setTextColor(getResources().getColor(R.color.blue));
+                mNewsBtn.setBackgroundResource(R.color.transparent);
+                mNewsBtn.setTextColor(getResources().getColor(R.color.blue));
+                mNovelBtn.setBackgroundResource(R.color.blue);
+                mNovelBtn.setTextColor(getResources().getColor(R.color.white));
+                mMineBtn.setBackgroundResource(R.color.transparent);
+                mMineBtn.setTextColor(getResources().getColor(R.color.blue));
+                break;
+            case 3:
+                mCartoonBtn.setBackgroundResource(R.color.transparent);
+                mCartoonBtn.setTextColor(getResources().getColor(R.color.blue));
+                mNewsBtn.setBackgroundResource(R.color.transparent);
+                mNewsBtn.setTextColor(getResources().getColor(R.color.blue));
+                mNovelBtn.setBackgroundResource(R.color.transparent);
+                mNovelBtn.setTextColor(getResources().getColor(R.color.blue));
+                mMineBtn.setBackgroundResource(R.color.blue);
+                mMineBtn.setTextColor(getResources().getColor(R.color.white));
+                break;
+            default:
+                break;
+
+
+        }
+        mViewPager.setCurrentItem(index);
+    }
+
     /** ViewPager的适配器 */
     public class MainPagerAdapter extends FragmentPagerAdapter {
         private String[] mTabTitle;
@@ -145,60 +201,21 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void onPageSelected(int index) {
-            // ViewPager页面被选中的回调
-            BaseFragment fragment = FragmentFactory.createFragment(index);
-            // 当页面被选中 再显示要加载的页面....防止ViewPager提前加载(ViewPager一般加载三个，自己，左一个，右一个)
-            fragment.show();// 调用show方法加载pager里面的数据
 
-               tabchange(index);
-
+            changeFragment(index);
         }
     }
 
-    private void tabchange(int index) {
-        switch (index){
-            case 0:
-                mCartoonBtn.setPressed(true);
-                mCartoonBtn.setTextColor(getResources().getColor(R.color.white));
-                mNewsBtn.setPressed(false);
-                mNewsBtn.setTextColor(getResources().getColor(R.color.blue));
-                mNovelBtn.setPressed(false);
-                mNovelBtn. setTextColor(getResources().getColor(R.color.blue));
-                mMineBtn.setPressed(false);
-                mMineBtn. setTextColor(getResources().getColor(R.color.blue));
-                break;
-            case 1:
-                mCartoonBtn.setPressed(false);
-                mCartoonBtn.setTextColor(getResources().getColor(R.color.blue));
-                mNewsBtn.setPressed(true);
-                mNewsBtn.setTextColor(getResources().getColor(R.color.white));
-                mNovelBtn.setPressed(false);
-                mNovelBtn.setTextColor(getResources().getColor(R.color.blue));
-                mMineBtn.setPressed(false);
-                mMineBtn.setTextColor(getResources().getColor(R.color.blue));
-                break;
-            case 2:
-                mCartoonBtn.setPressed(false);
-                mCartoonBtn.setTextColor(getResources().getColor(R.color.blue));
-                mNewsBtn.setPressed(false);
-                mNewsBtn.setTextColor(getResources().getColor(R.color.blue));
-                mNovelBtn.setPressed(true);
-                mNovelBtn.setTextColor(getResources().getColor(R.color.white));
-                mMineBtn.setPressed(false);
-                mMineBtn.setTextColor(getResources().getColor(R.color.blue));
-                break;
-            case 3:
-                mCartoonBtn.setPressed(false);
-                mCartoonBtn.setTextColor(getResources().getColor(R.color.blue));
-                mNewsBtn.setPressed(false);
-                mNewsBtn.setTextColor(getResources().getColor(R.color.blue));
-                mNovelBtn.setPressed(false);
-                mNovelBtn.setTextColor(getResources().getColor(R.color.blue));
-                mMineBtn.setPressed(true);
-                mMineBtn.setTextColor(getResources().getColor(R.color.white));
-                break;
-            default:
-                break;
-        }
+    /**
+     * 更换要显示的Fragment
+     * @param index
+     */
+    public void  changeFragment(int index){
+        // ViewPager页面被选中的回调
+        BaseFragment fragment = FragmentFactory.createFragment(index);
+        // 当页面被选中 再显示要加载的页面....防止ViewPager提前加载(ViewPager一般加载三个，自己，左一个，右一个)
+        fragment.show();// 调用show方法加载pager里面的数据
+
+        tabChange(index);
     }
 }

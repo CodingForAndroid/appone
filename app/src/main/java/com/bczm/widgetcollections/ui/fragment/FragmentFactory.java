@@ -5,13 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FragmentFactory {
-	public static final int TAB_HOME = 0;
-	public static final int TAB_APP = 1;
-	public static final int TAB_GAME = 2;
-	public static final int TAB_SUBJECT = 3;
-	public static final int TAB_RECOMMEND = 4;
-	public static final int TAB_CATEGORY = 5;
-	public static final int TAB_TOP = 6;
+	public static final int TAB_FIRST = 0;
+	public static final int TAB_SECOND = 1;
+	public static final int TAB_THIRD = 2;
+	public static final int TAB_FOURTH = 3;
 	/** 记录所有的fragment，防止重复创建 */
 	private static Map<Integer, BaseFragment> mFragmentMap = new HashMap<Integer, BaseFragment>();
 
@@ -20,25 +17,16 @@ public class FragmentFactory {
 		BaseFragment fragment = mFragmentMap.get(index);
 		if (fragment == null) {
 			switch (index) {
-				case TAB_HOME:
+				case TAB_FIRST:
 					fragment = new MainFragment();
 					break;
-				case TAB_APP:
+				case TAB_SECOND:
 					fragment = new AppFragment();
 					break;
-				case TAB_GAME:
+				case TAB_THIRD:
 					fragment = new AppFragment();
 					break;
-				case TAB_SUBJECT:
-					fragment = new AppFragment();
-					break;
-				case TAB_RECOMMEND:
-					fragment = new AppFragment();
-					break;
-				case TAB_CATEGORY:
-					fragment = new AppFragment();
-					break;
-				case TAB_TOP:
+				case TAB_FOURTH:
 					fragment = new AppFragment();
 					break;
 			}

@@ -26,7 +26,8 @@
             android:orientation="horizontal" >
 
             <Button
-                android:background="@drawable/selector_btn_bg"
+                android:onClick="onClick"
+
                 android:id="@+id/btn_cartoon"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
@@ -38,35 +39,38 @@
                 android:textSize="10sp" />
 
             <Button
+                android:onClick="onClick"
                 android:textColor="@color/blue"
                 android:id="@+id/btn_news"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
-                android:background="@drawable/selector_btn_bg"
+
                 android:drawableTop="@drawable/selector_main_tab"
                 android:padding="5dp"
                 android:text="新闻"
                 android:textSize="10sp" />
 
             <Button
+                android:onClick="onClick"
                 android:textColor="@color/blue"
                 android:id="@+id/btn_novel"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
-                android:background="@drawable/selector_btn_bg"
+
                 android:drawableTop="@drawable/selector_main_tab"
                 android:padding="5dp"
                 android:text="小说"
                 android:textSize="10sp" />
 
             <Button
+                android:onClick="onClick"
                 android:id="@+id/btn_mine"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
-                android:background="@drawable/selector_btn_bg"
+
                 android:drawableTop="@drawable/selector_main_tab"
                 android:padding="5dp"
                 android:text="个人"
