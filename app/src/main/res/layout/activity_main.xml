@@ -6,8 +6,16 @@
     <RelativeLayout
         android:id="@+id/title_bar"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:background="@mipmap/title_bar_bg" >
+        <ImageView
+            android:layout_marginBottom="10dp"
+         android:layout_alignParentBottom="true"
+            android:scaleType="centerInside"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/image_about_backage"
+            android:layout_width="90dp"
+            android:layout_height="30dp" />
     </RelativeLayout>
 
 
