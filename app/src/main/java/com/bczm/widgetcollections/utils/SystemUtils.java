@@ -1,5 +1,6 @@
 package com.bczm.widgetcollections.utils;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.os.StatFs;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.WindowManager;
 
 import java.io.BufferedReader;
@@ -121,7 +123,6 @@ public class SystemUtils {
 		NativePhoneNumber = telephonyManager.getLine1Number();
 		return NativePhoneNumber;
 	}
-
 	/** 返回手机服务商名字 */
 	public static String getProvidersName() {
 		String ProvidersName = null;
@@ -206,6 +207,36 @@ public class SystemUtils {
 		res[1] = windowMgr.getDefaultDisplay().getHeight();
 		return res;
 	}
+
+	/**
+	 * 得到屏幕的宽度
+	 * @param mContext
+	 * @return
+	 */
+	public static int getScreenWidth(){
+		Context context = UIUtils.getContext();
+		if (null == context) {
+			return 0;
+		}
+		DisplayMetrics dm = new DisplayMetrics();
+		dm = context.getApplicationContext().getResources().getDisplayMetrics();
+		return  dm.widthPixels;
+	}
+	/**
+	 * 得到屏幕的高度
+	 * @param mContext
+	 * @return
+	 */
+	public static int getScreenHeight(){
+		Context context = UIUtils.getContext();
+		if (null == context) {
+			return 0;
+		}
+		DisplayMetrics dm = new DisplayMetrics();
+		dm = context.getApplicationContext().getResources().getDisplayMetrics();
+		return dm.heightPixels;
+	}
+
 
 	/** 获得设备的横向dpi */
 	public static float getWidthDpi() {

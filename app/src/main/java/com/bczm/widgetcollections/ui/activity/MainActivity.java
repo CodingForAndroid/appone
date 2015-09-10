@@ -21,7 +21,6 @@ import butterknife.ButterKnife;
  * launch page
  */
 public class MainActivity extends BaseActivity {
-
     @Bind(R.id.pager)
      ViewPager mViewPager;
     @Bind(R.id.btn_cartoon)
@@ -33,14 +32,12 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.btn_mine)
     Button mMineBtn;
     private MainPagerAdapter pagerAdapter;
-
     @Override
     protected void createContent() {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         tabChange(0);
     }
-
     //底部 tab 的点击事件
     public  void onClick(View view){
       switch (view.getId()){
@@ -61,9 +58,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initViews() {
 
-
     }
-
     @Override
     protected void setListeners() {
         pagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
@@ -73,12 +68,10 @@ public class MainActivity extends BaseActivity {
 
 
     }
-
     @Override
     protected void free() {
 
     }
-
     /**
      * ActionBar 的初始化
      */
@@ -87,14 +80,12 @@ public class MainActivity extends BaseActivity {
     }
 
     MediaPlayer mp;
-
     @Override
     protected void onResume() {
 
 //        play();
         super.onResume();
     }
-
     @Override
     protected void onStop() {
         super.onStop();

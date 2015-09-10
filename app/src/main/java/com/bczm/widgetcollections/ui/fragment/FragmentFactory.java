@@ -18,7 +18,7 @@ public class FragmentFactory {
 		if (fragment == null) {
 			switch (index) {
 				case TAB_FIRST:
-					fragment = new MainFragment();
+					fragment = new RecommandFragment();
 					break;
 				case TAB_SECOND:
 					fragment = new AppFragment();

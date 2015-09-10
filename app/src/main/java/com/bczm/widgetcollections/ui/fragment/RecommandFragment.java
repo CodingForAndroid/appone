@@ -1,24 +1,17 @@
 package com.bczm.widgetcollections.ui.fragment;
 
-import android.app.DialogFragment;
-import android.content.Context;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bczm.widgetcollections.R;
-import com.bczm.widgetcollections.ui.adapter.CategoryAdapter;
+import com.bczm.widgetcollections.ui.widget.CycleImageView;
 import com.bczm.widgetcollections.ui.widget.LoadingPage.LoadResult;
-import com.bczm.widgetcollections.utils.AnimationUtil;
 import com.bczm.widgetcollections.utils.LogUtils;
-import com.bczm.widgetcollections.utils.UIUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,7 +19,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends BaseFragment {
+public class RecommandFragment extends BaseFragment {
     @Bind(R.id.run_image)
     ImageView runImage;
     @Bind(R.id.rl_main_parent)
@@ -54,7 +47,7 @@ public class MainFragment extends BaseFragment {
 
     @Override
     protected View createLoadedView() {
-        View parentView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_main, null);
+        View parentView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_recommand, null);
 //        ButterKnife.bind(this, parentView);
 //        CategoryAdapter adapter=  new CategoryAdapter(getActivity(),R.layout.item_main);
 //        mGridView.setAdapter(adapter);
@@ -69,6 +62,9 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        CycleImageView imageView= new CycleImageView(getActivity().getApplicationContext());
+
         show();
 //        AnimationUtil.runAnimation(runImage);
     }
@@ -91,6 +87,9 @@ public class MainFragment extends BaseFragment {
         super.onStop();
 //        AnimationUtil.stopAnimation(runImage);
     }
+
+
+
 
 
 }
