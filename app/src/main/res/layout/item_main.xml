@@ -21,7 +21,7 @@
             android:layout_height="55dp"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="@string/txt_splash_page"
+            android:text="启动页"
             android:textColor="#ffffff" />
     </RelativeLayout>
 

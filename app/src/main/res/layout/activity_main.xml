@@ -34,56 +34,28 @@
             android:orientation="horizontal" >
 
             <Button
-                android:onClick="onClick"
-
+                style="@style/bottom_tab_style"
                 android:id="@+id/btn_cartoon"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1.0"
                 android:drawableTop="@drawable/selector_main_tab"
-                android:padding="5dp"
-                android:text="漫画"
-                android:textColor="@color/white"
-                android:textSize="10sp" />
+                android:text="@string/txt_recommand" />
 
             <Button
-                android:onClick="onClick"
-                android:textColor="@color/blue"
+                style="@style/bottom_tab_style"
                 android:id="@+id/btn_news"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1.0"
-
                 android:drawableTop="@drawable/selector_main_tab"
-                android:padding="5dp"
-                android:text="新闻"
-                android:textSize="10sp" />
+                android:text="@string/txt_classify" />
 
             <Button
-                android:onClick="onClick"
-                android:textColor="@color/blue"
+                style="@style/bottom_tab_style"
                 android:id="@+id/btn_novel"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1.0"
-
                 android:drawableTop="@drawable/selector_main_tab"
-                android:padding="5dp"
-                android:text="小说"
-                android:textSize="10sp" />
+                android:text="@string/txt_discover" />
 
             <Button
-                android:onClick="onClick"
+                style="@style/bottom_tab_style"
                 android:id="@+id/btn_mine"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1.0"
-
                 android:drawableTop="@drawable/selector_main_tab"
-                android:padding="5dp"
-                android:text="个人"
-                android:textColor="@color/blue"
-                android:textSize="10sp" />
+                android:text="@string/txt_mine" />
         </LinearLayout>
     </RelativeLayout>
 
