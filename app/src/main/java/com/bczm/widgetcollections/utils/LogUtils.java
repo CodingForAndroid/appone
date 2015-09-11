@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * 日志输出控制类 (Description)
- * @author lipan
+ *
  */
 public class LogUtils {
 	/** 日志输出级别NONE */
@@ -29,7 +29,7 @@ public class LogUtils {
 	public static final int LEVEL_ERROR = 5;
 
 	/** 日志输出时的TAG */
-	private static String mTag = "lipan";
+	private static String mTag = "widgetcollections";
 	/** 是否允许输出log */
 	private static int mDebuggable = LEVEL_ERROR;
 

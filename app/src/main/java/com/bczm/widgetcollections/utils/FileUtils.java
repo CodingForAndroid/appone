@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * Created by lipan on 2014/6/7.
+ *   操作文件 的工具类
  */
 public class FileUtils {
 

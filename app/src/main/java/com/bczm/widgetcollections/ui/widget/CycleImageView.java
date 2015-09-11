@@ -35,6 +35,11 @@ public class CycleImageView  extends LinearLayout{
     private boolean isLoop = true;
     // 所有的文字描述
     private ArrayList<String> mImageDescList;
+
+
+
+
+
     public CycleImageView(Context context) {
         super(context);
         this.mContext=context;
@@ -90,10 +95,15 @@ public class CycleImageView  extends LinearLayout{
         }
         }
     };
+
     /**
+     *
      * 给 viewpager 以及其他view 适配上数据
+     * @param imageUrls:  图片 urls
+     * @param descriptions : 文字描述集合
+     * @param cyleListener ： 图片的监听器
      */
-    public  void  fillData(ArrayList<String>imageUrls,ArrayList<String>descriptions){
+    public  void  fillData(ArrayList<String>imageUrls,ArrayList<String>descriptions,CycleViewListener cyleListener){
         mImageDescList=descriptions;
 
         // 添加 圆点
@@ -120,7 +130,7 @@ public class CycleImageView  extends LinearLayout{
             mPointLayout.addView(mImageViews[i]);
         }
         mDescText.setText(descriptions.get(0));
-        CycleImageAdapter  imageAdapter= new CycleImageAdapter(imageUrls);
+        CycleImageAdapter  imageAdapter= new CycleImageAdapter(imageUrls,cyleListener);
         mViepgaer.setAdapter(imageAdapter);
     }
 
@@ -128,13 +138,18 @@ public class CycleImageView  extends LinearLayout{
      * viewpager 的 适配器  生成具体item
      */
     private class CycleImageAdapter extends PagerAdapter{
-
+        //  imageview  的 显示
+        private CycleViewListener mCycleViewListener;
+        // 使用 同一个 imageview  减少 创建对象
         private  ArrayList<ClickableImageView> mImageCacheList=new ArrayList<ClickableImageView>();
+        // 存储图片地址的集合
         private  ArrayList<String>imageUrls=new ArrayList<String>();
+        // 具有按压效果的 imageview
         private ClickableImageView imageView;
 
-        public  CycleImageAdapter(ArrayList<String>urls){
+        public  CycleImageAdapter(ArrayList<String>urls,CycleViewListener  cycleListener){
             imageUrls=urls;
+            mCycleViewListener=cycleListener;
         }
         @Override
         public int getCount() {
@@ -157,6 +172,7 @@ public class CycleImageView  extends LinearLayout{
             }else{
                 imageView=   mImageCacheList.remove(0);
             }
+            mCycleViewListener.displayImage(url,imageView);
             return super.instantiateItem(container, position);
         }
 
@@ -227,4 +243,13 @@ public class CycleImageView  extends LinearLayout{
 
         }
     }
+
+    /**
+     *  图片 监听
+     */
+      public   static interface  CycleViewListener{
+
+
+          public void displayImage(String  url, ImageView imageView);
+      }
 }

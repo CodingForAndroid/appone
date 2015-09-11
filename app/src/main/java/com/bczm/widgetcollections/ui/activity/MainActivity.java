@@ -1,5 +1,7 @@
 package com.bczm.widgetcollections.ui.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,15 +9,35 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.GsonRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.bczm.widgetcollections.R;
+import com.bczm.widgetcollections.bean.TouristInfo;
+import com.bczm.widgetcollections.http.HttpUtil;
+import com.bczm.widgetcollections.http.NetUtils;
 import com.bczm.widgetcollections.ui.fragment.BaseFragment;
 import com.bczm.widgetcollections.ui.fragment.FragmentFactory;
+import com.bczm.widgetcollections.utils.FileUtils;
+import com.bczm.widgetcollections.utils.LogUtils;
+import com.bczm.widgetcollections.utils.SharedPreferenceUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
+import com.android.volley.Request.Method;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
 
 /**
  * launch page
@@ -37,6 +59,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         tabChange(0);
+
     }
     //底部 tab 的点击事件
     public  void onClick(View view){
@@ -57,7 +80,38 @@ public class MainActivity extends BaseActivity {
     }
     @Override
     protected void initViews() {
+        //  创建 request 对象
+        GsonRequest<TouristInfo> getTouristInfoRequest= new GsonRequest<TouristInfo>(Method.GET, NetUtils.FETCH_VALID_TOKEN, TouristInfo.class,new Response.SuccessListener<TouristInfo>() {
+            @Override
+            public void onResponse(TouristInfo touristInfo) {
+            UIUtils.showToastSafe(touristInfo.toString() );
+                SharedPreferenceUtils.persistenceToken(touristInfo.access_token);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
 
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("User-Agent", "Client(ERDO/4.0.11;Android/4.4.4;720*1280;G620S-UL00;PAYMD/1.0.02;)");
+                headers.put("Cookie","sto-id-51017=BIBKKIMAMHEJ");
+                String value = String.valueOf(System.currentTimeMillis()).subSequence(0, 10).toString();
+                headers.put("timestamp",value);
+                headers.put("app_id","dm_zk_6001100_81");
+                headers.put("client_style","0");
+                headers.put("access_token","");
+                headers.put("promotion_id","020000000003");
+                return headers;
+            }
+
+        };
+        //获取 requestqueue 对象
+        RequestQueue mQueue= HttpUtil.getRequestQueue();
+        //  添加  request  到  queue 中
+        mQueue.add(getTouristInfoRequest);
     }
     @Override
     protected void setListeners() {

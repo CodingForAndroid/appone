@@ -7,7 +7,7 @@ import android.text.style.ForegroundColorSpan;
 import java.text.DecimalFormat;
 
 /**
- * Created by lipan on 2014/6/8.
+ *
  */
 public class StringUtils {
 	public final static String UTF_8 = "utf-8";

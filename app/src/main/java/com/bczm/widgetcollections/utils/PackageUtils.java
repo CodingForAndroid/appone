@@ -22,7 +22,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 /**
- * Created by lipan on 2014/6/19.
+ *
  */
 public class PackageUtils {
 

@@ -24,5 +24,4 @@ public class HttpUtil {
             throw new IllegalStateException("RequestQueue not initialized");
         }
     }
-
 }

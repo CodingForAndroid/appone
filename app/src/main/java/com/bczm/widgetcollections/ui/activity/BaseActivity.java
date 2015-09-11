@@ -27,9 +27,6 @@ public abstract  class BaseActivity extends FragmentActivity {
         initViews();
         initActionBar();
         setListeners();
-        free();
-
-
     }
 
     @Override
@@ -42,6 +39,12 @@ public abstract  class BaseActivity extends FragmentActivity {
     protected void onPause() {
         mForegroundActivity = null;
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        free();
     }
 
     /** 获取当前处于前台的activity */

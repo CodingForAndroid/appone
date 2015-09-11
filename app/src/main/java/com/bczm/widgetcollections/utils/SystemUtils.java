@@ -28,7 +28,7 @@ import java.util.List;
 
 /**
  * 获取手机 内存 版本  imei 等 信息
- * Created by lipan on 2014/6/19.
+ *
  */
 public class SystemUtils {
 

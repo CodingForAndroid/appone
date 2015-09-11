@@ -6,5 +6,5 @@ package com.bczm.widgetcollections.http;
 public class ConfigManage {
 
 
-    public static String HOME_DATA ="http://www.weather.com.cn/data/sk/101010100.html";
+    public static final String HOME_DATA ="http://www.weather.com.cn/data/sk/101010100.html";
 }
