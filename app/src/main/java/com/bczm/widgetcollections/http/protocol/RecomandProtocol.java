@@ -1,97 +1,35 @@
-package com.bczm.widgetcollections.ui.fragment;
-
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+package com.bczm.widgetcollections.http.protocol;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.bean.RecommandPositionInfo;
 import com.bczm.widgetcollections.http.HttpUtil;
 import com.bczm.widgetcollections.http.NetUtils;
 import com.bczm.widgetcollections.http.parse.JsonHelper;
-import com.bczm.widgetcollections.ui.widget.LoadingPage.LoadResult;
 import com.bczm.widgetcollections.utils.FileUtils;
 import com.bczm.widgetcollections.utils.LayoutGenetator;
 import com.bczm.widgetcollections.utils.LogUtils;
 import com.bczm.widgetcollections.utils.SharedPreferenceUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
- * A simple {@link Fragment} subclass.
+ * @author：Jorge on 2015/9/14 17:51
  */
-public class RecommandFragment extends BaseFragment {
-
-    @Bind(R.id.rl_main_parent)
-    RelativeLayout rlMainParent;
-    @Bind(R.id.tv_navi_left)
-    TextView tvNaviLeft;
-
-    @Override
-    public void show() {
-        super.show();
-    }
-
-    @Bind(R.id.tv_title)
-    TextView tvTitle;
-    @Bind(R.id.tv_navi_right)
-    TextView tvNaviRight;
-
-    private   RelativeLayout relativeLayout;
-    @Override
-    protected LoadResult load() {
-        loadFromNet();
-
-        return LoadResult.SUCCEED;
-    }
-
-    @Override
-    protected View createLoadedView() {
-         relativeLayout = (RelativeLayout) LayoutInflater.from(getActivity()).inflate(R.layout.fragment_recommand, null);
-        return relativeLayout;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        show();
-//        AnimationUtil.runAnimation(runImage);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-
-    }
+public class RecomandProtocol  extends  BaseProtocol<List<String>>{
 
 
     @Override
-    public void onOptionsMenuClosed(Menu menu) {
-        super.onOptionsMenuClosed(menu);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-//        AnimationUtil.stopAnimation(runImage);
-    }
-
-
-    public void loadFromNet(){
+    protected String loadFromNet(int index) {
 
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(NetUtils.FETCH_HOME_TOP_CONTENT,null, new Response.SuccessListener<JSONObject>() {
             @Override
@@ -104,7 +42,7 @@ public class RecommandFragment extends BaseFragment {
                 JSONArray arrays= object.optJSONArray("items");
                 JsonHelper.JSONArrayToList(arrays, resultList, RecommandPositionInfo.class);
                 // 此时list 已经包含信息
-                LayoutGenetator.getneratePagerView(resultList, getActivity(), relativeLayout);
+//                LayoutGenetator.getneratePagerView(resultList, getActivity(), relativeLayout);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -128,6 +66,19 @@ public class RecommandFragment extends BaseFragment {
             }
         };
         HttpUtil.getRequestQueue().add(jsonObjectRequest);
+
+
+
+        return null;
     }
 
+    @Override
+    protected String getKey() {
+        return null;
+    }
+
+    @Override
+    protected List<String> parseFromJson(String json) {
+        return new ArrayList<String>();
+    }
 }
