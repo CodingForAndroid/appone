@@ -4,20 +4,20 @@ package com.bczm.widgetcollections.bean;
  * 首页顶部 推荐位置的信息
  * @author：Jorge on 2015/9/11 16:00
  */
-public class RecommadPositonInfo {
+public class RecommandPositionInfo {
    //具体字段意思 看下面 JSON，
-    private String data_type;
-    private String title;
-    private String sub_title;
-    private String cover;
-    private String click_action;
-    private String url;
-    private String trackid;
-    private String serial_id;
-    private String serial_status;
-    private String update_set;
-    private String desc;
-    private String pic;
+    public String data_type;
+    public String title;
+    public String sub_title;
+    public String cover;
+    public String click_action;
+    public String url;
+    public String trackid;
+    public String serial_id;
+    public String serial_status;
+    public String update_set;
+    public String desc;
+    public String pic;
 
 
 //    {

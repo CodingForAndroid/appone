@@ -13,8 +13,6 @@ import butterknife.ButterKnife;
 
 public class AppFragment extends BaseFragment {
 
-    @Bind(R.id.run_image)
-    ImageView runImage;
 
     @Override
     protected LoadingPage.LoadResult load() {

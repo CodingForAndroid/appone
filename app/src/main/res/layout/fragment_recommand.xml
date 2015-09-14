@@ -4,25 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="2560dp">
 
-    <include layout="@layout/navigation_bar_common" />
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <ImageView
-            android:id="@+id/run_image"
-            android:layout_width="1280dp"
-            android:layout_height="fill_parent"
-            android:scaleType="fitXY"
-            android:src="@mipmap/img_bg_big" />
-    </LinearLayout>
-
- <GridView
-     android:numColumns="2"
-    android:id="@+id/gridview"
-     android:layout_width="fill_parent"
-     android:layout_height="fill_parent"/>
 
 </RelativeLayout>
 

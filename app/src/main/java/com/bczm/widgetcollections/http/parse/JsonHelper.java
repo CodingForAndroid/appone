@@ -1,6 +1,4 @@
 package com.bczm.widgetcollections.http.parse;
-
-import com.bczm.widgetcollections.bean.RecommadPositonInfo;
 import com.bczm.widgetcollections.utils.UIUtils;
 import com.google.gson.Gson;
 
@@ -19,7 +17,7 @@ public  class JsonHelper {
         Gson gson = new Gson();
         for (int i = 0; i < array.length(); i++) {
             list.add(gson.fromJson(array.optString(i),clazz));
-            UIUtils.showToastSafe(array.optString(i));
+//            UIUtils.showToastSafe(array.optString(i));
 //                  LogUtils.log2File(info.toString(), FileUtils.getDownloadDir() + "log.txt");
         }
           return  list;

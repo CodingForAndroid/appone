@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity {
         GsonRequest<TouristInfo> getTouristInfoRequest= new GsonRequest<TouristInfo>(Method.GET, NetUtils.FETCH_VALID_TOKEN, TouristInfo.class,new Response.SuccessListener<TouristInfo>() {
             @Override
             public void onResponse(TouristInfo touristInfo) {
-            UIUtils.showToastSafe(touristInfo.toString() );
+//            UIUtils.showToastSafe(touristInfo.toString() );
                 SharedPreferenceUtils.persistenceToken(touristInfo.access_token);
             }
         }, new Response.ErrorListener() {

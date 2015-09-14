@@ -1,39 +1,31 @@
 package com.bczm.widgetcollections.ui.fragment;
 
 import android.support.v4.app.Fragment;
-import android.test.UiThreadTest;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bczm.widgetcollections.R;
-import com.bczm.widgetcollections.bean.RecommadPositonInfo;
+import com.bczm.widgetcollections.bean.RecommandPositionInfo;
 import com.bczm.widgetcollections.http.HttpUtil;
 import com.bczm.widgetcollections.http.NetUtils;
 import com.bczm.widgetcollections.http.parse.JsonHelper;
-import com.bczm.widgetcollections.ui.widget.CycleImageView;
 import com.bczm.widgetcollections.ui.widget.LoadingPage.LoadResult;
 import com.bczm.widgetcollections.utils.FileUtils;
+import com.bczm.widgetcollections.utils.LayoutGenetator;
 import com.bczm.widgetcollections.utils.LogUtils;
 import com.bczm.widgetcollections.utils.SharedPreferenceUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -42,8 +34,7 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class RecommandFragment extends BaseFragment {
-    @Bind(R.id.run_image)
-    ImageView runImage;
+
     @Bind(R.id.rl_main_parent)
     RelativeLayout rlMainParent;
     @Bind(R.id.tv_navi_left)
@@ -58,24 +49,29 @@ public class RecommandFragment extends BaseFragment {
     TextView tvTitle;
     @Bind(R.id.tv_navi_right)
     TextView tvNaviRight;
-    @Bind(R.id.gridview)
-    GridView mGridView;
+
+    private   RelativeLayout relativeLayout;
     @Override
     protected LoadResult load() {
+        loadFromNet();
 
         return LoadResult.SUCCEED;
     }
 
     @Override
     protected View createLoadedView() {
-        View parentView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_recommand, null);
-//        ButterKnife.bind(this, parentView);
-//        CategoryAdapter adapter=  new CategoryAdapter(getActivity(),R.layout.item_main);
-//        mGridView.setAdapter(adapter);
-//        SwipeFlingAdapterView fra=  parentView.findViewById(R.id.swipe);
-//        AnimationUtil.runAnimation(runImage);
+         relativeLayout = (RelativeLayout) LayoutInflater.from(getActivity()).inflate(R.layout.fragment_recommand, null);
+////        ButterKnife.bind(this, parentView);
+////        CategoryAdapter adapter=  new CategoryAdapter(getActivity(),R.layout.item_main);
+////        mGridView.setAdapter(adapter);
+////        SwipeFlingAdapterView fra=  parentView.findViewById(R.id.swipe);
+//            CycleImageView  cycleView= new CycleImageView(getActivity());
+////        AnimationUtil.runAnimation(runImage);
         LogUtils.e("createLoadedView");
-        return parentView;
+//         relativeLayout = new RelativeLayout(getActivity());
+//        RelativeLayout.LayoutParams  params=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+//        relativeLayout.setLayoutParams(params);
+        return relativeLayout;
     }
 
 
@@ -83,9 +79,6 @@ public class RecommandFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        CycleImageView imageView= new CycleImageView(getActivity().getApplicationContext());
-        loadFromNet();
         show();
 //        AnimationUtil.runAnimation(runImage);
     }
@@ -115,10 +108,14 @@ public class RecommandFragment extends BaseFragment {
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(NetUtils.FETCH_HOME_TOP_CONTENT,null, new Response.SuccessListener<JSONObject>() {
             @Override
             public void onResponse(JSONObject object) {
-                ArrayList<RecommadPositonInfo> resultList = new ArrayList<RecommadPositonInfo>();
+                LogUtils.e(object.toString());
+                ArrayList<RecommandPositionInfo> resultList = new ArrayList<RecommandPositionInfo>();
+
                 JSONArray arrays= object.optJSONArray("items");
-                JsonHelper.JSONArrayToList(arrays,resultList,RecommadPositonInfo.class);
+                JsonHelper.JSONArrayToList(arrays, resultList, RecommandPositionInfo.class);
                 // 此时list 已经包含信息
+
+                LayoutGenetator.getneratePagerView(resultList, getActivity(), relativeLayout);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -143,8 +140,5 @@ public class RecommandFragment extends BaseFragment {
         };
         HttpUtil.getRequestQueue().add(jsonObjectRequest);
     }
-
-
-
 
 }
