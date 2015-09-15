@@ -67,7 +67,12 @@ public class CategoryAdapter extends ArrayAdapter implements View.OnClickListene
         params.width = width;
         convertView.setLayoutParams(params);
         RecommandPositionInfo info=  mList.get(position);
+        // 显示图片
         ImageLoader.getInstance().imageLoaderRequest(holder.mImageView, info.pic.split("\\?")[0]);
+        // 设置文字信息
+        holder.upDate.setText(String.format(UIUtils.getString(R.string.update_set),info.update_set));
+        holder.title.setText(info.title);
+        holder.sub_title.setText(info.sub_title);
         return convertView;
     }
 
@@ -83,10 +88,29 @@ public class CategoryAdapter extends ArrayAdapter implements View.OnClickListene
      * @author ButterKnifeZelezny, plugin for Android Studio by Avast Developers (http://github.com/avast)
      */
     static class ViewHolder {
+        //要展示的图片
         ImageView mImageView;
+        //更新到多少期
+        TextView upDate;
+        //底部标题
+        TextView title;
+        //底部子标题
+        TextView sub_title;
+
+//        "title": "推理神剧：乱步奇谭",
+// 	            "sub_title": "每周五1:30更新",
         ViewHolder(View view) {
             if(mImageView==null){
               mImageView=(ImageView)view.findViewById(R.id.anchor_img);
+            }
+            if(upDate==null){
+                upDate=(TextView)view.findViewById(R.id.update_set);
+            }
+            if(title==null){
+                title=(TextView)view.findViewById(R.id.title);
+            }
+            if(sub_title==null){
+                sub_title=(TextView)view.findViewById(R.id.sub_title);
             }
         }
     }

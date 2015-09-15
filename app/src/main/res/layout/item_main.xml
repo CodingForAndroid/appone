@@ -10,17 +10,15 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical" >
         <TextView
-            android:text="六月的花 勇者"
             android:ellipsize="end"
             android:singleLine="true"
-            android:id="@+id/tv_desc"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp" />
 
         <TextView
-            android:text="每周2 定时更新"
-            android:id="@+id/tv_start_time"
+            android:id="@+id/sub_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#a49f9f"
@@ -47,8 +45,7 @@
             android:layout_height="fill_parent" >
             <TextView
                 android:background="@mipmap/x_hall_name_bg"
-                android:text="已更新到30期"
-                android:id="@+id/anchor_username"
+                android:id="@+id/update_set"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

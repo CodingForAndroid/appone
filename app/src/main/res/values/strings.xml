@@ -18,5 +18,5 @@
     <string name="txt_classify">栏目</string>
     <string name="txt_discover">发现</string>
     <string name="txt_mine">个人</string>
-
+    <string name="update_set">已更新至  第%s集</string>
 </resources>
