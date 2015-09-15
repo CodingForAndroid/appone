@@ -1,8 +1,11 @@
 package com.bczm.widgetcollections.http.parse;
+import com.bczm.widgetcollections.bean.RecommendedChannel;
+import com.bczm.widgetcollections.utils.LogUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +20,23 @@ public  class JsonHelper {
         Gson gson = new Gson();
         for (int i = 0; i < array.length(); i++) {
             list.add(gson.fromJson(array.optString(i),clazz));
-//            UIUtils.showToastSafe(array.optString(i));
+          LogUtils.e(array.optString(i).toString());
 //                  LogUtils.log2File(info.toString(), FileUtils.getDownloadDir() + "log.txt");
         }
           return  list;
     }
 
+    /**
+     *  解析 推荐 频道
+     * @param json
+     * @return
+     */
+    public  static RecommendedChannel  parseRecommandChannel( String json){
+
+        Gson gson= new Gson ();
+        RecommendedChannel recommendedChannel= gson.fromJson(json,RecommendedChannel.class);
+        LogUtils.e("---111:"+recommendedChannel.toString());
+        return recommendedChannel;
+    }
 
 }

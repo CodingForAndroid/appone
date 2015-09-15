@@ -12,8 +12,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.bczm.widgetcollections.R;
+import com.bczm.widgetcollections.bean.Channel;
 import com.bczm.widgetcollections.bean.RecommandPositionInfo;
+import com.bczm.widgetcollections.bean.RecommendedChannel;
 import com.bczm.widgetcollections.http.ConfigManage;
 import com.bczm.widgetcollections.http.HttpUtil;
 import com.bczm.widgetcollections.http.NetUtils;
@@ -42,26 +45,24 @@ import butterknife.ButterKnife;
 public class RecommandFragment extends BaseFragment {
     // 存储顶部轮播图的集合
     private ArrayList<RecommandPositionInfo> resultList;
+    private LinearLayout rlView;
     @Override
     protected LoadResult load() {
         RecommandProtocol protocol = new RecommandProtocol();
-        loadData();
         resultList = protocol.load(0);
-
+        loadData();
         return check(resultList);
     }
-
     @Override
     protected View createLoadedView() {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_recommand, null);
 //        ButterKnife.bind(this,view);
         // 此时list 已经包含信息
-        LinearLayout rlView = (LinearLayout) view.findViewById(R.id.rl_view);
+        rlView = (LinearLayout) view.findViewById(R.id.rl_view);
         LayoutGenetator.getneratePagerView(resultList, getActivity(), rlView);
-        LayoutGenetator.generateGridView(popList, rlView);
+
         return view;
     }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -92,6 +93,7 @@ public class RecommandFragment extends BaseFragment {
              LogUtils.e(object.toString());
                 JSONArray arrays= object.optJSONArray("items");
                 JsonHelper.JSONArrayToList(arrays,popList , RecommandPositionInfo.class);
+                LayoutGenetator.generateGridView(popList, rlView);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -106,7 +108,27 @@ public class RecommandFragment extends BaseFragment {
                 return    ConfigManage.getHeaders();
             }
         };
-        HttpUtil.getRequestQueue().add(popContentRequest);
+        //获取推荐频道
+        StringRequest stringRequest=new StringRequest(NetUtils.FETCH_RECOMMEND_CHANNELS,new Response.SuccessListener<String>() {
+            @Override
+            public void onResponse(String s) {
+//                LogUtils.log2File(s,FileUtils.getCacheDir()+"StringRequest.txt");
+                LogUtils.e(s);
+                JsonHelper.parseRecommandChannel(s);
+            }
+        },new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
 
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return    ConfigManage.getHeaders();
+            }
+        };
+
+        HttpUtil.getRequestQueue().add(popContentRequest);
+        HttpUtil.getRequestQueue().add(stringRequest);
     }
 }
