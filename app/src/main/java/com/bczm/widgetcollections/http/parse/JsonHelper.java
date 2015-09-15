@@ -13,7 +13,7 @@ import java.util.List;
 public  class JsonHelper {
 
     //讲JSONArray 转成 存储信息的 list集合
-    public static ArrayList JSONArrayToList(JSONArray array,ArrayList list,Class clazz){
+    public static List JSONArrayToList(JSONArray array,List list,Class clazz){
         Gson gson = new Gson();
         for (int i = 0; i < array.length(); i++) {
             list.add(gson.fromJson(array.optString(i),clazz));

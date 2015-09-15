@@ -1,12 +1,10 @@
 package com.bczm.widgetcollections.http.protocol;
 
 import android.os.SystemClock;
-
 import com.bczm.widgetcollections.utils.FileUtils;
 import com.bczm.widgetcollections.utils.IOUtils;
 import com.bczm.widgetcollections.utils.LogUtils;
 import com.bczm.widgetcollections.utils.StringUtils;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -16,8 +14,6 @@ import java.io.FileWriter;
  * @author：Jorge on 2015/9/14 18:29
  */
 public abstract class BaseProtocol<Data> {
-
-    public static final String cachePath = "";
 
     /** 加载协议 */
     public Data load(int index) {
@@ -44,7 +40,7 @@ public abstract class BaseProtocol<Data> {
         String path = FileUtils.getCacheDir();
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new FileReader(path + getKey() + "_" + index + getParames()));
+            reader = new BufferedReader(new FileReader(path + getKey() + "_" + index));
             String line = reader.readLine();// 第一行是时间
             Long time = Long.valueOf(line);
             if (time > System.currentTimeMillis()) {//如果时间未过期
@@ -65,22 +61,13 @@ public abstract class BaseProtocol<Data> {
 
     /** 从网络加载协议 */
     protected  abstract String loadFromNet(int index) ;
-//    {
-//        String result = null;
-//        HttpResult httpResult = HttpHelper.get(HttpHelper.URL + getKey() + "?index=" + index + getParames());
-//        if (httpResult != null) {
-//            result = httpResult.getString();
-//            httpResult.close();
-//        }
-//        return result;
-//    }
 
     /** 保存到本地 */
     protected void saveToLocal(String str, int index) {
         String path = FileUtils.getCacheDir();
         BufferedWriter writer = null;
         try {
-            writer = new BufferedWriter(new FileWriter(path + getKey() + "_" + index + getParames()));
+            writer = new BufferedWriter(new FileWriter(path + getKey() + "_" + index ));
             long time = System.currentTimeMillis() + 1000 * 60;//先计算出过期时间，写入第一行  1minute 过期时间
             writer.write(time + "\r\n");
             writer.write(str.toCharArray());
@@ -90,11 +77,6 @@ public abstract class BaseProtocol<Data> {
         } finally {
             IOUtils.close(writer);
         }
-    }
-
-    /** 需要增加的额外参数 */
-    protected String getParames() {
-        return "";
     }
 
     /** 该协议的访问地址 */

@@ -15,6 +15,7 @@ public class HttpUtil {
     public static void init(Context context) {
         mRequestQueue  = Volley.newRequestQueue(context);
 //        mImageLoader = new SimpleImageLoader(mRequestQueue, BitmapImageCache.getInstance(null));
+//        Volley.newRequestQueue(getApplicationContext()).setRetryPolicy(getRetryPolicy())
     }
 
     public static RequestQueue getRequestQueue() {

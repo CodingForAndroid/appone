@@ -1,29 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:orientation="horizontal"
-    android:layout_height="wrap_content">
-
-    <RelativeLayout
-        android:id="@+id/rl_1"
-        android:layout_width="0dip"
+    android:layout_height="wrap_content"
+    android:background="@drawable/chatroom_bg" >
+    <LinearLayout
+        android:id="@+id/ll_desc"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:background="@drawable/selector_main_item"
-        android:clickable="true"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp">
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+        <TextView
+            android:text="六月的花 勇者"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:id="@+id/tv_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_1"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="启动页"
-            android:textColor="#ffffff" />
+            android:text="每周2 定时更新"
+            android:id="@+id/tv_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#a49f9f"
+            android:textSize="11sp" />
+    </LinearLayout>
+    <ImageView
+        android:layout_above="@+id/ll_desc"
+        android:id="@+id/anchor_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/ic_launcher"
+        android:scaleType="fitXY" />
+
+
+    <!-- 底部文字 -->
+    <RelativeLayout
+        android:layout_above="@+id/ll_desc"
+        android:id="@+id/rl_bo"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+   >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" >
+            <TextView
+                android:background="@mipmap/x_hall_name_bg"
+                android:text="已更新到30期"
+                android:id="@+id/anchor_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:ellipsize="end"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_namelow_divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/namelow_divider" />
+
     </RelativeLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

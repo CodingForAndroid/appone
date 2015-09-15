@@ -8,47 +8,40 @@ import com.bczm.widgetcollections.bean.RecommandPositionInfo;
 import com.bczm.widgetcollections.http.HttpUtil;
 import com.bczm.widgetcollections.http.NetUtils;
 import com.bczm.widgetcollections.http.parse.JsonHelper;
-import com.bczm.widgetcollections.utils.FileUtils;
-import com.bczm.widgetcollections.utils.LayoutGenetator;
 import com.bczm.widgetcollections.utils.LogUtils;
 import com.bczm.widgetcollections.utils.SharedPreferenceUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
-
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
+ * 顶部轮播图的请求
  * @author：Jorge on 2015/9/14 17:51
  */
-public class RecomandProtocol  extends  BaseProtocol<List<String>>{
-
-
+public class RecommandProtocol extends  BaseProtocol<ArrayList<RecommandPositionInfo>>{
+    String  result ="";
+    boolean waitflag=true;
     @Override
-    protected String loadFromNet(int index) {
-
-        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(NetUtils.FETCH_HOME_TOP_CONTENT,null, new Response.SuccessListener<JSONObject>() {
+    protected String loadFromNet(int index ) {
+        // 顶部轮播图数据
+        JsonObjectRequest topContentRequest=new JsonObjectRequest(NetUtils.FETCH_HOME_TOP_CONTENT,null, new Response.SuccessListener<JSONObject>() {
             @Override
-            public void onResponse(JSONObject object) {
+            public void onResponse(final JSONObject object) {
                 LogUtils.e(object.toString());
-                LogUtils.e(FileUtils.getDownloadDir()+"log.txt");
-                LogUtils.log2File(object.toString(), FileUtils.getDownloadDir() + "log.txt");
-                ArrayList<RecommandPositionInfo> resultList = new ArrayList<RecommandPositionInfo>();
-
-                JSONArray arrays= object.optJSONArray("items");
-                JsonHelper.JSONArrayToList(arrays, resultList, RecommandPositionInfo.class);
-                // 此时list 已经包含信息
-//                LayoutGenetator.getneratePagerView(resultList, getActivity(), relativeLayout);
+                result= object.toString();
+                waitflag=false;
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                UIUtils.showToastSafe(volleyError.toString() );
-                LogUtils.log2File(volleyError.toString(), FileUtils.DOWNLOAD_DIR+"abc.txt");
+                UIUtils.showToastSafe(volleyError.toString());
+//                LogUtils.log2File(volleyError.toString(), FileUtils.DOWNLOAD_DIR + "abc.txt");
+                waitflag=false;
+                result=null;
             }
         }){
             @Override
@@ -65,20 +58,34 @@ public class RecomandProtocol  extends  BaseProtocol<List<String>>{
                 return headers;
             }
         };
-        HttpUtil.getRequestQueue().add(jsonObjectRequest);
 
+//        topContentRequest.setRetryPolicy()
+        HttpUtil.getRequestQueue().add(topContentRequest);
 
-
-        return null;
+        while(waitflag){
+        }
+       return result;
     }
-
     @Override
     protected String getKey() {
-        return null;
+        return "recommand";
     }
 
     @Override
-    protected List<String> parseFromJson(String json) {
-        return new ArrayList<String>();
+    protected ArrayList<RecommandPositionInfo> parseFromJson(String json) {
+        return parseJson(json);
+    }
+
+    public  ArrayList<RecommandPositionInfo>  parseJson(String json){
+        ArrayList<RecommandPositionInfo> resultList = null;
+        try {
+            JSONObject  object= new JSONObject(json);
+            resultList = new ArrayList<RecommandPositionInfo>();
+            JSONArray arrays= object.optJSONArray("items");
+            JsonHelper.JSONArrayToList(arrays, resultList, RecommandPositionInfo.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return  resultList;
     }
 }

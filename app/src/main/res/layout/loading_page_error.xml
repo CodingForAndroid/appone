@@ -10,11 +10,11 @@
 
         <ImageView
             android:id="@+id/page_iv"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_centerHorizontal="true"
             android:scaleType="centerInside"
-            android:src="@mipmap/ic_error_page" />
+            android:src="@mipmap/bbn" />
 
         <Button
             android:id="@+id/page_bt"

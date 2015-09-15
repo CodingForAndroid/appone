@@ -1,9 +1,12 @@
 package com.bczm.widgetcollections.http;
 
 /**
+ * 项目中用到的api 接口
+ * 大小写 转换 快捷键  Ctrl + shift + U
  * @author：Jorge on 2015/9/11 13:45
  */
 public class NetUtils {
+
 
     public static final String BASE_URL_HTTP="http://api.icartoons.cn";
 
@@ -22,6 +25,9 @@ public class NetUtils {
         "posid=2&" +
         "sig=QUlxzaFec5I4u1Dw0sWjc2UwQxQYLeeoQKPMkP3%2FnlxVWAgMX2UjBLgAuzKzcWtNb26vIZMs2gh7kZo0qWG2GDZ2vpDfg4qSMmEe3LZyf%2B9dxtcM1rQPEKcVqefwH1KE3BypMwVh8hjaJT1oRXlplp1Je5eV6X%2Bemc82P22oeN4%3D";
 
+   public static final  String FETCH_POPULAR_CONTENT = BASE_URL_HTTP+"/v4/contents/position.json?" +
+            "posid=4&" +
+            "sig=zdrMT6MixLboTnSmQkhxxCLlDRhwawXspuThHWpfqNHK9HGG0iq%2BnImW%2FhPOD2T7mbWJmPKiPQFKaXadthLbAxzgHbWMboH5FElJReqWMs1GtLAwWttAw8hL8Pf%2FFeaUWQ8FQZphvIBm8%2FORd5lC0G1Wj00NOsFGxMCIBX%2FH6%2Bw%3D";
 
 
     //首页顶部轮播图

@@ -16,7 +16,7 @@ public class AppFragment extends BaseFragment {
 
     @Override
     protected LoadingPage.LoadResult load() {
-        return LoadingPage.LoadResult.EMPTY;
+        return LoadingPage.LoadResult.ERROR;
     }
 
     @Override
