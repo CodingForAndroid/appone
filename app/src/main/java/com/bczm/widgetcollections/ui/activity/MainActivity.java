@@ -109,6 +109,7 @@ public class MainActivity extends BaseActivity {
         //获取 requestqueue 对象
         RequestQueue mQueue= HttpUtil.getRequestQueue();
         //  添加  request  到  queue 中
+        getTouristInfoRequest.setTag("getTouristInfoRequest");
         mQueue.add(getTouristInfoRequest);
     }
     @Override

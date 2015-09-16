@@ -11,25 +11,25 @@ public class ChannelItemDetail {
     //http://img0.icartoons.cn/opftp/c4x_pic/position/201508/20150812114009332619.jpg?.... 需要截取
     public  String  cover;
     //2S201507172200092782
-    private String serial_id;
+    public String serial_id;
     //0
-    private String serial_status;
+    public String serial_status;
     //1
-    private String serial_type;
+    public String serial_type;
     //偶像大师女孩灰姑娘2
-    private String title;
+    public String title;
     //每周六12:00更新
-    private String sub_title;
+    public String sub_title;
 //    老牌艺人事务所“346Production”旗下拥有众多偶像艺人。如今事务所推出了全新组合“CINDERELLA PROJECT（灰姑娘计划）”，被选中的少女们从此走上了偶像演艺之路。
-    private String desc;
+public String desc;
     //8  更新到 第几集
-    private String update_set;
+    public String update_set;
     // 0
-    private String w_type;
+    public String w_type;
     // ""
-    private String superscript;
+    public String superscript;
     //144193462087532696eb757e02b6f42a-c15-365-1-
-    private String trackid;
+    public String trackid;
 
     @Override
     public String toString() {

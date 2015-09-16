@@ -6,8 +6,9 @@ package com.bczm.widgetcollections;
  */
 public class QucikStart {
 
-//    大小写 转换 快捷键  Ctrl + shift + U
+//   大小写 转换 快捷键  Ctrl + shift + U
 
 //   复制当前行到下一行  Ctrl+D
 
+//   替换全部  Ctrl+R
 }

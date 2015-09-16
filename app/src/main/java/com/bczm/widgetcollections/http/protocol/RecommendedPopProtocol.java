@@ -4,71 +4,67 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.bczm.widgetcollections.bean.RecommandPositionInfo;
+import com.bczm.widgetcollections.http.ConfigManage;
 import com.bczm.widgetcollections.http.HttpUtil;
 import com.bczm.widgetcollections.http.NetUtils;
 import com.bczm.widgetcollections.http.parse.JsonHelper;
+import com.bczm.widgetcollections.utils.FileUtils;
 import com.bczm.widgetcollections.utils.LogUtils;
-import com.bczm.widgetcollections.utils.SharedPreferenceUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 顶部轮播图的请求
- * @author：Jorge on 2015/9/14 17:51
+ * 顶部6个流行位置
+ * @author：Jorge on 2015/9/16 10:57
  */
-public class RecommandProtocol extends  BaseProtocol<ArrayList<RecommandPositionInfo>>{
-    String  result ="";
+public class RecommendedPopProtocol extends BaseProtocol<ArrayList<RecommandPositionInfo>> {
     boolean waitflag=true;
+    String  result ="";
     @Override
-    protected String loadFromNet(int index ) {
-        // 顶部轮播图数据
-        JsonObjectRequest topContentRequest=new JsonObjectRequest(NetUtils.FETCH_HOME_TOP_CONTENT,null, new Response.SuccessListener<JSONObject>() {
+    protected String loadFromNet(int index) {
+        // 轮播图下面的六个item
+        StringRequest popContentRequest=new StringRequest(NetUtils.FETCH_POPULAR_CONTENT, new Response.SuccessListener<String>() {
             @Override
-            public void onResponse(final JSONObject object) {
-                LogUtils.e(object.toString());
-                result= object.toString();
+            public void onResponse( String s) {
+                LogUtils.e("StringRequest:"+s.toString());
+                result=s;
                 waitflag=false;
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                UIUtils.showToastSafe(volleyError.toString());
-//                LogUtils.log2File(volleyError.toString(), FileUtils.DOWNLOAD_DIR + "abc.txt");
+
+                result= null;
                 waitflag=false;
-                result=null;
+                UIUtils.showToastSafe(volleyError.toString());
+                LogUtils.log2File(volleyError.toString(), FileUtils.getDownloadDir() + "abc.txt");
             }
         }){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("User-Agent", "Client(ERDO/4.0.11;Android/4.4.4;720*1280;G620S-UL00;PAYMD/1.0.02;)");
-                headers.put("Cookie","sto-id-51017=BIBKKIMAMHEJ");
-                String value = String.valueOf(System.currentTimeMillis()).subSequence(0, 10).toString();
-                headers.put("timestamp",value);
-                headers.put("app_id","dm_zk_6001100_81");
-                headers.put("client_style","1");
-                headers.put("access_token", SharedPreferenceUtils.getAccessToken());
-                headers.put("promotion_id","020000000003");
-                return headers;
+
+                return    ConfigManage.getHeaders();
             }
         };
 
-//        topContentRequest.setRetryPolicy()
-        HttpUtil.getRequestQueue().add(topContentRequest);
-
+        HttpUtil.getRequestQueue().add(popContentRequest);
         while(waitflag){
+
         }
-       return result;
+        return result;
     }
+
     @Override
     protected String getKey() {
-        return "recommand";
+        return "recommendedpopprotocol";
     }
 
     @Override
@@ -81,11 +77,14 @@ public class RecommandProtocol extends  BaseProtocol<ArrayList<RecommandPosition
         try {
             JSONObject  object= new JSONObject(json);
             resultList = new ArrayList<RecommandPositionInfo>();
+            if(!object.has("items"))
+                return  null;
             JSONArray arrays= object.optJSONArray("items");
             JsonHelper.JSONArrayToList(arrays, resultList, RecommandPositionInfo.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        LogUtils.e("StringRequest:"+resultList.size());
         return  resultList;
     }
 }

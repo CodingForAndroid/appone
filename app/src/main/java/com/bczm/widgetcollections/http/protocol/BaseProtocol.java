@@ -17,7 +17,7 @@ public abstract class BaseProtocol<Data> {
 
     /** 加载协议 */
     public Data load(int index) {
-        SystemClock.sleep(1000);// 休息1秒，防止加载过快，看不到界面变化效果
+//        SystemClock.sleep(1000);// 休息1秒，防止加载过快，看不到界面变化效果
         String json = null;
         // 1.从本地缓存读取数据，查看缓存时间
         json = loadFromLocal(index);

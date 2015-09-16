@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:clickable="false"
+              android:orientation="vertical"
+              android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+              android:paddingLeft="5dp"
+              android:paddingRight="5dp">
+
+    <LinearLayout
+        android:clickable="false"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/rl_1"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/chatroom_bg"
+            android:clickable="true"
+          >
+
+            <ImageView
+                style="@style/CHannelImageStyle"
+                android:id="@+id/iv_1" />
+
+            <TextView
+                style="@style/CHannelTextStyle"
+                android:id="@+id/tv_1_title"
+                android:layout_below="@id/iv_1" />
+
+            <TextView
+                android:textColor="@color/black"
+                style="@style/CHannelTextStyle"
+                android:textSize="12sp"
+                android:id="@+id/tv_1_sub_title"
+                android:layout_below="@id/tv_1_title" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_2"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/chatroom_bg"
+            android:clickable="true"
+          >
+
+            <ImageView
+                style="@style/CHannelImageStyle"
+                android:id="@+id/iv_2"/>
+
+            <TextView
+                style="@style/CHannelTextStyle"
+                android:id="@+id/tv_2_title"
+                android:layout_below="@id/iv_2" />
+
+            <TextView
+                android:textColor="@color/black"
+                style="@style/CHannelTextStyle"
+                android:textSize="12sp"
+                android:id="@+id/tv_2_sub_title"
+                android:layout_below="@id/tv_2_title" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_3"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/chatroom_bg"
+            android:clickable="true">
+
+            <ImageView
+                style="@style/CHannelImageStyle"
+                android:id="@+id/iv_3"/>
+            <TextView
+                style="@style/CHannelTextStyle"
+                android:id="@+id/tv_3_title"
+                android:layout_below="@id/iv_3" />
+            <TextView
+                android:textColor="@color/black"
+                style="@style/CHannelTextStyle"
+                android:textSize="12sp"
+                android:id="@+id/tv_3_sub_title"
+                android:layout_below="@id/tv_3_title" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:clickable="false"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/rl_4"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/chatroom_bg"
+            android:clickable="true">
+
+            <ImageView
+                style="@style/CHannelImageStyle"
+                android:id="@+id/iv_4"/>
+
+            <TextView
+                style="@style/CHannelTextStyle"
+                android:id="@+id/tv_4_title"
+                android:layout_below="@id/iv_4" />
+            <TextView
+                android:textColor="@color/black"
+                style="@style/CHannelTextStyle"
+                android:textSize="12sp"
+                android:id="@+id/tv_4_sub_title"
+                android:layout_below="@id/tv_4_title" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_5"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/chatroom_bg"
+            android:clickable="true">
+
+            <ImageView
+                style="@style/CHannelImageStyle"
+                android:id="@+id/iv_5" />
+
+            <TextView
+                style="@style/CHannelTextStyle"
+                android:id="@+id/tv_5_title"
+                android:layout_below="@id/iv_5" />
+            <TextView
+                style="@style/CHannelTextStyle"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:id="@+id/tv_5_sub_title"
+                android:layout_below="@id/tv_5_title" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_6"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/chatroom_bg"
+            android:clickable="true">
+
+            <ImageView
+                style="@style/CHannelImageStyle"
+                android:id="@+id/iv_6"/>
+
+            <TextView
+                style="@style/CHannelTextStyle"
+                android:id="@+id/tv_6_title"
+                android:layout_below="@id/iv_6" />
+            <TextView
+                android:textColor="@color/black"
+                style="@style/CHannelTextStyle"
+                android:textSize="12sp"
+                android:id="@+id/tv_6_sub_title"
+                android:layout_below="@id/tv_6_title"
+            />
+        </RelativeLayout>
+    </LinearLayout>
+    </LinearLayout>

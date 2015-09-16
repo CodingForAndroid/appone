@@ -26,13 +26,14 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
+ * 推荐6个 展示位置适配数据
  * @author：Jorge on 2015/9/6 17:21
  */
-public class CategoryAdapter extends ArrayAdapter implements View.OnClickListener {
+public class RecommendedPositionAdapter extends ArrayAdapter implements View.OnClickListener {
     public String[] itmes = {"引导页", "Material Design", "标题3", "标题4"};
     private List<RecommandPositionInfo> mList;
     private Context cxt;
-    public CategoryAdapter(Context context,List<RecommandPositionInfo> list) {
+    public RecommendedPositionAdapter(Context context, List<RecommandPositionInfo> list) {
         super(context, R.layout.item_main);
         this.cxt = context;
         mList=list;
@@ -60,12 +61,13 @@ public class CategoryAdapter extends ArrayAdapter implements View.OnClickListene
         }else {
             holder=(ViewHolder)convertView.getTag();
         }
-        int width=(SystemUtils.getScreenWidth()-20)/2;
+        int width=(SystemUtils.getScreenWidth())/2;
         int height=3*width/4;
         AbsListView.LayoutParams params = new AbsListView.LayoutParams(AbsListView.LayoutParams.FILL_PARENT, AbsListView.LayoutParams.FILL_PARENT);
         params.height = height;
         params.width = width;
         convertView.setLayoutParams(params);
+//        convertView.setPadding(0,5,0,0);
         RecommandPositionInfo info=  mList.get(position);
         // 显示图片
         ImageLoader.getInstance().imageLoaderRequest(holder.mImageView, info.pic.split("\\?")[0]);

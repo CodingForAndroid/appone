@@ -25,5 +25,35 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="ProgressBarSmall">
+        <item name="android:indeterminateDrawable">@drawable/progress_small</item>
+        <item name="android:minWidth">20dip</item>
+        <item name="android:maxWidth">20dip</item>
+        <item name="android:minHeight">20dip</item>
+        <item name="android:maxHeight">20dip</item>
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:indeterminateBehavior">repeat</item>
+        <item name="android:indeterminateDuration">3500</item>
+    </style>
+
+        <!--推荐频道 图片样式-->
+    <style name="CHannelImageStyle">
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:src">@mipmap/ic_launcher</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+    <!--推荐频道 文字样式-->
+    <style name="CHannelTextStyle">
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:layout_centerHorizontal">true</item>
+
+    </style>
 
 </resources>

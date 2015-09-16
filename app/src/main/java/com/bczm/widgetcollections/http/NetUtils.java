@@ -33,6 +33,18 @@ public class NetUtils {
     public static final String  FETCH_RECOMMEND_CHANNELS=BASE_URL_HTTP+"/v4/contents/show_area.json?" +
             "type=1&" +
             "sig=d1MRdM3pqP5bScvS7P21hva77k3EbZWlEVUbqSUPjhX2NiMw4Quv5afyFSgZE1ndul6ODR0ZBwEQAM1yThc0gGthniD%2Bi%2F%2FSAA4Yjs4GyS1ghb5lDaqbasjF4Z%2BcpYH1lag8%2FIzbIrKIcAqOOS9%2BaYLq67dIyF0gh%2BqXm7JtiwU%3D";
+
+
+    // 首页底部 推荐 应用
+    public static final String  FETCH_RECOMMENDED_APP=BASE_URL_HTTP+"/v4/contents/position.json?" +
+            "posid=7&" +
+            "sig=CCRx9fiG6J2rT3rmNNi6cjSZPiuUSLpPtq9rtiwFvSGpuKSeWEvPZPCCysZIy6B1yEMGmS%2Bo%2B%2F0Ht7TKknLUy7C%2FQl1Dl0pWkJxvPW1EZY3VpiOpbmqR7dJxgUqLsoomMJ6zu2mXrS%2BXnqTATZl9AFV9PKHPqpqN5P1y2vgf5Bs%3D";
+
+
+
+
+
+
     //首页顶部轮播图
     //public static final String  home_top_viewpager=http://api.icartoons.cn/v4/contents/position.json?posid=2&sig=QUlxzaFec5I4u1Dw0sWjc2UwQxQYLeeoQKPMkP3%2FnlxVWAgMX2UjBLgAuzKzcWtNb26vIZMs2gh7kZo0qWG2GDZ2vpDfg4qSMmEe3LZyf%2B9dxtcM1rQPEKcVqefwH1KE3BypMwVh8hjaJT1oRXlplp1Je5eV6X%2Bemc82P22oeN4%3D
 
