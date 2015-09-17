@@ -24,17 +24,17 @@
           >
 
             <ImageView
-                style="@style/CHannelImageStyle"
+                style="@style/ChannelImageStyle"
                 android:id="@+id/iv_1" />
 
             <TextView
-                style="@style/CHannelTextStyle"
+                style="@style/ChannelTextStyle"
                 android:id="@+id/tv_1_title"
                 android:layout_below="@id/iv_1" />
 
             <TextView
                 android:textColor="@color/black"
-                style="@style/CHannelTextStyle"
+                style="@style/ChannelTextStyle"
                 android:textSize="12sp"
                 android:id="@+id/tv_1_sub_title"
                 android:layout_below="@id/tv_1_title" />
@@ -50,17 +50,17 @@
           >
 
             <ImageView
-                style="@style/CHannelImageStyle"
+                style="@style/ChannelImageStyle"
                 android:id="@+id/iv_2"/>
 
             <TextView
-                style="@style/CHannelTextStyle"
+                style="@style/ChannelTextStyle"
                 android:id="@+id/tv_2_title"
                 android:layout_below="@id/iv_2" />
 
             <TextView
                 android:textColor="@color/black"
-                style="@style/CHannelTextStyle"
+                style="@style/ChannelTextStyle"
                 android:textSize="12sp"
                 android:id="@+id/tv_2_sub_title"
                 android:layout_below="@id/tv_2_title" />
@@ -75,15 +75,15 @@
             android:clickable="true">
 
             <ImageView
-                style="@style/CHannelImageStyle"
+                style="@style/ChannelImageStyle"
                 android:id="@+id/iv_3"/>
             <TextView
-                style="@style/CHannelTextStyle"
+                style="@style/ChannelTextStyle"
                 android:id="@+id/tv_3_title"
                 android:layout_below="@id/iv_3" />
             <TextView
                 android:textColor="@color/black"
-                style="@style/CHannelTextStyle"
+                style="@style/ChannelTextStyle"
                 android:textSize="12sp"
                 android:id="@+id/tv_3_sub_title"
                 android:layout_below="@id/tv_3_title" />
@@ -104,16 +104,16 @@
             android:clickable="true">
 
             <ImageView
-                style="@style/CHannelImageStyle"
+                style="@style/ChannelImageStyle"
                 android:id="@+id/iv_4"/>
 
             <TextView
-                style="@style/CHannelTextStyle"
+                style="@style/ChannelTextStyle"
                 android:id="@+id/tv_4_title"
                 android:layout_below="@id/iv_4" />
             <TextView
                 android:textColor="@color/black"
-                style="@style/CHannelTextStyle"
+                style="@style/ChannelTextStyle"
                 android:textSize="12sp"
                 android:id="@+id/tv_4_sub_title"
                 android:layout_below="@id/tv_4_title" />
@@ -128,15 +128,15 @@
             android:clickable="true">
 
             <ImageView
-                style="@style/CHannelImageStyle"
+                style="@style/ChannelImageStyle"
                 android:id="@+id/iv_5" />
 
             <TextView
-                style="@style/CHannelTextStyle"
+                style="@style/ChannelTextStyle"
                 android:id="@+id/tv_5_title"
                 android:layout_below="@id/iv_5" />
             <TextView
-                style="@style/CHannelTextStyle"
+                style="@style/ChannelTextStyle"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:id="@+id/tv_5_sub_title"
@@ -152,16 +152,16 @@
             android:clickable="true">
 
             <ImageView
-                style="@style/CHannelImageStyle"
+                style="@style/ChannelImageStyle"
                 android:id="@+id/iv_6"/>
 
             <TextView
-                style="@style/CHannelTextStyle"
+                style="@style/ChannelTextStyle"
                 android:id="@+id/tv_6_title"
                 android:layout_below="@id/iv_6" />
             <TextView
                 android:textColor="@color/black"
-                style="@style/CHannelTextStyle"
+                style="@style/ChannelTextStyle"
                 android:textSize="12sp"
                 android:id="@+id/tv_6_sub_title"
                 android:layout_below="@id/tv_6_title"

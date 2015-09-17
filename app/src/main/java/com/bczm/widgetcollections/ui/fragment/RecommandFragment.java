@@ -78,11 +78,14 @@ public class RecommandFragment extends BaseFragment {
         // 添加6个推荐位置
         LayoutGenetator.generateRecommendPosition(popList, rlView);
         //添加 推荐频道
-        generateRecommendedChannels(recommendedChannel,rlView);
+        generateRecommendedChannels(recommendedChannel, rlView);
 
         // 添加更多频道按钮
-        LayoutGenetator.genenrateMoreChannels(rlView);
+        LayoutGenetator.genenrateMoreChannels(rlView, R.string.txt_recommend_more, R.mipmap.ic_hot_click);
         // 添加 应用推荐 模块
+        LayoutGenetator.generateRecommendedApp(rlView,appList);
+        // 添加更多应用
+        LayoutGenetator.genenrateMoreChannels(rlView,R.string.txt_recommend_more_app,R.mipmap.ic_like_click);
         return view;
     }
     @Override
@@ -129,9 +132,7 @@ public class RecommandFragment extends BaseFragment {
     public   void  generateRecommendedChannels(RecommendedChannel  recommendeChannel,LinearLayout layout_item_container){
 
         List<Channel> list=recommendeChannel.items;
-//        MyGridView gridView= new MyGridView(UIUtils.getContext());
         BaseListView listView=new BaseListView(UIUtils.getContext());
-//        gridView.setNumColumns(3);
         RelativeLayout.LayoutParams cParams = new RelativeLayout.LayoutParams( RelativeLayout.LayoutParams.MATCH_PARENT,  RelativeLayout.LayoutParams.WRAP_CONTENT) ;
         layout_item_container.addView(listView, cParams);
         listView.setAdapter(new ChannelAdapter(listView, list));
@@ -172,13 +173,11 @@ public class RecommandFragment extends BaseFragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             mCurrentPosition = position;
-            LogUtils.e("getView:mCurrentPosition"+mCurrentPosition);
             return super.getView(position, convertView, parent);
         }
 
         @Override
         protected BaseHolder getHolder() {
-            LogUtils.e("getHolder:mCurrentPosition"+mCurrentPosition);
             Channel channel= getData().get(mCurrentPosition);
             if(channel.contents==null||channel.contents.size()==0){
                 //广告布局

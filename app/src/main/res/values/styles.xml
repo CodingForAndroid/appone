@@ -37,7 +37,7 @@
     </style>
 
         <!--推荐频道 图片样式-->
-    <style name="CHannelImageStyle">
+    <style name="ChannelImageStyle">
         <item name="android:layout_margin">3dp</item>
         <item name="android:src">@mipmap/ic_launcher</item>
         <item name="android:layout_width">fill_parent</item>
@@ -46,7 +46,7 @@
         <item name="android:scaleType">fitXY</item>
     </style>
     <!--推荐频道 文字样式-->
-    <style name="CHannelTextStyle">
+    <style name="ChannelTextStyle">
         <item name="android:layout_margin">2dp</item>
         <item name="android:singleLine">true</item>
         <item name="android:layout_width">fill_parent</item>
