@@ -34,6 +34,12 @@ public class RecommandPositionInfo {
 //            "desc": "过去，曾有过人类的声音唤醒万物真理的时代。但，经由某种发明，人类的历史迎来巨大的转换期。“文字”——它作为优越的传达手段在瞬间普及，并令声音与真理之间的“LOGOS世界”诞生了。",
 //            "pic": "http://img0.icartoons.cn/spftp/temp/2015090602091300000096712542/720x405.jpg?flow_flag=74559224&flow_type=1&flow_channel=api&dm_sid=144193462087532696eb757e02b6f42a&trackid=144193462087532696eb757e02b6f42a----&loginfo=74559224|2947916703|6|68a0f6a3d862|000000000000000|68a0f6a3d862"
 //    }
+//    http://api.icartoons.cn/v4/contents/resource?
+    // trackid=14424757662748221fef6989db80c62f-c1-2-4-&
+    // serial_id=2S201509012200092907&
+    // content_id=2C201509023200194621&
+    // is_download=0&
+    // sig=aIFOksUsA%2BebR%2FRNxTiqXLc72u75TEOyoCAJAaVjgoyna%2BTuEh1svZ4jjG8x1Azc6FoEUGi1pWzPCTiv0pQX4oK2jQASkExo82flCxAzp82za0yLZb1VgDYVqGupZSrxJkGRPY85%2BFyrCiKvVZgcK7jiZD4JyEyPYtfHxTbB9ag%3D
 
     @Override
     public String toString() {

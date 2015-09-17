@@ -24,8 +24,6 @@ public abstract  class BaseActivity extends FragmentActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
         createContent();
-        initViews();
-        initActionBar();
         setListeners();
     }
 
@@ -55,10 +53,7 @@ public abstract  class BaseActivity extends FragmentActivity {
      * setContentView(int layoutResID)
      */
     protected abstract  void  createContent();
-    /**
-     *  find views by  id
-     */
-    protected  abstract void    initViews();
+
 
     /**
      * all kinds of listener on views / such as onclicklistener
@@ -70,6 +65,5 @@ public abstract  class BaseActivity extends FragmentActivity {
     protected  abstract  void   free();
 
 
-    protected abstract  void  initActionBar();
 
 }

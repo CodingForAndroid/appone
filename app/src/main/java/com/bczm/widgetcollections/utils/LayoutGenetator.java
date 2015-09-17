@@ -1,6 +1,7 @@
 package com.bczm.widgetcollections.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.TypedValue;
@@ -13,7 +14,9 @@ import android.widget.TextView;
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.bean.RecommandPositionInfo;
 import com.bczm.widgetcollections.bean.RecommendAppInfo;
+import com.bczm.widgetcollections.http.ConfigManage;
 import com.bczm.widgetcollections.manager.ImageLoader;
+import com.bczm.widgetcollections.ui.activity.VideoDetialActivity;
 import com.bczm.widgetcollections.ui.adapter.RecommendedPositionAdapter;
 import com.bczm.widgetcollections.ui.widget.ClickableImageView;
 import com.bczm.widgetcollections.ui.widget.ImageCycleView;
@@ -48,7 +51,7 @@ public class LayoutGenetator {
      * @param mActivity  Context
      * @param layout_item_container： 父布局
      */
-    public static  void getneratePagerView(List<RecommandPositionInfo> list,Context mActivity,LinearLayout layout_item_container){
+    public static  void getneratePagerView(final List<RecommandPositionInfo> list,Context mActivity,LinearLayout layout_item_container){
         ImageCycleView    mImageCycleView = new ImageCycleView(mActivity) ;
         LinearLayout.LayoutParams cParams = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,  SystemUtils.getScreenHeight()*3/10) ;
         layout_item_container.addView(mImageCycleView, cParams) ;
@@ -63,6 +66,15 @@ public class LayoutGenetator {
             @Override
             public void onImageClick(int position, View imageView) {
 //                setRecommandEvent(imageView, model.getData().get(position), mActivity ) ;
+              Intent intent=  new Intent(UIUtils.getContext(), VideoDetialActivity.class);
+                //trackid
+                intent.putExtra(ConfigManage.INTENT_EXTRA_TRACKID,list.get(position).trackid);
+                //serial_id
+                intent.putExtra(ConfigManage.INTENT_EXTRA_CONTENT_ID,list.get(position).serial_id);
+                //拿这两个参数去请求服务器获取 数据
+                UIUtils.startActivity(intent);
+
+                LogUtils.e(list.get(position).toString());
             }
             @Override
             public void displayImage(String imageURL,ImageView imageView) {

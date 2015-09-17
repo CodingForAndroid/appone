@@ -41,7 +41,7 @@ public class NetUtils {
             "sig=CCRx9fiG6J2rT3rmNNi6cjSZPiuUSLpPtq9rtiwFvSGpuKSeWEvPZPCCysZIy6B1yEMGmS%2Bo%2B%2F0Ht7TKknLUy7C%2FQl1Dl0pWkJxvPW1EZY3VpiOpbmqR7dJxgUqLsoomMJ6zu2mXrS%2BXnqTATZl9AFV9PKHPqpqN5P1y2vgf5Bs%3D";
 
 
-
+  public static  final String  Fetch_Video_content_id="";
 
     //http://api.icartoons.cn/v4/contents/guessenjoy?
     // content_id=2S201507052200092708&

@@ -56,10 +56,10 @@ public class MainActivity extends BaseActivity {
     private MainPagerAdapter pagerAdapter;
     @Override
     protected void createContent() {
+        HttpUtil.getAssToken();
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         tabChange(0);
-
     }
     //底部 tab 的点击事件
     public  void onClick(View view){
@@ -78,40 +78,8 @@ public class MainActivity extends BaseActivity {
               break;
       }
     }
-    @Override
-    protected void initViews() {
-        //  创建 request 对象
-        GsonRequest<TouristInfo> getTouristInfoRequest= new GsonRequest<TouristInfo>(Method.GET, NetUtils.FETCH_VALID_TOKEN, TouristInfo.class,new Response.SuccessListener<TouristInfo>() {
-            @Override
-            public void onResponse(TouristInfo touristInfo) {
-                SharedPreferenceUtils.persistenceToken(touristInfo.access_token);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-            }
-        }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("User-Agent", "Client(ERDO/4.0.11;Android/4.4.4;720*1280;G620S-UL00;PAYMD/1.0.02;)");
-                headers.put("Cookie","sto-id-51017=BIBKKIMAMHEJ");
-                String value = String.valueOf(System.currentTimeMillis()).subSequence(0, 10).toString();
-                headers.put("timestamp",value);
-                headers.put("app_id","dm_zk_6001100_81");
-                headers.put("client_style","0");
-                headers.put("access_token","");
-                headers.put("promotion_id","020000000003");
-                return headers;
-            }
 
-        };
-        //获取 requestqueue 对象
-        RequestQueue mQueue= HttpUtil.getRequestQueue();
-        //  添加  request  到  queue 中
-        getTouristInfoRequest.setTag("getTouristInfoRequest");
-        mQueue.add(getTouristInfoRequest);
-    }
+
     @Override
     protected void setListeners() {
         pagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
@@ -124,12 +92,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void free() {
 
-    }
-    /**
-     * ActionBar 的初始化
-     */
-    @Override
-    protected void initActionBar() {
     }
 
     MediaPlayer mp;

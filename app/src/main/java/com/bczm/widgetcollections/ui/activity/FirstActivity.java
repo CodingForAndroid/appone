@@ -34,10 +34,6 @@ public class FirstActivity extends BaseActivity implements TextureView.SurfaceTe
 
     }
 
-    @Override
-    protected void initViews() {
-
-    }
 
     @Override
     protected void setListeners() {
@@ -49,10 +45,6 @@ public class FirstActivity extends BaseActivity implements TextureView.SurfaceTe
 
     }
 
-    @Override
-    protected void initActionBar() {
-
-    }
 
     public  void  init(){
         TextureView myTexture = new TextureView(this);

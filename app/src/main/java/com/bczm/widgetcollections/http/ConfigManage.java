@@ -13,6 +13,10 @@ public class ConfigManage {
 
     public static final String HOME_DATA ="http://www.weather.com.cn/data/sk/101010100.html";
 
+    // 点击  进入视频界面 传递 的intent 参数   trackid,content_id
+    public static final String INTENT_EXTRA_TRACKID="trackid";
+    public static final String INTENT_EXTRA_CONTENT_ID="content_id";
+
     /**
      *  api  get请求服务器  传递的 头信息
      * @return
