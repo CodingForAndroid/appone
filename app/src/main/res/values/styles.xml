@@ -56,4 +56,12 @@
 
     </style>
 
+    <style name="regist_tab">
+        <item name="android:textSize">@dimen/txt_size_classify_mid</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
 </resources>

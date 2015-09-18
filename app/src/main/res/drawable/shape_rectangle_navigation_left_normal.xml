@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item >
+        <!--shape:oval 椭圆     rectangle:方形    line：线性-->
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle">
+            <!-- 圆角  上下左右四个角 弧度-->  
+            <!--<corners-->
+                <!--android:bottomLeftRadius="5dp"   -->
+                <!--android:topLeftRadius="5dp"/>   -->
+           <!-- 描边 -->  
+           <stroke              
+                android:width="1dip"
+                android:color="#0090ff" />
+        </shape>
+    </item>
+</selector>

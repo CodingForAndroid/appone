@@ -1,135 +1,142 @@
 package com.bczm.widgetcollections.ui.activity;
 
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.MediaController;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.VideoView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.bczm.widgetcollections.R;
+import com.bczm.widgetcollections.bean.VideoBean;
+import com.bczm.widgetcollections.bean.VideoDecorationBean;
 import com.bczm.widgetcollections.http.ConfigManage;
-import com.bczm.widgetcollections.http.HttpUtil;
-import com.bczm.widgetcollections.http.NetUtils;
+import com.bczm.widgetcollections.http.protocol.VideoDetialProtocol;
 import com.bczm.widgetcollections.ui.widget.LoadingPage;
 import com.bczm.widgetcollections.utils.LogUtils;
-import com.bczm.widgetcollections.utils.SharedPreferenceUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
 import com.bczm.widgetcollections.utils.ViewUtils;
 
-import java.util.HashMap;
-import java.util.Map;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * 动画播放界面
+ *
  * @author：Jorge on 2015/9/17 13:28
  */
-public class VideoDetialActivity  extends BaseActivity {
-    protected LoadingPage mContentView;
+public class VideoDetialActivity extends BaseActivity {
+    @Bind(R.id.videoView)
+    VideoView videoView;
+    @Bind(R.id.radio_detail)
+    RadioButton radioDetail;
+    @Bind(R.id.radio_list)
+    RadioButton radioList;
+    @Bind(R.id.radiogroup)
+    RadioGroup radiogroup;
     private String trackid;
     private String content_id;
+    private VideoDecorationBean videoDecorationBean;
+
 
     @Override
     protected void createContent() {
+        setContentView(R.layout.activity_video_play);
+        ButterKnife.bind(this);
+        radioDetail.setChecked(true);
 
-        //每次ViewPager要展示该页面时，均会调用该方法获取显示的View
-        if (mContentView == null) {//为null时，创建一个
-
-            mContentView = new LoadingPage(this) {
-                @Override
-                public LoadResult load() {
-                    return VideoDetialActivity.this.load();
-                }
-
-                @Override
-                public View createLoadedView() {
-                    return VideoDetialActivity.this.createLoadedView();
-                }
-            };
-        } else {//不为null时，需要把自身从父布局中移除，因为ViewPager会再次添加
-            ViewUtils.removeSelfFromParent(mContentView);
-        }
-            setContentView(mContentView);
-
-
-
-//        LogUtils.e();
+        load();
     }
 
     @Override
     protected void onResume() {
-
         super.onResume();
-        mContentView.show();
+      VideoBean videoBean= videoDecorationBean.items.get(0);
+        String  url=videoBean.url.split("\\?")[0];
+        setVideoView(url);
     }
 
     @Override
     protected void setListeners() {
-
+        radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                if (checkedId == R.id.radio_detail) {
+                    radioDetail.setChecked(true);
+                    radioDetail.setTextColor(getResources().getColor(android.R.color.white));
+                    radioList.setChecked(false);
+                    radioList.setTextColor(getResources().getColor(R.color.blue));
+                } else if (checkedId == R.id.radio_list) {
+                    radioList.setChecked(true);
+                    radioList.setTextColor(getResources().getColor(android.R.color.white));
+                    radioDetail.setChecked(false);
+                    radioDetail.setTextColor(getResources().getColor(R.color.blue));
+                }
+            }
+        });
     }
 
     @Override
     protected void free() {
 
     }
-    /** 加载数据 */
-    protected  LoadingPage.LoadResult load(){
 
-        trackid = getIntent().getStringExtra(ConfigManage.INTENT_EXTRA_TRACKID);
-        content_id = getIntent().getStringExtra(ConfigManage.INTENT_EXTRA_CONTENT_ID);
+    /**
+     * 加载数据
+     */
+    protected void load() {
 
+        VideoDetialProtocol videoDetialProtocol = new VideoDetialProtocol();
+        //彩泥喜欢
+        videoDetialProtocol.getGuessFavouriate();
+        //播放url
+        videoDecorationBean = videoDetialProtocol.getVideoCrrentPlay();
+        // 介绍
+        videoDetialProtocol.getVideoDetailDesc();
 
-        return LoadingPage.LoadResult.SUCCEED;
     }
 
-    /** 加载完成的View */
-    protected  View createLoadedView(){
-        String url="http://api.icartoons.cn/v4/contents/detail";
-        StringRequest stringRequest=new StringRequest(url, new Response.SuccessListener<String>() {
+
+    public void setVideoView(String  url){
+//        String uri="http://streaming-http.icartoons.cn:7388/cmstest/20150710/7504/201507063200190322/W704.3gp";
+        LogUtils.e("url===" + url);
+        videoView.setVideoURI(Uri.parse(url));
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
-            public void onResponse(String s) {
-            LogUtils.e("VideoPlay============"+s);
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                System.out.println("getBufferPercentage:" + videoView.getBufferPercentage());
+                videoView.start();
+                videoView.requestFocus();
             }
-        }, new Response.ErrorListener() {
+        });
+        MediaController   mc = new MediaController(this);
+        mc.setAnchorView(videoView);
+        mc.setKeepScreenOn(true);
+        mc.setPadding(0, 0, 0,1280- UIUtils.dip2px(200));
+//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+//                RelativeLayout.LayoutParams.FILL_PARENT,
+//                RelativeLayout.LayoutParams.FILL_PARENT);
+//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+//        videoView.setLayoutParams(new RelativeLayout.LayoutParams());
+//        videoView.setLayoutParams(layoutParams);
+
+        videoView.start();
+        videoView.setMediaController(mc);
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                LogUtils.e("VideoPlay============"+volleyError.toString());
+            public void onCompletion(MediaPlayer mp) {
+                //播放结束后的动作
+             UIUtils.showToastSafe("播放結束");
+
             }
-        }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-
-                return  ConfigManage.getHeaders();
-            }
-
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-//                params.put("User-Agent", "Client(ERDO/4.0.11;Android/4.4.4;720*1280;G620S-UL00;PAYMD/1.0.02;)");
-                String sign="1442481456268017acdc617508cdb821" ;
-                         params.put("sig",sign);
-//                String value = String.valueOf(System.currentTimeMillis()).subSequence(0, 10).toString();
-                params.put("content_id",content_id);
-                params.put("trackid",trackid);
-
-//                http://api.icartoons.cn/v4/contents/detail?
-//                trackid=1442478763257496f2f3bfa41f4afb23-c1-4-1-&
-//                        content_id=2S201507172200092782&
-//                        sig=
-//                        BlnPmVBHGBy6wyZsgnrfV7SM%2BjO6DzfDxKvpGrK8%2BzqMkz2Jks6%2F890KJzhH%2Fda4k0M3w7WQs2QLFURMzZRzrhYixqOgCcV%2FPxNlSh0PZxMFkNceDY%2BTLBvPGgqu6Zz00b7pXFTSBCzyckFCA9ubCmzjE2dIVmR2H7Zg4LNlF80%3D
-
-
-                http://api.icartoons.cn/v4/contents/detail?
-//                =1442478763257496f2f3bfa41f4afb23-c1-4-1-&
-//                        content_id=2S201507172200092782&
-//                        sig=BlnPmVBHGBy6wyZsgnrfV7SM%2BjO6DzfDxKvpGrK8%2BzqMkz2Jks6%2F890KJzhH%2Fda4k0M3w7WQs2QLFURMzZRzrhYixqOgCcV%2FPxNlSh0PZxMFkNceDY%2BTLBvPGgqu6Zz00b7pXFTSBCzyckFCA9ubCmzjE2dIVmR2H7Zg4LNlF80%3D
-
-                return params;
-            }
-        };
-        HttpUtil.getRequestQueue().add(stringRequest);
-        TextView tv=     new TextView(UIUtils.getContext());
-        tv   .setText("successs");
-        return  tv;
+        });
     }
+
 
 }
