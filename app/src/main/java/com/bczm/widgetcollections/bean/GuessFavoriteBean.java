@@ -4,7 +4,7 @@ package com.bczm.widgetcollections.bean;
  * 猜你喜歡
  * @author：Jorge on 2015/9/18 11:16
  */
-public class GuessFavouriateBean {
+public class GuessFavoriteBean {
     //            {
 //                "content_id": "2S201507082200092729",
 //                    "content_type": "2",

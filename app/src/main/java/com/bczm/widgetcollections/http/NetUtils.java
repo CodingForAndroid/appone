@@ -61,4 +61,9 @@ public class NetUtils {
     public static  final String  FETCH_VIDEO_ALBUM="http://api.icartoons.cn/v4/contents/serials?start=0&outer_siteid=0&content_id=2S201507052200092708&limit=32767&sig=QiArSgGgYX%2BBb1kIzHzW9jEUfT2zMe4hwim95ktZL4XL9DNtutaTokbMyL8%2F3N5WucuQA6DowsdV4mdEuWQeuYZEcB4kwHjsRQU3AYZUl8jbK9TTTIQG10A2TNugWGEd6dY5eaL42B%2BM12v2ToAzGQVzIf1Q9X3e0xhGLVc5JLw%3D\n";
     // http://api.icartoons.cn/v4/contents/serials?start=0&outer_siteid=0&content_id=2S201507052200092708&limit=32767&sig=QiArSgGgYX%2BBb1kIzHzW9jEUfT2zMe4hwim95ktZL4XL9DNtutaTokbMyL8%2F3N5WucuQA6DowsdV4mdEuWQeuYZEcB4kwHjsRQU3AYZUl8jbK9TTTIQG10A2TNugWGEd6dY5eaL42B%2BM12v2ToAzGQVzIf1Q9X3e0xhGLVc5JLw%3D
 //
+    // 猜你喜欢
+    public static  final String  FETCH_GUESS_LIKE=BASE_URL_HTTP+"/v4/contents/guessenjoy?" +
+            "content_id=2S201507052200092708&" +
+            "type=1&" +
+            "sig=c8WUHBEOhIHHahor%2B2X%2BamyPaLnNLcsN4vbK2RJOHBFV8ae15TvCGZkStc6jZN3UAiKq39h8CcNW9HGJPNWp%2BnSuhaxKXNiwFtjYSiQD%2Bz0SuoBUWVi404gcn0q0rZ7ilGQIbFC8rw5CQcG4cKM9%2BTHDqsp4e4bxseMVTg5cacs%3D";
 }

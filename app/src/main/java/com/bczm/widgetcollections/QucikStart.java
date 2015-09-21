@@ -12,5 +12,7 @@ public class QucikStart {
 
 //   替换全部                      Ctrl+R
 
-//    局部变量 变成员变量          Ctrl+ shift+ F
+//   局部变量 变成员变量          Ctrl+ shift+ F
+
+//   向上/向下移动  当前行        Ctrl+shift + ↑ ↓
 }

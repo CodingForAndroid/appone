@@ -12,13 +12,16 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bczm.widgetcollections.R;
+import com.bczm.widgetcollections.bean.GuessFavoriteBean;
 import com.bczm.widgetcollections.bean.RecommandPositionInfo;
 import com.bczm.widgetcollections.bean.RecommendAppInfo;
 import com.bczm.widgetcollections.http.ConfigManage;
 import com.bczm.widgetcollections.manager.ImageLoader;
 import com.bczm.widgetcollections.ui.activity.VideoDetialActivity;
+import com.bczm.widgetcollections.ui.adapter.HorizontalAdapter;
 import com.bczm.widgetcollections.ui.adapter.RecommendedPositionAdapter;
 import com.bczm.widgetcollections.ui.widget.ClickableImageView;
+import com.bczm.widgetcollections.ui.widget.HorizontalListView;
 import com.bczm.widgetcollections.ui.widget.ImageCycleView;
 import com.bczm.widgetcollections.ui.widget.MyGridView;
 
@@ -99,7 +102,6 @@ public class LayoutGenetator {
         mImageCycleView.setImageResources(mImageUrl, mImageName, mAdCycleViewListener);
         mImageCycleView.startImageCycle();
     }
-    
 
     /**
      * 生成 六个  推荐 位置的 视频
@@ -143,7 +145,6 @@ public class LayoutGenetator {
         btn.setPadding(0, 10, 0, 20);;
         mItemLayout.addView(btn, mRightImageParams);
         layout_item_container.addView(mItemLayout,mItemParams);
-
     }
 
     /**
@@ -152,7 +153,6 @@ public class LayoutGenetator {
      * @param list
      */
     public  static  void  generateRecommendedApp(LinearLayout layout_item_container,List<RecommendAppInfo> list){
-
 
         addLine(layout_item_container);
         RelativeLayout mTitleLayout = new RelativeLayout(UIUtils.getContext());
@@ -166,7 +166,7 @@ public class LayoutGenetator {
         // 距 顶部 间隙
         RelativeLayout.LayoutParams titleTextParams=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
         titleTextParams.addRule(RelativeLayout.CENTER_VERTICAL);
-        mTitleLayout.addView(titleText,titleTextParams);
+        mTitleLayout.addView(titleText, titleTextParams);
         layout_item_container.addView(mTitleLayout, mTitleLayoutParam);
 
         // app 父布局
@@ -176,9 +176,6 @@ public class LayoutGenetator {
         appParentLayout.setLayoutParams(appLayoutParam);
         appParentLayout.setOrientation(LinearLayout.HORIZONTAL);
         // 单个 app 布局
-
-
-
         for (RecommendAppInfo appInfo: list) {
             LinearLayout appItemLayout=new LinearLayout(UIUtils.getContext());
             LinearLayout.LayoutParams appItemLayoutParam= new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -212,7 +209,7 @@ public class LayoutGenetator {
     }
 
     /**
-     *
+     * 添加底部分隔线
      * @param layout_item_container
      */
     public static void addLine(LinearLayout  layout_item_container){
@@ -223,4 +220,73 @@ public class LayoutGenetator {
         headerBottmp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         layout_item_container.addView(headerBottm, headerBottmp);
     }
+
+    public static boolean  hasOpen=false;
+
+    /**
+     * 添加详情 头部信息
+     * @param title   video  标题
+     * @param desc    video 描述
+     * @param container   布局容器
+     */
+    public static void generateDetail(String title, final String desc, final LinearLayout container){
+        //标题
+        TextView videoTitle=new TextView(UIUtils.getContext());
+        videoTitle.setText(title);
+        videoTitle.setTextSize(UIUtils.getDimens(R.dimen.txt_size_classify_less));
+        videoTitle.setTextAppearance(UIUtils.getContext(),R.style.ChannelTextStyle);
+        container.addView(videoTitle);
+        // 设置最大字符长度
+        final TextView descText=new TextView(UIUtils.getContext());
+        LinearLayout.LayoutParams descParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+        descText.setLayoutParams(descParams);
+        descText.setText(desc.length() >= UIUtils.getInteger(R.integer.txt_desc_max_length) ? desc.substring(0, UIUtils.getInteger(R.integer.txt_desc_max_length)) : desc);
+        container.addView(descText);
+        descText.setTextSize(UIUtils.getDimens(R.dimen.txt_size_classify_least));
+        descText.setPadding(0,5,0,0);
+        // 添加查看详细 图标
+        final TextView moreText=new TextView(UIUtils.getContext());
+        LinearLayout.LayoutParams moreParams=new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
+        moreText.setBackgroundResource(R.mipmap.img_open_btn);
+        moreParams.gravity=Gravity.CENTER_HORIZONTAL;
+        container.addView(moreText,moreParams);
+        moreText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(hasOpen){
+                    descText.setText(desc.length() >= UIUtils.getInteger(R.integer.txt_desc_max_length) ? desc.substring(0, UIUtils.getInteger(R.integer.txt_desc_max_length)) : desc);
+                    moreText.setBackgroundResource(R.mipmap.img_open_btn);
+                    hasOpen=false;
+                }else{
+                    descText.setText(desc);
+                    moreText.setBackgroundResource(R.mipmap.img_close_btn);
+                    hasOpen=true;
+                }
+            }
+        });
+    }
+
+    /**
+     * 添加 horizontal  lsitview
+     * @param container  父布局
+     * @param beans    数据
+     */
+    public  static  void  genenrateGuessLike( GuessFavoriteBean[] beans,LinearLayout container){
+        LinearLayout  recommendLayout=new LinearLayout(UIUtils.getContext());
+        recommendLayout.setPadding(0,5,0,0);
+        recommendLayout.setOrientation(LinearLayout.VERTICAL);
+        //标题 推荐
+        TextView  titleView=new TextView(UIUtils.getContext());
+        titleView.setText(R.string.txt_recommend);
+        recommendLayout.addView(titleView);
+        titleView.setTextAppearance(UIUtils.getContext(), R.style.ChannelTextStyle);
+        //分隔线
+        addLine(recommendLayout);
+        // 添加水平方向的 listview
+        HorizontalListView  horizontalListView=new HorizontalListView(UIUtils.getContext());
+        horizontalListView.setAdapter(new HorizontalAdapter(UIUtils.getContext(),beans));
+        recommendLayout.addView(horizontalListView);
+        container.addView(recommendLayout);
+    }
+
 }

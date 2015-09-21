@@ -100,20 +100,12 @@ public class RecommandFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-    @Override
-    public void onOptionsMenuClosed(Menu menu) {
-        super.onOptionsMenuClosed(menu);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
     // 推荐位置
     private ArrayList<RecommandPositionInfo> popList=new ArrayList<RecommandPositionInfo>();
     public  void  loadData(){
         // 顶部六个 位置
         RecommendedPopProtocol popProtocol=new RecommendedPopProtocol();
+        if(null!=popProtocol.load(0))
         popList= popProtocol.load(0);
         // 推荐频道
         RecommendedChannelProtocol recommendedChannelProtocol=new RecommendedChannelProtocol();

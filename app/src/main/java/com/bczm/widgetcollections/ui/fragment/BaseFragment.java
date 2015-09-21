@@ -61,4 +61,10 @@ public abstract class BaseFragment extends Fragment {
 
     /** 加载完成的View */
     protected abstract View createLoadedView();
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        show();
+    }
 }

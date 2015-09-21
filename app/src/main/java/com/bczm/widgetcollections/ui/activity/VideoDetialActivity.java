@@ -2,23 +2,23 @@ package com.bczm.widgetcollections.ui.activity;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Bundle;
+import android.support.v4.app.FragmentTabHost;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.bean.VideoBean;
 import com.bczm.widgetcollections.bean.VideoDecorationBean;
-import com.bczm.widgetcollections.http.ConfigManage;
-import com.bczm.widgetcollections.http.protocol.VideoDetialProtocol;
-import com.bczm.widgetcollections.ui.widget.LoadingPage;
+import com.bczm.widgetcollections.http.protocol.VideoDetailProtocol;
+import com.bczm.widgetcollections.ui.fragment.DetailFragment;
 import com.bczm.widgetcollections.utils.LogUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
-import com.bczm.widgetcollections.utils.ViewUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -37,25 +37,28 @@ public class VideoDetialActivity extends BaseActivity {
     RadioButton radioList;
     @Bind(R.id.radiogroup)
     RadioGroup radiogroup;
+    @Bind(R.id.ll_video_play_activity)
+    LinearLayout llVideoPlayActivity;// 父布局
     private String trackid;
     private String content_id;
     private VideoDecorationBean videoDecorationBean;
-
-
+    //tab 标签
+    private  String  TAB_LSIT="tablist";//目录
+    private  String  TAB_DETIAL="tabdetail";// 详情
     @Override
     protected void createContent() {
         setContentView(R.layout.activity_video_play);
         ButterKnife.bind(this);
         radioDetail.setChecked(true);
-
+        initTab();
         load();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-      VideoBean videoBean= videoDecorationBean.items.get(0);
-        String  url=videoBean.url.split("\\?")[0];
+        VideoBean videoBean = videoDecorationBean.items.get(0);
+        String url = videoBean.url.split("\\?")[0];
         setVideoView(url);
     }
 
@@ -82,6 +85,7 @@ public class VideoDetialActivity extends BaseActivity {
     @Override
     protected void free() {
 
+
     }
 
     /**
@@ -89,18 +93,18 @@ public class VideoDetialActivity extends BaseActivity {
      */
     protected void load() {
 
-        VideoDetialProtocol videoDetialProtocol = new VideoDetialProtocol();
+        VideoDetailProtocol videoDetialProtocol = new VideoDetailProtocol();
         //彩泥喜欢
-        videoDetialProtocol.getGuessFavouriate();
+//        videoDetialProtocol.getGuessFavorite();
         //播放url
-        videoDecorationBean = videoDetialProtocol.getVideoCrrentPlay();
+        videoDecorationBean = videoDetialProtocol.getVideoCurrentPlay();
         // 介绍
-        videoDetialProtocol.getVideoDetailDesc();
+//        videoDetialProtocol.getVideoDetailDesc();
 
     }
 
 
-    public void setVideoView(String  url){
+    public void setVideoView(String url) {
 //        String uri="http://streaming-http.icartoons.cn:7388/cmstest/20150710/7504/201507063200190322/W704.3gp";
         LogUtils.e("url===" + url);
         videoView.setVideoURI(Uri.parse(url));
@@ -112,10 +116,10 @@ public class VideoDetialActivity extends BaseActivity {
                 videoView.requestFocus();
             }
         });
-        MediaController   mc = new MediaController(this);
+        MediaController mc = new MediaController(this);
         mc.setAnchorView(videoView);
         mc.setKeepScreenOn(true);
-        mc.setPadding(0, 0, 0,1280- UIUtils.dip2px(200));
+        mc.setPadding(0, 0, 0, 1280 - UIUtils.dip2px(200));
 //        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
 //                RelativeLayout.LayoutParams.FILL_PARENT,
 //                RelativeLayout.LayoutParams.FILL_PARENT);
@@ -132,11 +136,41 @@ public class VideoDetialActivity extends BaseActivity {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 //播放结束后的动作
-             UIUtils.showToastSafe("播放結束");
+                UIUtils.showToastSafe("播放結束");
 
             }
         });
     }
 
+    //初始化 tabhost
+    public void initTab(){
 
+        // 添加 分隔线
+        TextView tvDivider=new TextView(UIUtils.getContext());
+        LinearLayout.LayoutParams dividerParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,UIUtils.dip2px(1));
+        tvDivider.setLayoutParams( dividerParams);
+        llVideoPlayActivity.addView(tvDivider);
+
+        // 添加 FragmentTabHost
+        FragmentTabHost mTabhost=new FragmentTabHost(UIUtils.getContext());
+        mTabhost.setId(R.id.tabhost);
+        LinearLayout.LayoutParams tabHostParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+        mTabhost.setLayoutParams(tabHostParams);
+        llVideoPlayActivity.addView(mTabhost);
+
+        FrameLayout  frameLayout=new FrameLayout(UIUtils.getContext());
+        frameLayout.setId(R.id.tabcontent);
+        LinearLayout.LayoutParams framParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+        frameLayout.setLayoutParams(framParams);
+        llVideoPlayActivity.addView(frameLayout);
+
+
+        mTabhost.setup(UIUtils.getContext(), getSupportFragmentManager(), R.id.tabcontent);
+        mTabhost.getTabWidget().setVisibility(View.GONE);
+
+        mTabhost.addTab(mTabhost.newTabSpec(TAB_DETIAL).setIndicator(TAB_DETIAL), DetailFragment.class, null);
+        mTabhost.addTab(mTabhost.newTabSpec(TAB_LSIT).setIndicator(TAB_LSIT), DetailFragment.class, null);
+
+//        mTabhost.setCurrentTab(ORIGIN_TAB);
+    }
 }

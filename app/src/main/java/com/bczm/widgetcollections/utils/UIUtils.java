@@ -86,6 +86,9 @@ public class UIUtils {
 	public static int getDimens(int resId) {
 		return getResources().getDimensionPixelSize(resId);
 	}
+	public static  int  getInteger(int resId){
+		return  getResources().getInteger(resId);
+	}
 
 	/** 获取drawable */
 	public static Drawable getDrawable(int resId) {

@@ -14,7 +14,7 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="txt_recommand">推荐</string>
+    <string name="txt_recommend">推荐</string>
     <string name="txt_classify">栏目</string>
     <string name="txt_discover">发现</string>
     <string name="txt_mine">个人</string>

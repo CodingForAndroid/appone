@@ -2,15 +2,20 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_padding">10dp</dimen>
     <dimen name="comm_navigation_hei">50dp</dimen>
     <dimen name="minus_activity_horizontal_margin">-16dp</dimen>
     <dimen name="minus_activity_vertical_margin">-16dp</dimen>
     <dimen name="txt_size_classify_high">18sp</dimen>
     <dimen name="txt_size_classify_mid">15sp</dimen>
     <dimen name="txt_size_classify_low">12sp</dimen>
-    <dimen name="mine_item_text_size">12sp</dimen>
+    <dimen name="txt_size_classify_little">10sp</dimen>
+    <dimen name="txt_size_classify_less">8sp</dimen>
+    <dimen name="txt_size_classify_least">7sp</dimen>
     <dimen name="list_item_loadmore_height">40dp</dimen>
     <dimen name="list_item_margin">9dp</dimen>
 
+
     <integer  name="grid_nums">2</integer >
+    <integer  name="txt_desc_max_length">30</integer >
 </resources>
