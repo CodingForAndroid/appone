@@ -7,8 +7,11 @@ import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bczm.widgetcollections.R;
@@ -284,9 +287,18 @@ public class LayoutGenetator {
         addLine(recommendLayout);
         // 添加水平方向的 listview
         HorizontalListView  horizontalListView=new HorizontalListView(UIUtils.getContext());
-        horizontalListView.setAdapter(new HorizontalAdapter(UIUtils.getContext(),beans));
+        horizontalListView.setHorizontalScrollBarEnabled(true);
+        horizontalListView.setHorizontalFadingEdgeEnabled(false);
+        horizontalListView.setDividerWidth(UIUtils.dip2px(2));
+        System.out.println("000000000000000000:"+SystemUtils.getScreenHeight());
+        // 设置 horizontal listview 的 高度  为 屏幕分辨率的 1/6
+        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,SystemUtils.getScreenHeight()/4+50);
+        horizontalListView.setLayoutParams(params);
+        horizontalListView.setAdapter(new HorizontalAdapter(UIUtils.getContext(), beans));
         recommendLayout.addView(horizontalListView);
-        container.addView(recommendLayout);
+        // 添加分隔线
+        container.addView(recommendLayout,params);
+        addLine(container);
     }
 
 }

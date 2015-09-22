@@ -70,6 +70,30 @@ public class ChannelHolder extends BaseHolder<Channel> {
     TextView tv6SubTitle;
     @Bind(R.id.rl_6)
     RelativeLayout rl6;
+    @Bind(R.id.iv_7)
+    ImageView iv7;
+    @Bind(R.id.tv_7_title)
+    TextView tv7Title;
+    @Bind(R.id.tv_7_sub_title)
+    TextView tv7SubTitle;
+    @Bind(R.id.rl_7)
+    RelativeLayout rl7;
+    @Bind(R.id.iv_8)
+    ImageView iv8;
+    @Bind(R.id.tv_8_title)
+    TextView tv8Title;
+    @Bind(R.id.tv_8_sub_title)
+    TextView tv8SubTitle;
+    @Bind(R.id.rl_8)
+    RelativeLayout rl8;
+    @Bind(R.id.iv_9)
+    ImageView iv9;
+    @Bind(R.id.tv_9_title)
+    TextView tv9Title;
+    @Bind(R.id.tv_9_sub_title)
+    TextView tv9SubTitle;
+    @Bind(R.id.rl_9)
+    RelativeLayout rl9;
 
     @Override
     protected View initView() {
@@ -80,17 +104,22 @@ public class ChannelHolder extends BaseHolder<Channel> {
 
     @Override
     public void refreshView() {
-        ImageView[] covers = {iv2, iv3, iv4, iv5, iv6};
-        TextView[] titles = {tv2Title, tv3Title, tv4Title, tv5Title, tv6Title};
-        TextView[] subTitles = {tv2SubTitle, tv3SubTitle, tv4SubTitle, tv5SubTitle, tv6SubTitle};
+        ImageView[] covers = {iv2, iv3, iv4, iv5, iv6,iv7,iv8,iv9};
+        TextView[] titles = {tv2Title, tv3Title, tv4Title, tv5Title, tv6Title,tv7Title,tv8Title,tv9Title};
+        TextView[] subTitles = {tv2SubTitle, tv3SubTitle, tv4SubTitle, tv5SubTitle, tv6SubTitle,tv7SubTitle,tv8SubTitle,tv9SubTitle};
+        RelativeLayout[] layouts={rl2,rl3,rl4,rl5,rl6,rl7,rl8,rl9};
+        for(int i=0;i<layouts.length;i++){
+            layouts[i].setVisibility(View.GONE);
+        }
         String cover = getData().data_cover.split("\\?")[0];
         List<ChannelItemDetail> itemDetailList = getData().contents;
         ImageLoader.getInstance().imageLoaderRequest(iv1, cover);
         for (int i = 0; i < itemDetailList.size(); i++) {
-            ChannelItemDetail item= itemDetailList.get(i);
+            ChannelItemDetail item = itemDetailList.get(i);
             ImageLoader.getInstance().imageLoaderRequest(covers[i], item.cover.split("\\?")[0]);
             titles[i].setText(item.title);
             subTitles[i].setText(item.sub_title);
+            layouts[i].setVisibility(View.VISIBLE);
         }
 
     }

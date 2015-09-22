@@ -4,6 +4,7 @@ import com.bczm.widgetcollections.bean.GuessFavoriteBean;
 import com.bczm.widgetcollections.bean.VideoDecorationBean;
 import com.bczm.widgetcollections.http.ConfigManage;
 import com.bczm.widgetcollections.http.parse.JsonHelper;
+import com.bczm.widgetcollections.utils.LogUtils;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -18,6 +19,8 @@ import java.util.List;
  * @author：Jorge on 2015/9/17 15:49
  */
 public class VideoDetailProtocol {
+
+    private GuessFavoriteBean[] beans;
 
     //获取 猜你喜欢
     public  List<GuessFavoriteBean>    getGuessFavorite() {
@@ -36,13 +39,15 @@ public class VideoDetailProtocol {
 
     //获取 猜你喜欢
     public  GuessFavoriteBean[] getGuessFavoriteArray() {
-        GuessFavoriteBean[]  beans =new GuessFavoriteBean[]{};
+
 //        List<GuessFavoriteBean> list = null;
         try {
             List<GuessFavoriteBean> list  = new ArrayList<GuessFavoriteBean>();
             JSONObject jsonObject = new JSONObject(ConfigManage.GUESS_FAVOURIATE);
             JSONArray jsonArray = (JSONArray) jsonObject.opt("items");
             JsonHelper.JSONArrayToList(jsonArray, list, GuessFavoriteBean.class);
+            beans = new GuessFavoriteBean[list.size()];
+            LogUtils.e("-----------------47"+list.size());
            for(int i=0;i<list.size();i++){
                beans[i]=list.get(i);
            }

@@ -40,8 +40,9 @@ public class DetailFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         // 添加头部信息
         LayoutGenetator.generateDetail("标题", "描述", llFragmentDetail);
-        //
+        //  添加推荐 video
         LayoutGenetator.genenrateGuessLike(array ,llFragmentDetail);
+        // 添加评论列表
         return view;
     }
 

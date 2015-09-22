@@ -168,4 +168,83 @@
             />
         </RelativeLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:clickable="false"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/rl_7"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/chatroom_bg"
+            android:clickable="true">
+
+            <ImageView
+                style="@style/ChannelImageStyle"
+                android:id="@+id/iv_7"/>
+
+            <TextView
+                style="@style/ChannelTextStyle"
+                android:id="@+id/tv_7_title"
+                android:layout_below="@id/iv_7" />
+            <TextView
+                android:textColor="@color/black"
+                style="@style/ChannelTextStyle"
+                android:textSize="12sp"
+                android:id="@+id/tv_7_sub_title"
+                android:layout_below="@id/tv_7_title" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_8"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/chatroom_bg"
+            android:clickable="true">
+
+            <ImageView
+                style="@style/ChannelImageStyle"
+                android:id="@+id/iv_8" />
+
+            <TextView
+                style="@style/ChannelTextStyle"
+                android:id="@+id/tv_8_title"
+                android:layout_below="@id/iv_8" />
+            <TextView
+                style="@style/ChannelTextStyle"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:id="@+id/tv_8_sub_title"
+                android:layout_below="@id/tv_8_title" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_9"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/chatroom_bg"
+            android:clickable="true">
+
+            <ImageView
+                style="@style/ChannelImageStyle"
+                android:id="@+id/iv_9"/>
+
+            <TextView
+                style="@style/ChannelTextStyle"
+                android:id="@+id/tv_9_title"
+                android:layout_below="@id/iv_9" />
+            <TextView
+                android:textColor="@color/black"
+                style="@style/ChannelTextStyle"
+                android:textSize="12sp"
+                android:id="@+id/tv_9_sub_title"
+                android:layout_below="@id/tv_9_title"
+                />
+        </RelativeLayout>
+    </LinearLayout>
     </LinearLayout>
