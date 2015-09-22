@@ -6,6 +6,7 @@ import com.bczm.widgetcollections.bean.VideoDecorationBean;
 import com.bczm.widgetcollections.http.ConfigManage;
 import com.bczm.widgetcollections.http.parse.JsonHelper;
 import com.bczm.widgetcollections.utils.LogUtils;
+import com.bczm.widgetcollections.utils.SharedPreferenceUtils;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -84,8 +85,14 @@ public class VideoDetailProtocol {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        LogUtils.e("getVideoCommentList:size"+list.size());
-        return list;
+        LogUtils.e("getVideoCommentList:size" + list.size());
+
+        if(SharedPreferenceUtils.getMoreDataTimes()<=1){
+            SharedPreferenceUtils.setGetMoreTimes(SharedPreferenceUtils.getMoreDataTimes()+1);
+            return list ;
+        }else{
+            return  null ;
+        }
     }
 
 }

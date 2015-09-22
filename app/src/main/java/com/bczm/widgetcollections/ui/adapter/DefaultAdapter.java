@@ -20,11 +20,9 @@ import java.util.List;
 public abstract class DefaultAdapter<Data> extends BaseAdapter implements RecyclerListener, OnItemClickListener {
 	public static final int MORE_VIEW_TYPE = 0;
 	public static final int ITEM_VIEW_TYPE = 1;
-
 	protected AbsListView mListView;//和该adapter关联的listView
 	private List<BaseHolder> mDisplayedHolders;//用于记录所有显示的holder
 	private List<Data> mDatas;//adapter的数据集
-
 	public DefaultAdapter(AbsListView listView, List<Data> datas) {
 		mDisplayedHolders = new ArrayList<BaseHolder>();
 		mListView = listView;
@@ -35,7 +33,6 @@ public abstract class DefaultAdapter<Data> extends BaseAdapter implements Recycl
 		}
 		setData(datas);
 	}
-
 	@Override
 	public void onMovedToScrapHeap(View view) {
 		if (null != view) {
@@ -49,22 +46,18 @@ public abstract class DefaultAdapter<Data> extends BaseAdapter implements Recycl
 			}
 		}
 	}
-
 	public List<BaseHolder> getDisplayedHolders() {
 		synchronized (mDisplayedHolders) {
 			return new ArrayList<BaseHolder>(mDisplayedHolders);
 		}
 	}
-
 	@Override
 	public long getItemId(int position) {
 		return position;
 	}
-
 	public void setData(List<Data> datas) {
 		mDatas = datas;
 	}
-
 	public List<Data> getData() {
 		return mDatas;
 	}
@@ -145,7 +138,8 @@ public abstract class DefaultAdapter<Data> extends BaseAdapter implements Recycl
 		} else {
 			setData(datas);
 		}
-		if (datas.size() < 20) {
+		this.notifyDataSetChanged();
+		if (datas.size() < 5) {
 			return MoreHolder.NO_MORE;
 		} else {
 			return MoreHolder.HAS_MORE;

@@ -39,6 +39,7 @@ import com.bczm.widgetcollections.ui.widget.MyGridView;
 import com.bczm.widgetcollections.utils.FileUtils;
 import com.bczm.widgetcollections.utils.LayoutGenetator;
 import com.bczm.widgetcollections.utils.LogUtils;
+import com.bczm.widgetcollections.utils.SharedPreferenceUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
 
 import org.json.JSONArray;
@@ -70,6 +71,8 @@ public class RecommandFragment extends BaseFragment {
     }
     @Override
     protected View createLoadedView() {
+        //模拟 评论加载数据   第一次 0 表示有更多
+        SharedPreferenceUtils.setGetMoreTimes(0);
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_recommand, null);
         // 此时list 已经包含信息
         rlView = (LinearLayout) view.findViewById(R.id.rl_view);
@@ -103,6 +106,7 @@ public class RecommandFragment extends BaseFragment {
     // 推荐位置
     private ArrayList<RecommandPositionInfo> popList=new ArrayList<RecommandPositionInfo>();
     public  void  loadData(){
+
         // 顶部六个 位置
         RecommendedPopProtocol popProtocol=new RecommendedPopProtocol();
         if(null!=popProtocol.load(0))

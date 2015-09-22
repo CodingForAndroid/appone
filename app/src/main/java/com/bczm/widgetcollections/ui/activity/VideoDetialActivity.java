@@ -122,15 +122,15 @@ public class VideoDetialActivity extends BaseActivity {
         mc.setAnchorView(videoView);
         mc.setKeepScreenOn(true);
         mc.setPadding(0, 0, 0, 1280 - UIUtils.dip2px(200));
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.FILL_PARENT,
-                SystemUtils.getScreenHeight()/3);
-//        layoutParams.addRule(LinearLayout.ALIGN_PARENT_BOTTOM);
-//        layoutParams.addRule(LinearLayout.ALIGN_PARENT_TOP);
-//        layoutParams.addRule(LinearLayout.ALIGN_PARENT_LEFT);
-//        layoutParams.addRule(LinearLayout.ALIGN_PARENT_RIGHT);
+//        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.FILL_PARENT,
+//                SystemUtils.getScreenHeight()*2/5);
+//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 //        videoView.setLayoutParams(new RelativeLayout.LayoutParams());
-        videoView.setLayoutParams(layoutParams);
+//        videoView.setLayoutParams(layoutParams);
 
         videoView.start();
         videoView.setMediaController(mc);

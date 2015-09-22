@@ -18,6 +18,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
+ * 猜你喜欢 的适配器
  * @author：Jorge on 2015/9/21 16:51
  */
 public class HorizontalAdapter extends ArrayAdapter<GuessFavoriteBean> {

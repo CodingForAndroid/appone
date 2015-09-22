@@ -3,6 +3,7 @@ package com.bczm.widgetcollections.ui.adapter;
 import android.widget.AbsListView;
 
 import com.bczm.widgetcollections.bean.CommentBean;
+import com.bczm.widgetcollections.http.protocol.VideoDetailProtocol;
 import com.bczm.widgetcollections.ui.holder.BaseHolder;
 import com.bczm.widgetcollections.ui.holder.CommentListHolder;
 
@@ -20,4 +21,17 @@ public class CommentListAdapter extends DefaultAdapter<CommentBean> {
     protected BaseHolder getHolder() {
         return new CommentListHolder();
     }
+
+    @Override
+    public boolean hasMore() {
+        return false;
+    }
+    //    @Override
+//    public List<CommentBean> onLoadMore() {
+//
+//        VideoDetailProtocol protocol=new VideoDetailProtocol();
+//        return protocol.getVideoCommentList();
+////         super.onLoadMore();
+////        return null ;
+//    }
 }
