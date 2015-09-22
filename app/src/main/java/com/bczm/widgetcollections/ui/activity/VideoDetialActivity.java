@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -18,6 +19,7 @@ import com.bczm.widgetcollections.bean.VideoDecorationBean;
 import com.bczm.widgetcollections.http.protocol.VideoDetailProtocol;
 import com.bczm.widgetcollections.ui.fragment.DetailFragment;
 import com.bczm.widgetcollections.utils.LogUtils;
+import com.bczm.widgetcollections.utils.SystemUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
 
 import butterknife.Bind;
@@ -120,15 +122,15 @@ public class VideoDetialActivity extends BaseActivity {
         mc.setAnchorView(videoView);
         mc.setKeepScreenOn(true);
         mc.setPadding(0, 0, 0, 1280 - UIUtils.dip2px(200));
-//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-//                RelativeLayout.LayoutParams.FILL_PARENT,
-//                RelativeLayout.LayoutParams.FILL_PARENT);
-//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.FILL_PARENT,
+                SystemUtils.getScreenHeight()/3);
+//        layoutParams.addRule(LinearLayout.ALIGN_PARENT_BOTTOM);
+//        layoutParams.addRule(LinearLayout.ALIGN_PARENT_TOP);
+//        layoutParams.addRule(LinearLayout.ALIGN_PARENT_LEFT);
+//        layoutParams.addRule(LinearLayout.ALIGN_PARENT_RIGHT);
 //        videoView.setLayoutParams(new RelativeLayout.LayoutParams());
-//        videoView.setLayoutParams(layoutParams);
+        videoView.setLayoutParams(layoutParams);
 
         videoView.start();
         videoView.setMediaController(mc);

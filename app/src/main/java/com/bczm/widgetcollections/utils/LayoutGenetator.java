@@ -15,18 +15,23 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bczm.widgetcollections.R;
+import com.bczm.widgetcollections.bean.CommentBean;
 import com.bczm.widgetcollections.bean.GuessFavoriteBean;
 import com.bczm.widgetcollections.bean.RecommandPositionInfo;
 import com.bczm.widgetcollections.bean.RecommendAppInfo;
 import com.bczm.widgetcollections.http.ConfigManage;
 import com.bczm.widgetcollections.manager.ImageLoader;
 import com.bczm.widgetcollections.ui.activity.VideoDetialActivity;
+import com.bczm.widgetcollections.ui.adapter.CommentListAdapter;
 import com.bczm.widgetcollections.ui.adapter.HorizontalAdapter;
 import com.bczm.widgetcollections.ui.adapter.RecommendedPositionAdapter;
+import com.bczm.widgetcollections.ui.widget.BaseListView;
 import com.bczm.widgetcollections.ui.widget.ClickableImageView;
 import com.bczm.widgetcollections.ui.widget.HorizontalListView;
 import com.bczm.widgetcollections.ui.widget.ImageCycleView;
 import com.bczm.widgetcollections.ui.widget.MyGridView;
+
+import org.w3c.dom.Comment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -232,10 +237,10 @@ public class LayoutGenetator {
      * @param desc    video 描述
      * @param container   布局容器
      */
-    public static void generateDetail(String title, final String desc, final LinearLayout container){
+    public static void generateDetail(final String desc, final LinearLayout container){
         //标题
         TextView videoTitle=new TextView(UIUtils.getContext());
-        videoTitle.setText(title);
+        videoTitle.setText(R.string.txt_title);
         videoTitle.setTextSize(UIUtils.getDimens(R.dimen.txt_size_classify_less));
         videoTitle.setTextAppearance(UIUtils.getContext(),R.style.ChannelTextStyle);
         container.addView(videoTitle);
@@ -243,21 +248,23 @@ public class LayoutGenetator {
         final TextView descText=new TextView(UIUtils.getContext());
         LinearLayout.LayoutParams descParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
         descText.setLayoutParams(descParams);
-        descText.setText(desc.length() >= UIUtils.getInteger(R.integer.txt_desc_max_length) ? desc.substring(0, UIUtils.getInteger(R.integer.txt_desc_max_length)) : desc);
+        descText.setText(desc.length() >= UIUtils.getInteger(R.integer.txt_desc_max_length) ? desc.substring(0, UIUtils.getInteger(R.integer.txt_desc_max_length))+"..." : desc);
         container.addView(descText);
         descText.setTextSize(UIUtils.getDimens(R.dimen.txt_size_classify_least));
+        descText.setTextColor(UIUtils.getColor(R.color.black));
         descText.setPadding(0,5,0,0);
         // 添加查看详细 图标
         final TextView moreText=new TextView(UIUtils.getContext());
         LinearLayout.LayoutParams moreParams=new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
         moreText.setBackgroundResource(R.mipmap.img_open_btn);
+        moreText.setPadding(0,0,0,5);
         moreParams.gravity=Gravity.CENTER_HORIZONTAL;
         container.addView(moreText,moreParams);
         moreText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(hasOpen){
-                    descText.setText(desc.length() >= UIUtils.getInteger(R.integer.txt_desc_max_length) ? desc.substring(0, UIUtils.getInteger(R.integer.txt_desc_max_length)) : desc);
+                    descText.setText(desc.length() >= UIUtils.getInteger(R.integer.txt_desc_max_length) ? desc.substring(0, UIUtils.getInteger(R.integer.txt_desc_max_length))+"..." : desc);
                     moreText.setBackgroundResource(R.mipmap.img_open_btn);
                     hasOpen=false;
                 }else{
@@ -274,13 +281,16 @@ public class LayoutGenetator {
      * @param container  父布局
      * @param beans    数据
      */
-    public  static  void  genenrateGuessLike( GuessFavoriteBean[] beans,LinearLayout container){
+    public  static  void  generateGuessLike( GuessFavoriteBean[] beans,LinearLayout container){
+        addLine(container);
         LinearLayout  recommendLayout=new LinearLayout(UIUtils.getContext());
         recommendLayout.setPadding(0,5,0,0);
         recommendLayout.setOrientation(LinearLayout.VERTICAL);
         //标题 推荐
         TextView  titleView=new TextView(UIUtils.getContext());
         titleView.setText(R.string.txt_recommend);
+        titleView.setHeight(50);
+        titleView.setWidth(SystemUtils.getScreenWidth());
         recommendLayout.addView(titleView);
         titleView.setTextAppearance(UIUtils.getContext(), R.style.ChannelTextStyle);
         //分隔线
@@ -290,15 +300,37 @@ public class LayoutGenetator {
         horizontalListView.setHorizontalScrollBarEnabled(true);
         horizontalListView.setHorizontalFadingEdgeEnabled(false);
         horizontalListView.setDividerWidth(UIUtils.dip2px(2));
-        System.out.println("000000000000000000:"+SystemUtils.getScreenHeight());
         // 设置 horizontal listview 的 高度  为 屏幕分辨率的 1/6
         LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,SystemUtils.getScreenHeight()/4+50);
         horizontalListView.setLayoutParams(params);
         horizontalListView.setAdapter(new HorizontalAdapter(UIUtils.getContext(), beans));
         recommendLayout.addView(horizontalListView);
         // 添加分隔线
-        container.addView(recommendLayout,params);
+        container.addView(recommendLayout, params);
         addLine(container);
     }
 
+
+    /**
+     * 添加评论列表
+     * @param list  评论列表内容
+     * @param container  父布局
+     */
+    public  static  void generateCommentList(List<CommentBean>list,LinearLayout container){
+        //添加分隔线
+        addLine(container);
+        TextView  titleView=new TextView(UIUtils.getContext());
+        titleView.setText(R.string.txt_comment);
+        titleView.setHeight(50);
+        titleView.setTextAppearance(UIUtils.getContext(), R.style.ChannelTextStyle);
+        titleView.setWidth(SystemUtils.getScreenWidth());
+        container.addView(titleView);
+        addLine(container);
+
+        BaseListView  listView=new BaseListView(UIUtils.getContext());
+
+        RelativeLayout.LayoutParams cParams = new RelativeLayout.LayoutParams( RelativeLayout.LayoutParams.MATCH_PARENT,  RelativeLayout.LayoutParams.WRAP_CONTENT) ;
+        container.addView(listView, cParams);
+        listView.setAdapter(new CommentListAdapter(listView, list));
+    }
 }

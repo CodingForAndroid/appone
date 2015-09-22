@@ -5,6 +5,7 @@ import com.bczm.widgetcollections.utils.UIUtils;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ import java.util.List;
  * @author：Jorge on 2015/9/11 17:11
  */
 public  class JsonHelper {
+
+    private static JSONObject jsonObject;
 
     //讲JSONArray 转成 存储信息的 list集合
     public static List JSONArrayToList(JSONArray array,List list,Class clazz){
@@ -37,6 +40,15 @@ public  class JsonHelper {
         RecommendedChannel recommendedChannel= gson.fromJson(json,RecommendedChannel.class);
         LogUtils.e("---111:"+recommendedChannel.toString());
         return recommendedChannel;
+    }
+
+    public  static JSONObject String2JSONObject(String json){
+        try {
+            jsonObject = new JSONObject(json);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
 
 }

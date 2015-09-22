@@ -1,5 +1,6 @@
 package com.bczm.widgetcollections.http.protocol;
 
+import com.bczm.widgetcollections.bean.CommentBean;
 import com.bczm.widgetcollections.bean.GuessFavoriteBean;
 import com.bczm.widgetcollections.bean.VideoDecorationBean;
 import com.bczm.widgetcollections.http.ConfigManage;
@@ -21,6 +22,7 @@ import java.util.List;
 public class VideoDetailProtocol {
 
     private GuessFavoriteBean[] beans;
+    private String desc;
 
     //获取 猜你喜欢
     public  List<GuessFavoriteBean>    getGuessFavorite() {
@@ -47,7 +49,7 @@ public class VideoDetailProtocol {
             JSONArray jsonArray = (JSONArray) jsonObject.opt("items");
             JsonHelper.JSONArrayToList(jsonArray, list, GuessFavoriteBean.class);
             beans = new GuessFavoriteBean[list.size()];
-            LogUtils.e("-----------------47"+list.size());
+            LogUtils.e("-----------------47" + list.size());
            for(int i=0;i<list.size();i++){
                beans[i]=list.get(i);
            }
@@ -63,9 +65,27 @@ public class VideoDetailProtocol {
     }
     //获取 视频介绍
     public String   getVideoDetailDesc(){
-
-        return ConfigManage.VIDEO_DETAIL_DESC;
+        try {
+            JSONArray      jsonObject = new JSONArray(ConfigManage.VIDEO_DETAIL_DESC);
+            desc = jsonObject.optJSONObject(0).opt("description").toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return desc;
     }
-
+    //获取评论列表
+    public List<CommentBean>  getVideoCommentList(){
+        List<CommentBean> list = null;
+        try {
+            list = new ArrayList<CommentBean>();
+            JSONObject jsonObject = new JSONObject(ConfigManage.VIDEO_COMMENT_LIST);
+            JSONArray jsonArray = (JSONArray) jsonObject.opt("items");
+            JsonHelper.JSONArrayToList(jsonArray, list, CommentBean.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        LogUtils.e("getVideoCommentList:size"+list.size());
+        return list;
+    }
 
 }

@@ -31,5 +31,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile files('libs/Volley.jar')
+    compile 'de.hdodenhof:circleimageview:2.0.0'
 }
 

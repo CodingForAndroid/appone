@@ -26,6 +26,7 @@ public class BaseListView extends ListView {
 		setDivider(UIUtils.getResources().getDrawable(R.drawable.nothing));
 		setCacheColorHint(UIUtils.getColor(R.color.bg_page));
 		setSelector(UIUtils.getResources().getDrawable(R.drawable.nothing));
+		setHorizontalFadingEdgeEnabled(false);
 	}
 
 

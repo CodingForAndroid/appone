@@ -4,11 +4,14 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.bczm.widgetcollections.R;
+import com.bczm.widgetcollections.bean.CommentBean;
 import com.bczm.widgetcollections.bean.GuessFavoriteBean;
 import com.bczm.widgetcollections.http.protocol.VideoDetailProtocol;
 import com.bczm.widgetcollections.ui.widget.LoadingPage;
 import com.bczm.widgetcollections.utils.LayoutGenetator;
 import com.bczm.widgetcollections.utils.UIUtils;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -22,6 +25,8 @@ public class DetailFragment extends BaseFragment {
     @Bind(R.id.ll_fragment_detail)
     LinearLayout llFragmentDetail;
     private GuessFavoriteBean[] array;
+    private List<CommentBean> list;
+    private String desc;
 
     @Override
     protected LoadingPage.LoadResult load() {
@@ -30,7 +35,9 @@ public class DetailFragment extends BaseFragment {
         //彩泥喜欢
         array = videoDetailProtocol.getGuessFavoriteArray();
         // 视频介绍
-        videoDetailProtocol.getVideoDetailDesc();
+        desc = videoDetailProtocol.getVideoDetailDesc();
+        // 获取评论 列表
+        list = videoDetailProtocol.getVideoCommentList();
         return LoadingPage.LoadResult.SUCCEED;
     }
 
@@ -39,10 +46,11 @@ public class DetailFragment extends BaseFragment {
         View view = UIUtils.inflate(R.layout.fragment_detail);
         ButterKnife.bind(this, view);
         // 添加头部信息
-        LayoutGenetator.generateDetail("标题", "描述", llFragmentDetail);
+        LayoutGenetator.generateDetail(desc, llFragmentDetail);
         //  添加推荐 video
-        LayoutGenetator.genenrateGuessLike(array ,llFragmentDetail);
+        LayoutGenetator.generateGuessLike(array, llFragmentDetail);
         // 添加评论列表
+        LayoutGenetator.generateCommentList(list,llFragmentDetail);
         return view;
     }
 

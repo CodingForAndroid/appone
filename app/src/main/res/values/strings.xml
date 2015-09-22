@@ -25,4 +25,6 @@
     <string name="txt_recommend_more_app">更多应用</string>
     <string name="txt_detail">详情</string>
     <string name="txt_list">目录</string>
+    <string name="txt_comment">评论</string>
+    <string name="txt_title">标题</string>
 </resources>
