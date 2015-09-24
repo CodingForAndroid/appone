@@ -45,8 +45,8 @@ public class LayoutGenetator {
     //////////////////////////////////////////////////布局方法
     public static TextView gTextView(Context activity , int sizeRes , int colorRes,String txt ,boolean singleline){
         TextView title = new TextView(activity) ;
-        title.setTextSize(TypedValue.COMPLEX_UNIT_PX,activity.getResources().getDimension(sizeRes)) ;
-        title.setTextColor(activity.getResources().getColor(colorRes)) ;
+        title.setTextSize(TypedValue.COMPLEX_UNIT_PX,sizeRes) ;
+        title.setTextColor(colorRes) ;
         title.setText(txt) ;
         if (singleline) {
             title.setSingleLine() ;
@@ -333,4 +333,72 @@ public class LayoutGenetator {
         container.addView(listView, cParams);
         listView.setAdapter(new CommentListAdapter(listView, list));
     }
+
+
+    /**
+     * 添加 清晰度   缓存  倒序 等按钮
+     * @param itemId  id
+     * @param leftImageId  id
+     * @param rightImageId id
+     * @return
+     */
+    public static void  generateCellTable(int itemId, int leftImageId, int rightImageId ,LinearLayout container) {
+
+        int margin = UIUtils.getDimens(R.dimen.txt_size_classify_little);
+        RelativeLayout mItemLayout = new RelativeLayout(UIUtils.getContext());
+        mItemLayout.setId(itemId);
+        RelativeLayout.LayoutParams mItemParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,UIUtils.getResources().getDimensionPixelSize(R.dimen.comm_navigation_hei));
+        mItemParams.addRule(RelativeLayout.CENTER_VERTICAL);
+        mItemLayout.setLayoutParams(mItemParams);
+
+        //清晰度
+        String[] defins=  UIUtils.getStringArray(R.array.definition);
+        TextView leftText=  LayoutGenetator.gTextView(UIUtils.getContext(), UIUtils.getDimens(R.dimen.txt_size_classify_high), UIUtils.getColor(R.color.black), defins[0], true);
+        RelativeLayout.LayoutParams mLeftImageParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        leftText.setId(leftImageId);
+        mLeftImageParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        mLeftImageParams.addRule(RelativeLayout.CENTER_VERTICAL);
+        mLeftImageParams.setMargins(margin, 0, 0, 0);
+        Drawable leftDrawable=UIUtils.getDrawable(R.mipmap.player_setting);
+        leftDrawable.setBounds(0, 0, leftDrawable.getMinimumWidth(), leftDrawable.getMinimumHeight()) ;
+        leftText.setCompoundDrawables(leftDrawable, null, null, null);
+        mItemLayout.addView(leftText, mLeftImageParams);
+
+        // 倒序、正序 排列
+        //清晰度
+        String[] sort=  UIUtils.getStringArray(R.array.sort);
+        TextView mCenterText = LayoutGenetator.gTextView(UIUtils.getContext(), UIUtils.getDimens(R.dimen.txt_size_classify_high), UIUtils.getColor(R.color.black), sort[0], true);
+        RelativeLayout.LayoutParams mLeftTextParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout. LayoutParams.WRAP_CONTENT);
+        mLeftTextParams.addRule(RelativeLayout.RIGHT_OF, leftImageId);
+        mLeftTextParams.addRule(RelativeLayout.CENTER_VERTICAL);
+        mLeftTextParams.setMargins(3*margin, 0, 0, 0);
+        Drawable centerDrawable=UIUtils.getDrawable(R.mipmap.player_order_positive);
+        centerDrawable.setBounds(0, 0, centerDrawable.getMinimumWidth(), centerDrawable.getMinimumHeight()) ;
+        mCenterText.setCompoundDrawables(centerDrawable, null, null, null);
+        mItemLayout.addView(mCenterText, mLeftTextParams);
+
+        // 右边 缓存
+        TextView rightText = LayoutGenetator.gTextView(UIUtils.getContext(), UIUtils.getDimens(R.dimen.txt_size_classify_high), UIUtils.getColor(R.color.black), UIUtils.getString(R.string.txt_download), true);
+        rightText.setId(rightImageId);
+        RelativeLayout.LayoutParams mRightImageParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout. LayoutParams.WRAP_CONTENT);
+        mRightImageParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        mRightImageParams.addRule(RelativeLayout.CENTER_VERTICAL);
+        mRightImageParams.setMargins(0, 0, margin, 0);
+        Drawable rightDrawable=UIUtils.getDrawable(R.mipmap.ico_all);
+        rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight()) ;
+        rightText.setCompoundDrawables(rightDrawable,null,null ,null );
+        mItemLayout.addView(rightText, mRightImageParams);
+
+        // 头部内容添加底部线
+        ImageView headerBottm = new ImageView(UIUtils.getContext());
+        headerBottm.setBackgroundResource(R.drawable.common_divider_line_black);
+        RelativeLayout.LayoutParams headerBottmp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout. LayoutParams.WRAP_CONTENT);
+        headerBottmp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        mItemLayout.addView(headerBottm, headerBottmp);
+        mItemLayout.setClickable(true);
+//        mItemLayout.setBackgroundResource(R.drawable.selector_shape_white_gray_low_small);
+        container.addView(mItemLayout);
+//        return mItemLayout;
+    }
+
 }

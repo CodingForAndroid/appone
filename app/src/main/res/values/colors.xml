@@ -18,4 +18,5 @@
     <color name="bg_tab_pressed">#6633b5e5</color>
     <color name="btn_bg">#CFCFCF</color>
     <color name="orange">#EE9A00</color>
+    <color name="orange_light">#FFE4C4</color>
 </resources>

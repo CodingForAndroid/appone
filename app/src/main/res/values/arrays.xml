@@ -6,5 +6,14 @@
         <item>首页</item>
         <item>首页</item>
     </string-array>
+    <string-array name="definition">
+        <item>标清</item>
+        <item>高清</item>
+        <item>超清</item>
+    </string-array>
 
+    <string-array name="sort">
+        <item>倒序</item>
+        <item>正序</item>
+    </string-array>
 </resources>

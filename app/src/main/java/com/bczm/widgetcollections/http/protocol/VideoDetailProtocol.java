@@ -1,8 +1,10 @@
 package com.bczm.widgetcollections.http.protocol;
 
+import com.bczm.widgetcollections.bean.ChapterSet;
 import com.bczm.widgetcollections.bean.CommentBean;
 import com.bczm.widgetcollections.bean.GuessFavoriteBean;
 import com.bczm.widgetcollections.bean.VideoDecorationBean;
+import com.bczm.widgetcollections.bean.ChapterItem;
 import com.bczm.widgetcollections.http.ConfigManage;
 import com.bczm.widgetcollections.http.parse.JsonHelper;
 import com.bczm.widgetcollections.utils.LogUtils;
@@ -24,6 +26,8 @@ public class VideoDetailProtocol {
 
     private GuessFavoriteBean[] beans;
     private String desc;
+    private List<ChapterItem> list;
+
 
     //获取 猜你喜欢
     public  List<GuessFavoriteBean>    getGuessFavorite() {
@@ -42,15 +46,12 @@ public class VideoDetailProtocol {
 
     //获取 猜你喜欢
     public  GuessFavoriteBean[] getGuessFavoriteArray() {
-
-//        List<GuessFavoriteBean> list = null;
         try {
             List<GuessFavoriteBean> list  = new ArrayList<GuessFavoriteBean>();
             JSONObject jsonObject = new JSONObject(ConfigManage.GUESS_FAVOURIATE);
             JSONArray jsonArray = (JSONArray) jsonObject.opt("items");
             JsonHelper.JSONArrayToList(jsonArray, list, GuessFavoriteBean.class);
             beans = new GuessFavoriteBean[list.size()];
-            LogUtils.e("-----------------47" + list.size());
            for(int i=0;i<list.size();i++){
                beans[i]=list.get(i);
            }
@@ -94,5 +95,23 @@ public class VideoDetailProtocol {
             return  null ;
         }
     }
+
+    /**
+     * 获取当前 已更新的 集数
+     */
+    public List<ChapterItem> getVideoSetSize(){
+
+        try {
+            list = new ArrayList<>();
+            JSONObject jsonObject=new JSONObject(ConfigManage.VIDEO_SET);
+            JSONArray  jsonArray = jsonObject.getJSONArray("items");
+            JsonHelper.JSONArrayToList(jsonArray, list, ChapterItem.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        LogUtils.e("000000000--------"+list.size());
+        return list;
+    }
+
 
 }

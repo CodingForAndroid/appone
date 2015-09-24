@@ -24,10 +24,10 @@ public class FragmentFactory {
 					fragment = new AppFragment();
 					break;
 				case TAB_THIRD:
-					fragment = new AppFragment();
+					fragment = new ChapterFragment();
 					break;
 				case TAB_FOURTH:
-					fragment = new AppFragment();
+					fragment = new ChapterFragment();
 					break;
 			}
 			mFragmentMap.put(index, fragment);

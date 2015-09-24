@@ -59,7 +59,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <android.support.v4.view.ViewPager
+    <com.bczm.widgetcollections.ui.widget.NoScrollViewPager
         android:id="@+id/pager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

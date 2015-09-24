@@ -11,6 +11,8 @@ import com.bczm.widgetcollections.utils.UIUtils;
 import com.bczm.widgetcollections.utils.ViewUtils;
 import java.util.List;
 
+import io.vov.vitamio.LibsChecker;
+
 public abstract class BaseFragment extends Fragment {
     protected LoadingPage mContentView;
 
@@ -66,5 +68,12 @@ public abstract class BaseFragment extends Fragment {
     public void onResume() {
         super.onResume();
         show();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (!LibsChecker.checkVitamioLibs(getActivity()))
+            return;
     }
 }

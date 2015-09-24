@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="tabhost" type="id"></item>
-    <item name="tabcontent" type="id"></item>
+    <item name="tabhost" type="id"/>
+    <item name="tabcontent" type="id"/>
+    <item name="comm_id_01" type="id"/>
+    <item name="comm_id_02" type="id"/>
+    <item name="comm_id_03" type="id"/>
+    <item name="comm_id_04" type="id"/>
 </resources>

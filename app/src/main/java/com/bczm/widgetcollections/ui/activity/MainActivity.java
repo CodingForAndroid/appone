@@ -23,6 +23,7 @@ import com.bczm.widgetcollections.http.HttpUtil;
 import com.bczm.widgetcollections.http.NetUtils;
 import com.bczm.widgetcollections.ui.fragment.BaseFragment;
 import com.bczm.widgetcollections.ui.fragment.FragmentFactory;
+import com.bczm.widgetcollections.ui.widget.NoScrollViewPager;
 import com.bczm.widgetcollections.utils.FileUtils;
 import com.bczm.widgetcollections.utils.LogUtils;
 import com.bczm.widgetcollections.utils.SharedPreferenceUtils;
@@ -44,7 +45,7 @@ import butterknife.ButterKnife;
  */
 public class MainActivity extends BaseActivity {
     @Bind(R.id.pager)
-     ViewPager mViewPager;
+    NoScrollViewPager mViewPager;
     @Bind(R.id.btn_cartoon)
     Button mCartoonBtn;
     @Bind(R.id.btn_news)

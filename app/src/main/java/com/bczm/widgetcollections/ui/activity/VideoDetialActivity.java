@@ -17,6 +17,7 @@ import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.bean.VideoBean;
 import com.bczm.widgetcollections.bean.VideoDecorationBean;
 import com.bczm.widgetcollections.http.protocol.VideoDetailProtocol;
+import com.bczm.widgetcollections.ui.fragment.ChapterFragment;
 import com.bczm.widgetcollections.ui.fragment.DetailFragment;
 import com.bczm.widgetcollections.utils.LogUtils;
 import com.bczm.widgetcollections.utils.SystemUtils;
@@ -47,6 +48,8 @@ public class VideoDetialActivity extends BaseActivity {
     //tab 标签
     private  String  TAB_LSIT="tablist";//目录
     private  String  TAB_DETIAL="tabdetail";// 详情
+    private FragmentTabHost mTabhost;
+
     @Override
     protected void createContent() {
         setContentView(R.layout.activity_video_play);
@@ -74,11 +77,14 @@ public class VideoDetialActivity extends BaseActivity {
                     radioDetail.setTextColor(getResources().getColor(android.R.color.white));
                     radioList.setChecked(false);
                     radioList.setTextColor(getResources().getColor(R.color.blue));
+                    mTabhost.setCurrentTab(0);
                 } else if (checkedId == R.id.radio_list) {
                     radioList.setChecked(true);
                     radioList.setTextColor(getResources().getColor(android.R.color.white));
                     radioDetail.setChecked(false);
                     radioDetail.setTextColor(getResources().getColor(R.color.blue));
+                    mTabhost.setCurrentTab(1);
+
                 }
             }
         });
@@ -154,7 +160,7 @@ public class VideoDetialActivity extends BaseActivity {
         llVideoPlayActivity.addView(tvDivider);
 
         // 添加 FragmentTabHost
-        FragmentTabHost mTabhost=new FragmentTabHost(UIUtils.getContext());
+        mTabhost = new FragmentTabHost(UIUtils.getContext());
         mTabhost.setId(R.id.tabhost);
         LinearLayout.LayoutParams tabHostParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
         mTabhost.setLayoutParams(tabHostParams);
@@ -171,7 +177,7 @@ public class VideoDetialActivity extends BaseActivity {
         mTabhost.getTabWidget().setVisibility(View.GONE);
 
         mTabhost.addTab(mTabhost.newTabSpec(TAB_DETIAL).setIndicator(TAB_DETIAL), DetailFragment.class, null);
-        mTabhost.addTab(mTabhost.newTabSpec(TAB_LSIT).setIndicator(TAB_LSIT), DetailFragment.class, null);
+        mTabhost.addTab(mTabhost.newTabSpec(TAB_LSIT).setIndicator(TAB_LSIT), ChapterFragment.class, null);
 
 //        mTabhost.setCurrentTab(ORIGIN_TAB);
     }

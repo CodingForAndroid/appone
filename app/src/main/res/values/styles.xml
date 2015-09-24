@@ -39,7 +39,6 @@
         <!--推荐频道 图片样式-->
     <style name="ChannelImageStyle">
         <item name="android:layout_margin">3dp</item>
-        <item name="android:src">@mipmap/ic_launcher</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">150dp</item>
         <item name="android:layout_centerHorizontal">true</item>
@@ -72,5 +71,13 @@
         <item name="android:textColor">@color/blue</item>
         <item name="android:layout_centerHorizontal">true</item>
     </style>
-
+    <style name="txt_style_chapter">
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/orange_light</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+    </style>
 </resources>

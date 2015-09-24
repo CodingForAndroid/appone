@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:descendantFocusability="blocksDescendants"
+    android:layout_width="match_parent" android:layout_height="100dp">
+    <!--android:descendantFocusability-->
+    <TextView
+
+        style="@style/txt_style_chapter"
+        android:id="@+id/tv_chapter_01"
+        android:text="1"
+        android:layout_height="match_parent" />
+    <TextView
+        style="@style/txt_style_chapter"
+        android:id="@+id/tv_chapter_02"
+        android:text="1"
+        android:layout_height="match_parent" />
+    <TextView
+        style="@style/txt_style_chapter"
+        android:id="@+id/tv_chapter_03"
+        android:text="1"
+        android:layout_height="match_parent" />
+    <TextView
+        style="@style/txt_style_chapter"
+        android:id="@+id/tv_chapter_04"
+        android:text="1"
+        android:layout_height="match_parent" />
+    <TextView
+        style="@style/txt_style_chapter"
+        android:id="@+id/tv_chapter_05"
+        android:text="1"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
