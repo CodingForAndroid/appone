@@ -29,13 +29,13 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ImageView;
-
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.utils.LogUtils;
+import com.bczm.widgetcollections.utils.UIUtils;
 
-import java.util.logging.Logger;
 
 public class VideoPlayerActivity extends Activity implements OnCompletionListener, OnInfoListener {
 
@@ -53,7 +53,7 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 	/** 当前亮度 */
 	private float mBrightness = -1f;
 	/** 当前缩放模式 */
-	private int mLayout = VideoView.VIDEO_LAYOUT_ZOOM;
+	private int mLayout = VideoView.VIDEO_LAYOUT_ORIGIN;
 	private GestureDetector mGestureDetector;
 	private MediaController mMediaController;
 	private View mLoadingView;
@@ -61,19 +61,17 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 	@Override
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
-
 		// ~~~ 检测Vitamio是否解压解码包
 		if (!LibsChecker.checkVitamioLibs(this, R.string.init_decoders))
 			return;
-
 		// ~~~ 获取播放地址和标题
 		Intent intent = getIntent();
 //		mPath = intent.getStringExtra("path");
-//		mPath="rtmp://live.hkstv.hk.lxdns.com/live/hks";
+		mPath="rtmp://live.hkstv.hk.lxdns.com/live/hks";
 //		mPath="http://mvvideo1.meitudata.com/558931da76dda6982.mp4";
 //		http://us.sinaimg.cn/003rWaQ0jx06VySJBUc0050d010000fj0k01.m3u8?KID=unistore,video&Expires=1442848623&ssig=PmY0mIGSWk
 //		mPath="http://us.sinaimg.cn/003rWaQ0jx06VySJBUc0050d010000fj0k01.m3u8";
-		mPath="http://hls3.douyutv.com/live/319538rGmSLuO2IR/playlist.m3u8";
+//		mPath="http://hls3.douyutv.com/live/319538rGmSLuO2IR/playlist.m3u8";
 //		mPath="http://hdl3.douyutv.com/live319538rGmSLuO2IR.flv";
 //		mPath = intent.getStringExtra("path");
 		mTitle = "-------------------------title";
@@ -83,7 +81,6 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 
 		} else if (intent.getData() != null)
 			mPath = intent.getData().toString();
-
 		// ~~~ 绑定控件
 		setContentView(R.layout.videoview);
 		mVideoView = (VideoView) findViewById(R.id.surface_view);
@@ -91,15 +88,12 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 		mOperationBg = (ImageView) findViewById(R.id.operation_bg);
 		mOperationPercent = (ImageView) findViewById(R.id.operation_percent);
 		mLoadingView = findViewById(R.id.video_loading);
-
 		// ~~~ 绑定事件
 		mVideoView.setOnCompletionListener(this);
 		mVideoView.setOnInfoListener(this);
-
 		// ~~~ 绑定数据
 		mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 		mMaxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-		Log.e("debuginfo", mPath+"urlurlurlurlurlurlurlurlurlurlurlurlurlurl");
 		if (mPath.startsWith("http:"))
 			mVideoView.setVideoURI(Uri.parse(mPath));
 		
@@ -107,13 +101,94 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 			mVideoView.setVideoPath(mPath);
 
 		//设置显示名称
-		mMediaController = new MediaController(this);
+		mMediaController=new MediaController(UIUtils.getContext(),new MediaController.Controller(){
+			@Override
+			public View.OnClickListener getShareClickListener() {
+				View. OnClickListener  shareController=new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						UIUtils.showToastSafe("getShareClickListener");
+						LogUtils.e("分享操作_____before click____"+mLayout);
+						if (mLayout == VideoView.VIDEO_LAYOUT_ZOOM)
+							mLayout = VideoView.VIDEO_LAYOUT_ORIGIN;
+						else
+							mLayout++;
+						if(mLayout==VideoView.VIDEO_LAYOUT_STRETCH){// 横竖屏切换记得 给activity 设置 configchange 属性      android:configChanges="orientation|keyboardHidden|screenSize"
+							setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+//							setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+						}else{
+							setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+						}
+
+
+//						if(mLayout==VideoView.VIDEO_LAYOUT_ORIGIN){
+////							mLayout=VideoView.VIDEO_LAYOUT_SCALE;// 全屏
+//							mLayout=VideoView.VIDEO_LAYOUT_STRETCH;// 全屏
+//							setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+//							if (mVideoView != null)
+//								mVideoView.setVideoLayout(mLayout, 0);
+//						}else if(mLayout==VideoView.VIDEO_LAYOUT_STRETCH){
+//							mLayout=VideoView.VIDEO_LAYOUT_ORIGIN;   //原始   画面 全屏
+////							mLayout=VideoView.VIDEO_LAYOUT_ORIGIN;   //原始   画面 全屏
+//							setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//							if (mVideoView != null)
+//								mVideoView.setVideoLayout(mLayout, 0);
+//						}
+
+						if (mVideoView != null)
+								mVideoView.setVideoLayout(mLayout, 0);
+//						public static final int VIDEO_LAYOUT_ORIGIN = 0;
+//						public static final int VIDEO_LAYOUT_SCALE = 1;
+//						public static final int VIDEO_LAYOUT_STRETCH = 2;
+//						public static final int VIDEO_LAYOUT_ZOOM = 3;
+//						public static final int VIDEO_LAYOUT_FIT_PARENT = 4;
+						LogUtils.e("分享操作____after click_____" + mLayout);
+
+
+
+					}
+				};
+				return shareController;
+			}
+
+
+			@Override
+			public View.OnClickListener getBackClickListener() {
+				View. OnClickListener  backCOntroller=new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+						getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
+						getWindow().addFlags(WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON);
+						getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+
+//						mVideoView.stopPlayback();
+//						VideoPlayerActivity.this.finish();
+					}
+				};
+				return backCOntroller;
+			}
+		});
 		mMediaController.setFileName(mTitle);
 		mVideoView.setMediaController(mMediaController);
 		mVideoView.requestFocus();
 
+
 		mGestureDetector = new GestureDetector(this, new MyGestureListener());
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+		ViewTreeObserver vto = mVideoView.getViewTreeObserver();
+		vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+			@Override
+			public void onGlobalLayout() {
+				mVideoView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+				mVideoView.getHeight();
+				mVideoView.getWidth();
+//				mMediaController.setPadding(0, 0, 0,mVideoView.getBottom());
+				LogUtils.e("ViewTreeObserver:\tmVideoView.getHeight();:"+	mVideoView.getHeight()+"mVideoView.getWidth();"+mVideoView.getWidth());
+			}
+		});
 	}
 
 	@Override
@@ -128,6 +203,8 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 		super.onResume();
 		if (mVideoView != null)
 			mVideoView.resume();
+
+
 	}
 
 	@Override
@@ -141,14 +218,12 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 	public boolean onTouchEvent(MotionEvent event) {
 		if (mGestureDetector.onTouchEvent(event))
 			return true;
-
 		// 处理手势结束
 		switch (event.getAction() & MotionEvent.ACTION_MASK) {
 		case MotionEvent.ACTION_UP:
 			endGesture();
 			break;
 		}
-
 		return super.onTouchEvent(event);
 	}
 
@@ -156,7 +231,6 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 	private void endGesture() {
 		mVolume = -1;
 		mBrightness = -1f;
-
 		// 隐藏
 		mDismissHandler.removeMessages(0);
 		mDismissHandler.sendEmptyMessageDelayed(0, 500);
@@ -290,8 +364,8 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 	}
 
 	/** 是否需要自动恢复播放，用于自动暂停，恢复播放 */
-	private boolean needResume;
-
+//	private boolean needResume;
+private  boolean needResume=true;
 	@Override
 	public boolean onInfo(MediaPlayer arg0, int arg1, int arg2) {
 		switch (arg1) {
@@ -317,4 +391,5 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 		}
 		return true;
 	}
+
 }

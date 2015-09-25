@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.bean.CommentBean;
@@ -129,7 +130,7 @@ public class LayoutGenetator {
      * 推荐更多 应用
      * @param layout_item_container 父容器
      */
-    public static void  genenrateMoreChannels(LinearLayout layout_item_container,int textRes,int rightIconRes){
+    public static void  genenrateMoreChannels(LinearLayout layout_item_container,int textRes,int rightIconRes ){
 
         RelativeLayout mItemLayout = new RelativeLayout(UIUtils.getContext());
         mItemLayout.setBackgroundResource(R.drawable.selector_common_btn);
@@ -148,11 +149,9 @@ public class LayoutGenetator {
         btn.setTextColor(UIUtils.getColor(R.color.blue));
         RelativeLayout.LayoutParams mRightImageParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, UIUtils.getDimens(R.dimen.comm_navigation_hei));
         mRightImageParams.addRule(RelativeLayout.CENTER_IN_PARENT);
-//        mRightImageParams.setMargins(10,10,10,20);
-////        mRightImageParams.setMargins(0, 10, 0, 20);
         btn.setPadding(0, 10, 0, 20);;
         mItemLayout.addView(btn, mRightImageParams);
-        layout_item_container.addView(mItemLayout,mItemParams);
+        layout_item_container.addView(mItemLayout, mItemParams);
     }
 
     /**
@@ -231,11 +230,11 @@ public class LayoutGenetator {
 
     public static boolean  hasOpen=false;
 
+
     /**
      * 添加详情 头部信息
-     * @param title   video  标题
-     * @param desc    video 描述
-     * @param container   布局容器
+     * @param desc  视频描述想起
+     * @param container  父布局
      */
     public static void generateDetail(final String desc, final LinearLayout container){
         //标题
@@ -399,6 +398,57 @@ public class LayoutGenetator {
 //        mItemLayout.setBackgroundResource(R.drawable.selector_shape_white_gray_low_small);
         container.addView(mItemLayout);
 //        return mItemLayout;
+    }
+
+
+
+
+    /**
+     *
+     * @param textResId
+     *            ： 文字 内容 .
+     * @param itemId
+     *            ： 给 开关 设置的 id.
+     * @return
+     */
+    public static void generateTVChannel(int textResId, int itemId, LinearLayout parentView) {
+        // 左右边距
+        int magrin = (int)UIUtils.getDimens(R.dimen.txt_size_classify_mid);
+        // 观看动漫
+        RelativeLayout mItemLayout = new RelativeLayout(UIUtils.getContext());
+        mItemLayout.setId(itemId);
+        RelativeLayout.LayoutParams mItemParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, UIUtils.getDimens(R.dimen.comm_navigation_hei));
+        mItemParams.addRule(RelativeLayout.CENTER_VERTICAL);
+        mItemLayout.setLayoutParams(mItemParams);
+
+        // 添加文字
+        TextView mWatchCartoonTextView = new TextView(UIUtils.getContext());
+        mWatchCartoonTextView.setText(textResId);
+        mWatchCartoonTextView.setTextAppearance(UIUtils.getContext(),R.style.text_black_bg);
+        RelativeLayout.LayoutParams mTextViewParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout. LayoutParams.WRAP_CONTENT);
+        mTextViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        mTextViewParams.addRule(RelativeLayout.CENTER_VERTICAL);
+        mTextViewParams.setMargins(magrin, 0, 0, 0);
+        mItemLayout.addView(mWatchCartoonTextView, mTextViewParams);
+
+        // 添加 开关
+        ClickableImageView mToggleButton = new ClickableImageView(UIUtils.getContext());
+        mToggleButton.setImageResource(R.mipmap.btn_send);
+        RelativeLayout.LayoutParams mToggleParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        mToggleParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        mToggleParams.addRule(RelativeLayout.CENTER_VERTICAL);
+        mToggleParams.setMargins(0, 0, magrin, 0);
+        mItemLayout.addView(mToggleButton, mToggleParams);
+
+        // 头部内容添加底部线
+        ImageView headerBottm = new ImageView(UIUtils.getContext());
+        headerBottm.setBackgroundResource(R.drawable.common_divider_line_black);
+        RelativeLayout.LayoutParams headerBottmp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        headerBottmp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        mItemLayout.addView(headerBottm, headerBottmp);
+        mItemLayout.setClickable(true);
+        mItemLayout.setBackgroundResource(R.drawable.selector_shape_white_gray_low_small);
+        parentView.addView(mItemLayout);
     }
 
 }

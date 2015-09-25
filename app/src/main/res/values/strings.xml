@@ -50,4 +50,8 @@
     <string name="VideoView_error_button">OK</string>
     <string name="mediacontroller_play_pause">Play/Pause</string>
     <!---fffffffffffffffffff-->
+
+
+    <string name="channel_hk">香港卫视</string>
+
 </resources>

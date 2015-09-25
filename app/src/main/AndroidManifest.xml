@@ -43,7 +43,9 @@
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".ui.fragment.VideoPlayerActivity"/>
+        <activity
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:name=".ui.fragment.VideoPlayerActivity"/>
     </application>
 
 </manifest>

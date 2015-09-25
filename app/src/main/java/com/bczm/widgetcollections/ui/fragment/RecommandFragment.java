@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -61,6 +62,8 @@ public class RecommandFragment extends BaseFragment {
     private RecommendedChannel recommendedChannel;
     // 推荐应用的容器
     private List<RecommendAppInfo> appList;
+    private ScrollView scollVoew;
+
     @Override
     protected LoadResult load() {
         // 顶部轮播
@@ -76,6 +79,9 @@ public class RecommandFragment extends BaseFragment {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_recommand, null);
         // 此时list 已经包含信息
         rlView = (LinearLayout) view.findViewById(R.id.rl_view);
+        rlView.setFocusable(false);
+        // 找到 scrollview  在可见的时候 让滑动到顶部
+        scollVoew = (ScrollView) view.findViewById(R.id.scrollView);
         //添加viewpager
         LayoutGenetator.getneratePagerView(resultList, getActivity(), rlView);
         // 添加6个推荐位置
@@ -86,14 +92,20 @@ public class RecommandFragment extends BaseFragment {
         // 添加更多频道按钮
         LayoutGenetator.genenrateMoreChannels(rlView, R.string.txt_recommend_more, R.mipmap.ic_hot_click);
         // 添加 应用推荐 模块
-        LayoutGenetator.generateRecommendedApp(rlView,appList);
+        LayoutGenetator.generateRecommendedApp(rlView, appList);
         // 添加更多应用
-        LayoutGenetator.genenrateMoreChannels(rlView,R.string.txt_recommend_more_app,R.mipmap.ic_like_click);
+        LayoutGenetator.genenrateMoreChannels(rlView, R.string.txt_recommend_more_app, R.mipmap.ic_like_click);
         return view;
     }
     @Override
     public void onResume() {
         super.onResume();
+        //平滑滑动到顶部
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         show();
     }
 
@@ -106,7 +118,6 @@ public class RecommandFragment extends BaseFragment {
     // 推荐位置
     private ArrayList<RecommandPositionInfo> popList=new ArrayList<RecommandPositionInfo>();
     public  void  loadData(){
-
         // 顶部六个 位置
         RecommendedPopProtocol popProtocol=new RecommendedPopProtocol();
         if(null!=popProtocol.load(0))
@@ -118,7 +129,6 @@ public class RecommandFragment extends BaseFragment {
         RecommendedAppProtocol recommendedAppProtocol= new RecommendedAppProtocol();
         appList=recommendedAppProtocol.load(0);
     }
-
 /**********************************************适配器  适配数据**************************************************************/
     /**
      * 生成推荐频道

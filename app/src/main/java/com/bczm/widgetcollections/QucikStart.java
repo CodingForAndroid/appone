@@ -6,13 +6,18 @@ package com.bczm.widgetcollections;
  */
 public class QucikStart {
 
-//   大小写 转换 快捷键            Ctrl + shift + U
+//   大小写 转换 快捷键           Ctrl + shift + U
 
-//   复制当前行到下一行            Ctrl+D
+//   复制当前行到下一行           Ctrl+D
 
-//   替换全部                      Ctrl+R
+//   替换全部                     Ctrl+R
 
 //   局部变量 变成员变量          Ctrl+ shift+ F
 
 //   向上/向下移动  当前行        Ctrl+shift + ↑ ↓
+
+//   查找类中已有的方法           Ctrl+ F12
+
+//   删除当前行                   Ctrl+ X
+
 }

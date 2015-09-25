@@ -63,6 +63,7 @@
     </style>
 
     <style name="text_black_bg">
+        <item name="android:textSize">@dimen/txt_size_classify_mid</item>
         <item name="android:background">@mipmap/x_hall_name_bg</item>
         <item name="android:layout_margin">2dp</item>
         <item name="android:singleLine">true</item>
