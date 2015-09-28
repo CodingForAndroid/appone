@@ -76,14 +76,14 @@ public class RecommandFragment extends BaseFragment {
     protected View createLoadedView() {
         //模拟 评论加载数据   第一次 0 表示有更多
         SharedPreferenceUtils.setGetMoreTimes(0);
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_recommand, null);
+        View view = LayoutInflater.from(UIUtils.getContext()).inflate(R.layout.fragment_recommand, null);
         // 此时list 已经包含信息
         rlView = (LinearLayout) view.findViewById(R.id.rl_view);
         rlView.setFocusable(false);
         // 找到 scrollview  在可见的时候 让滑动到顶部
         scollVoew = (ScrollView) view.findViewById(R.id.scrollView);
         //添加viewpager
-        LayoutGenetator.getneratePagerView(resultList, getActivity(), rlView);
+        LayoutGenetator.getneratePagerView(resultList, UIUtils.getContext(), rlView);
         // 添加6个推荐位置
         LayoutGenetator.generateRecommendPosition(popList, rlView);
         //添加 推荐频道

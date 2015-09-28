@@ -31,7 +31,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.utils.LogUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
@@ -68,12 +71,6 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 		Intent intent = getIntent();
 //		mPath = intent.getStringExtra("path");
 		mPath="rtmp://live.hkstv.hk.lxdns.com/live/hks";
-//		mPath="http://mvvideo1.meitudata.com/558931da76dda6982.mp4";
-//		http://us.sinaimg.cn/003rWaQ0jx06VySJBUc0050d010000fj0k01.m3u8?KID=unistore,video&Expires=1442848623&ssig=PmY0mIGSWk
-//		mPath="http://us.sinaimg.cn/003rWaQ0jx06VySJBUc0050d010000fj0k01.m3u8";
-//		mPath="http://hls3.douyutv.com/live/319538rGmSLuO2IR/playlist.m3u8";
-//		mPath="http://hdl3.douyutv.com/live319538rGmSLuO2IR.flv";
-//		mPath = intent.getStringExtra("path");
 		mTitle = "-------------------------title";
 //		mTitle = intent.getStringExtra("title");
 		if (TextUtils.isEmpty(mPath)) {
@@ -101,51 +98,13 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 			mVideoView.setVideoPath(mPath);
 
 		//设置显示名称
-		mMediaController=new MediaController(UIUtils.getContext(),new MediaController.Controller(){
+		mMediaController=new MediaController(UIUtils.getContext(),new MediaController.Controller( ){
 			@Override
 			public View.OnClickListener getShareClickListener() {
 				View. OnClickListener  shareController=new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						UIUtils.showToastSafe("getShareClickListener");
 						LogUtils.e("分享操作_____before click____"+mLayout);
-						if (mLayout == VideoView.VIDEO_LAYOUT_ZOOM)
-							mLayout = VideoView.VIDEO_LAYOUT_ORIGIN;
-						else
-							mLayout++;
-						if(mLayout==VideoView.VIDEO_LAYOUT_STRETCH){// 横竖屏切换记得 给activity 设置 configchange 属性      android:configChanges="orientation|keyboardHidden|screenSize"
-							setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-//							setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-						}else{
-							setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-						}
-
-
-//						if(mLayout==VideoView.VIDEO_LAYOUT_ORIGIN){
-////							mLayout=VideoView.VIDEO_LAYOUT_SCALE;// 全屏
-//							mLayout=VideoView.VIDEO_LAYOUT_STRETCH;// 全屏
-//							setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-//							if (mVideoView != null)
-//								mVideoView.setVideoLayout(mLayout, 0);
-//						}else if(mLayout==VideoView.VIDEO_LAYOUT_STRETCH){
-//							mLayout=VideoView.VIDEO_LAYOUT_ORIGIN;   //原始   画面 全屏
-////							mLayout=VideoView.VIDEO_LAYOUT_ORIGIN;   //原始   画面 全屏
-//							setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-//							if (mVideoView != null)
-//								mVideoView.setVideoLayout(mLayout, 0);
-//						}
-
-						if (mVideoView != null)
-								mVideoView.setVideoLayout(mLayout, 0);
-//						public static final int VIDEO_LAYOUT_ORIGIN = 0;
-//						public static final int VIDEO_LAYOUT_SCALE = 1;
-//						public static final int VIDEO_LAYOUT_STRETCH = 2;
-//						public static final int VIDEO_LAYOUT_ZOOM = 3;
-//						public static final int VIDEO_LAYOUT_FIT_PARENT = 4;
-						LogUtils.e("分享操作____after click_____" + mLayout);
-
-
-
 					}
 				};
 				return shareController;
@@ -157,17 +116,53 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 				View. OnClickListener  backCOntroller=new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-						getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
-						getWindow().addFlags(WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON);
-						getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
 
-//						mVideoView.stopPlayback();
-//						VideoPlayerActivity.this.finish();
+						mVideoView.stopPlayback();
+						VideoPlayerActivity.this.finish();
 					}
 				};
 				return backCOntroller;
 			}
+
+			@Override
+			public View.OnClickListener selectedSizeListener(final ImageButton mChangeSize) {
+				View. OnClickListener  shareController=new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						if (mLayout == VideoView.VIDEO_LAYOUT_STRETCH)
+							mLayout = VideoView.VIDEO_LAYOUT_ORIGIN;
+						else
+							mLayout++;
+//						if(mLayout==VideoView.VIDEO_LAYOUT_STRETCH){// 横竖屏切换记得 给activity 设置 configchange 属性      android:configChanges="orientation|keyboardHidden|screenSize"
+////							setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+////							setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+//						}else{
+////							setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//						}
+						if(mLayout== VideoView.VIDEO_LAYOUT_ORIGIN){
+							//最小
+							mChangeSize.setBackgroundResource(R.mipmap.ic_ar_4_3_inside);
+						}else if(mLayout==VideoView.VIDEO_LAYOUT_SCALE){
+							//80%
+							mChangeSize.setBackgroundResource(R.mipmap.ic_ar_16_9_inside);
+						}else if(mLayout==VideoView.VIDEO_LAYOUT_STRETCH){
+							//全屏
+							mChangeSize.setBackgroundResource(R.mipmap.ic_ar_adjust_screen);
+						}
+						LogUtils.e("mLayout:"+mLayout);
+						if (mVideoView != null)
+							mVideoView.setVideoLayout(mLayout, 0);
+//						public static final int VIDEO_LAYOUT_ORIGIN = 0;
+//						public static final int VIDEO_LAYOUT_SCALE = 1;
+//						public static final int VIDEO_LAYOUT_STRETCH = 2;
+//						public static final int VIDEO_LAYOUT_ZOOM = 3;
+//						public static final int VIDEO_LAYOUT_FIT_PARENT = 4;
+					}
+				};
+				return shareController;
+			}
+
+
 		});
 		mMediaController.setFileName(mTitle);
 		mVideoView.setMediaController(mMediaController);
@@ -175,8 +170,8 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 
 
 		mGestureDetector = new GestureDetector(this, new MyGestureListener());
-//		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 		ViewTreeObserver vto = mVideoView.getViewTreeObserver();
 		vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
