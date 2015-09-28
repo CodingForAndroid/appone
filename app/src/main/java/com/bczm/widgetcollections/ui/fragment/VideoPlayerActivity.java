@@ -10,6 +10,7 @@ import io.vov.vitamio.MediaPlayer.OnCompletionListener;
 import io.vov.vitamio.MediaPlayer.OnInfoListener;
 import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +23,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Display;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.GestureDetector;
@@ -33,7 +33,6 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.utils.LogUtils;
@@ -65,7 +64,10 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
 		// ~~~ 检测Vitamio是否解压解码包
-		if (!LibsChecker.checkVitamioLibs(this, R.string.init_decoders))
+//		LibsChecker.checkVitamioLibs()Error:Execution failed for task ':app:dexDebug'.
+//		> com.android.ide.common.process.ProcessException: org.gradle.process.internal.ExecException: Process 'command 'E:\Work Space\Java\jdk1.7.0_13\bin\java.exe'' finished with non-zero exit value 2
+		if (!LibsChecker.checkVitamioLibs(this))
+//		if (!LibsChecker.checkVitamioLibs(this, R.string.init_decoders))
 			return;
 		// ~~~ 获取播放地址和标题
 		Intent intent = getIntent();

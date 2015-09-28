@@ -10,7 +10,7 @@ public class FragmentFactory {
 	public static final int TAB_THIRD = 2;
 	public static final int TAB_FOURTH = 3;
 	/** 记录所有的fragment，防止重复创建 */
-	private static Map<Integer, BaseFragment> mFragmentMap = new HashMap<Integer, BaseFragment>();
+	private static Map<Integer, BaseFragment> mFragmentMap = new HashMap<>();
 
 	/** 采用工厂类进行创建Fragment，便于扩展，已经创建的Fragment不再创建 */
 	public static BaseFragment createFragment(int index) {
@@ -24,7 +24,7 @@ public class FragmentFactory {
 					fragment = new TabSecondFragment();
 					break;
 				case TAB_THIRD:
-					fragment = new TabThirdFragment();
+					fragment = new ChapterFragment();
 					break;
 				case TAB_FOURTH:
 					fragment = new ChapterFragment();

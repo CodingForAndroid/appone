@@ -20,4 +20,12 @@ public class QucikStart {
 
 //   删除当前行                   Ctrl+ X
 
+//   查找当前 变量在 module 中引用的位置                             Alt+F7 /  右键 +Find Usages
+
+//    根据 文件名 查找            3 Shift/ Shift + Shift + Shift
+
+
+    // 项目 记录
+
+//    1 尝试把 vitamio 打成jar包 使用
 }

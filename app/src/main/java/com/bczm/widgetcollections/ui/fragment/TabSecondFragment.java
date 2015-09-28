@@ -2,19 +2,13 @@ package com.bczm.widgetcollections.ui.fragment;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.ui.widget.LoadingPage;
 import com.bczm.widgetcollections.utils.LayoutGenetator;
-import com.bczm.widgetcollections.utils.LogUtils;
-import com.bczm.widgetcollections.utils.PackageUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
-import io.vov.vitamio.MediaPlayer;
-import io.vov.vitamio.widget.MediaController;
-import io.vov.vitamio.widget.VideoView;
 
 /**
  * 看电视

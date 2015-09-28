@@ -22,9 +22,10 @@ android {
     }
     packagingOptions {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'res/raw/libarm.so'
+        exclude 'AndroidManifest.xml'
     }
 }
-
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -32,6 +33,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile files('libs/Volley.jar')
     compile 'de.hdodenhof:circleimageview:2.0.0'
-    compile project(':vitamio')
 }
 
