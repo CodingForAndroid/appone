@@ -14,8 +14,11 @@ import com.bczm.widgetcollections.utils.UIUtils;
  */
 public class ImageLoader {
 
+    private static ImageLoader imageLoader;
+
     public static  ImageLoader  getInstance(){
-        ImageLoader imageLoader=new ImageLoader();
+        if(imageLoader==null)
+            imageLoader = new ImageLoader();
         return  imageLoader;
     }
     public void imageLoaderRequest(ImageView imageView,String  imageUrl){
@@ -23,9 +26,7 @@ public class ImageLoader {
         com.android.volley.toolbox. ImageLoader imageLoader = new   com.android.volley.toolbox.ImageLoader(mQueue, new BitmapCache());
         com.android.volley.toolbox.ImageLoader.ImageListener listener = imageLoader.getImageListener(imageView,
                 R.mipmap.loadingpic, R.mipmap.loadingpic);
-
         imageLoader.get(imageUrl, listener);
-
     }
 
 
