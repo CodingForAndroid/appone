@@ -48,18 +48,21 @@ public class MainActivity extends BaseActivity {
     NoScrollViewPager mViewPager;
     @Bind(R.id.btn_cartoon)
     Button mCartoonBtn;
-    @Bind(R.id.btn_news)
-    Button mNewsBtn;
-    @Bind(R.id.btn_novel)
-    Button mNovelBtn;
-    @Bind(R.id.btn_mine)
-    Button mMineBtn;
+    @Bind(R.id.btn_tv)
+    Button mTVBtn;
+    @Bind(R.id.btn_audio)
+    Button mAudioBtn;
+    @Bind(R.id.btn_video)
+    Button mVideoBtn;
+
+
     private MainPagerAdapter pagerAdapter;
     @Override
     protected void createContent() {
         HttpUtil.getAssToken();
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        ButterKnife.bind(this);initTabs();
+
         tabChange(0);
     }
     //底部 tab 的点击事件
@@ -68,13 +71,13 @@ public class MainActivity extends BaseActivity {
           case R.id.btn_cartoon: //第一页
               changeFragment(FragmentFactory.TAB_FIRST);
               break;
-          case R.id.btn_news://第2页
+          case R.id.btn_tv://第2页
               changeFragment(FragmentFactory.TAB_SECOND);
               break;
-          case R.id.btn_novel://第3页
+          case R.id.btn_audio://第3页
               changeFragment(FragmentFactory.TAB_THIRD);
               break;
-          case R.id.btn_mine://第4页
+          case R.id.btn_video://第4页
               changeFragment(FragmentFactory.TAB_FOURTH);
               break;
       }
@@ -120,48 +123,56 @@ public class MainActivity extends BaseActivity {
         }.start();
     }
 
+    public void  initTabs(){
+        String[] names= UIUtils.getStringArray(R.array.tab_names);
+        Button[] mTabs={mCartoonBtn,mTVBtn,mAudioBtn,mVideoBtn};
+        for (int i=0;i<mTabs.length;i++){
+            mTabs[i].setText(""+names[i]);
+        }
+    }
 
     private void tabChange(int index) {
+
         switch (index){
             case 0:
                 mCartoonBtn.setBackgroundResource(R.color.blue);
                 mCartoonBtn.setTextColor(getResources().getColor(R.color.white));
-                mNewsBtn.setBackgroundResource(R.color.transparent);
-                mNewsBtn.setTextColor(getResources().getColor(R.color.blue));
-                mNovelBtn.setBackgroundResource(R.color.transparent);
-                mNovelBtn. setTextColor(getResources().getColor(R.color.blue));
-                mMineBtn.setBackgroundResource(R.color.transparent);
-                mMineBtn. setTextColor(getResources().getColor(R.color.blue));
+                mTVBtn.setBackgroundResource(R.color.transparent);
+                mTVBtn.setTextColor(getResources().getColor(R.color.blue));
+                mAudioBtn.setBackgroundResource(R.color.transparent);
+                mAudioBtn. setTextColor(getResources().getColor(R.color.blue));
+                mVideoBtn.setBackgroundResource(R.color.transparent);
+                mVideoBtn. setTextColor(getResources().getColor(R.color.blue));
                 break;
             case 1:
                 mCartoonBtn.setBackgroundResource(R.color.transparent);
                 mCartoonBtn.setTextColor(getResources().getColor(R.color.blue));
-                mNewsBtn.setBackgroundResource(R.color.blue);
-                mNewsBtn.setTextColor(getResources().getColor(R.color.white));
-                mNovelBtn.setBackgroundResource(R.color.transparent);
-                mNovelBtn.setTextColor(getResources().getColor(R.color.blue));
-                mMineBtn.setBackgroundResource(R.color.transparent);
-                mMineBtn.setTextColor(getResources().getColor(R.color.blue));
+                mTVBtn.setBackgroundResource(R.color.blue);
+                mTVBtn.setTextColor(getResources().getColor(R.color.white));
+                mAudioBtn.setBackgroundResource(R.color.transparent);
+                mAudioBtn.setTextColor(getResources().getColor(R.color.blue));
+                mVideoBtn.setBackgroundResource(R.color.transparent);
+                mVideoBtn.setTextColor(getResources().getColor(R.color.blue));
                 break;
             case 2:
                 mCartoonBtn.setBackgroundResource(R.color.transparent);
                 mCartoonBtn.setTextColor(getResources().getColor(R.color.blue));
-                mNewsBtn.setBackgroundResource(R.color.transparent);
-                mNewsBtn.setTextColor(getResources().getColor(R.color.blue));
-                mNovelBtn.setBackgroundResource(R.color.blue);
-                mNovelBtn.setTextColor(getResources().getColor(R.color.white));
-                mMineBtn.setBackgroundResource(R.color.transparent);
-                mMineBtn.setTextColor(getResources().getColor(R.color.blue));
+                mTVBtn.setBackgroundResource(R.color.transparent);
+                mTVBtn.setTextColor(getResources().getColor(R.color.blue));
+                mAudioBtn.setBackgroundResource(R.color.blue);
+                mAudioBtn.setTextColor(getResources().getColor(R.color.white));
+                mVideoBtn.setBackgroundResource(R.color.transparent);
+                mVideoBtn.setTextColor(getResources().getColor(R.color.blue));
                 break;
             case 3:
                 mCartoonBtn.setBackgroundResource(R.color.transparent);
                 mCartoonBtn.setTextColor(getResources().getColor(R.color.blue));
-                mNewsBtn.setBackgroundResource(R.color.transparent);
-                mNewsBtn.setTextColor(getResources().getColor(R.color.blue));
-                mNovelBtn.setBackgroundResource(R.color.transparent);
-                mNovelBtn.setTextColor(getResources().getColor(R.color.blue));
-                mMineBtn.setBackgroundResource(R.color.blue);
-                mMineBtn.setTextColor(getResources().getColor(R.color.white));
+                mTVBtn.setBackgroundResource(R.color.transparent);
+                mTVBtn.setTextColor(getResources().getColor(R.color.blue));
+                mAudioBtn.setBackgroundResource(R.color.transparent);
+                mAudioBtn.setTextColor(getResources().getColor(R.color.blue));
+                mVideoBtn.setBackgroundResource(R.color.blue);
+                mVideoBtn.setTextColor(getResources().getColor(R.color.white));
                 break;
             default:
                 break;

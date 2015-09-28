@@ -16,7 +16,10 @@ import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
 
-public class AppFragment extends BaseFragment implements View.OnClickListener {
+/**
+ * 看电视
+ */
+public class TabSecondFragment extends BaseFragment implements View.OnClickListener {
 
 
     private LinearLayout parentView;

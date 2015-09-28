@@ -51,10 +51,10 @@ import java.util.Map;
 
 import butterknife.ButterKnife;
 
-/**
+/**看漫画
  * A simple {@link Fragment} subclass.
  */
-public class RecommandFragment extends BaseFragment {
+public class TabFirstFragment extends BaseFragment {
     // 存储顶部轮播图的集合
     private ArrayList<RecommandPositionInfo> resultList;
     private LinearLayout rlView;

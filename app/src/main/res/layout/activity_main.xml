@@ -41,19 +41,19 @@
 
             <Button
                 style="@style/bottom_tab_style"
-                android:id="@+id/btn_news"
+                android:id="@+id/btn_tv"
                 android:drawableTop="@drawable/selector_main_tab"
                 android:text="@string/txt_classify" />
 
             <Button
                 style="@style/bottom_tab_style"
-                android:id="@+id/btn_novel"
+                android:id="@+id/btn_audio"
                 android:drawableTop="@drawable/selector_main_tab"
                 android:text="@string/txt_discover" />
 
             <Button
                 style="@style/bottom_tab_style"
-                android:id="@+id/btn_mine"
+                android:id="@+id/btn_video"
                 android:drawableTop="@drawable/selector_main_tab"
                 android:text="@string/txt_mine" />
         </LinearLayout>

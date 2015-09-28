@@ -18,13 +18,13 @@ public class FragmentFactory {
 		if (fragment == null) {
 			switch (index) {
 				case TAB_FIRST:
-					fragment = new RecommandFragment();
+					fragment = new TabFirstFragment();
 					break;
 				case TAB_SECOND:
-					fragment = new AppFragment();
+					fragment = new TabSecondFragment();
 					break;
 				case TAB_THIRD:
-					fragment = new ChapterFragment();
+					fragment = new TabThirdFragment();
 					break;
 				case TAB_FOURTH:
 					fragment = new ChapterFragment();
