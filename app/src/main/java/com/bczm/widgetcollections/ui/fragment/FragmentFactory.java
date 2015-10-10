@@ -24,7 +24,7 @@ public class FragmentFactory {
 					fragment = new TabSecondFragment();
 					break;
 				case TAB_THIRD:
-					fragment = new ChapterFragment();
+					fragment = new TabThirdFragment();
 					break;
 				case TAB_FOURTH:
 					fragment = new ChapterFragment();

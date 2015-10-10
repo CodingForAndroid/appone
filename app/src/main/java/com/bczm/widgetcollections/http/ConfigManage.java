@@ -10,9 +10,6 @@ import java.util.Map;
  */
 public class ConfigManage {
 
-
-    public static final String HOME_DATA ="http://www.weather.com.cn/data/sk/101010100.html";
-
     // 点击  进入视频界面 传递 的intent 参数   trackid,content_id
     public static final String INTENT_EXTRA_TRACKID="trackid";
     public static final String INTENT_EXTRA_CONTENT_ID="content_id";

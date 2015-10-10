@@ -17,10 +17,17 @@ public abstract class BaseProtocol<Data> {
 
     /** 加载协议 */
     public Data load(int index) {
+        return load(index,true);
+    }
+
+    /** 加载协议 */ // 首先  Boolean localFetchFirst ： 取本地缓存  默认为true
+    public Data load(int index,boolean localFetchFirst) {
 //        SystemClock.sleep(1000);// 休息1秒，防止加载过快，看不到界面变化效果
         String json = null;
         // 1.从本地缓存读取数据，查看缓存时间
-        json = loadFromLocal(index);
+        if(localFetchFirst){
+          json = loadFromLocal(index);
+        }
         // 2.如果缓存时间过期，从网络加载
         if (StringUtils.isEmpty(json)) {
             json = loadFromNet(index);

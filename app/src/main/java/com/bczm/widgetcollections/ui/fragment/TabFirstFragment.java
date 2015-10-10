@@ -76,7 +76,7 @@ public class TabFirstFragment extends BaseFragment {
     protected View createLoadedView() {
         //模拟 评论加载数据   第一次 0 表示有更多
         SharedPreferenceUtils.setGetMoreTimes(0);
-        View view = LayoutInflater.from(UIUtils.getContext()).inflate(R.layout.fragment_recommand, null);
+        View view= UIUtils.inflate(R.layout.fragment_recommand);
         // 此时list 已经包含信息
         rlView = (LinearLayout) view.findViewById(R.id.rl_view);
         rlView.setFocusable(false);

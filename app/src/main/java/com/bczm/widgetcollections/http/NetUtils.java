@@ -39,8 +39,8 @@ public class NetUtils {
     public static final String  FETCH_RECOMMENDED_APP=BASE_URL_HTTP+"/v4/contents/position.json?" +
             "posid=7&" +
             "sig=CCRx9fiG6J2rT3rmNNi6cjSZPiuUSLpPtq9rtiwFvSGpuKSeWEvPZPCCysZIy6B1yEMGmS%2Bo%2B%2F0Ht7TKknLUy7C%2FQl1Dl0pWkJxvPW1EZY3VpiOpbmqR7dJxgUqLsoomMJ6zu2mXrS%2BXnqTATZl9AFV9PKHPqpqN5P1y2vgf5Bs%3D";
-
-
+   //获取 音乐 信息
+    public  static final String FETCH_AUDIO="http://www.douban.com/j/app/radio/people?channel=0&app_name=radio_desktop_win&version=100&type=&sid=0";
 //  public static  final String  Fetch_Video_content_id="";
 
 
@@ -66,4 +66,7 @@ public class NetUtils {
             "content_id=2S201507052200092708&" +
             "type=1&" +
             "sig=c8WUHBEOhIHHahor%2B2X%2BamyPaLnNLcsN4vbK2RJOHBFV8ae15TvCGZkStc6jZN3UAiKq39h8CcNW9HGJPNWp%2BnSuhaxKXNiwFtjYSiQD%2Bz0SuoBUWVi404gcn0q0rZ7ilGQIbFC8rw5CQcG4cKM9%2BTHDqsp4e4bxseMVTg5cacs%3D";
+
+
+
 }

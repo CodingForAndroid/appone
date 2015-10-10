@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley;
 import com.bczm.widgetcollections.bean.TouristInfo;
 import com.bczm.widgetcollections.utils.LogUtils;
 import com.bczm.widgetcollections.utils.SharedPreferenceUtils;
+import com.squareup.okhttp.OkHttpClient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class HttpUtil {
     private  static   RequestQueue mRequestQueue;
 
     public static void init(Context context) {
-        mRequestQueue  = Volley.newRequestQueue(context);
+        mRequestQueue  = Volley.newRequestQueue(context,new OkHttpStack(new OkHttpClient()));
 //        mImageLoader = new SimpleImageLoader(mRequestQueue, BitmapImageCache.getInstance(null));
 //        Volley.newRequestQueue(getApplicationContext()).setRetryPolicy(getRetryPolicy())
     }

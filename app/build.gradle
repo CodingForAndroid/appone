@@ -33,5 +33,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile files('libs/Volley.jar')
     compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
 }
 
