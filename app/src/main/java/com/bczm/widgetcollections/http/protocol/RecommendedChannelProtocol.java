@@ -28,7 +28,6 @@ public class RecommendedChannelProtocol extends  BaseProtocol<RecommendedChannel
         StringRequest stringRequest=new StringRequest(NetUtils.FETCH_RECOMMEND_CHANNELS,new Response.SuccessListener<String>() {
             @Override
             public void onResponse(String s) {
-                LogUtils.log2File(s, FileUtils.getDownloadDir()+"FETCH_RECOMMEND_CHANNELS.txt");
                   result =s;
                 waitflag=false;
             }

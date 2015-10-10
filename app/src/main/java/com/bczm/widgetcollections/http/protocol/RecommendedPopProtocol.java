@@ -41,11 +41,9 @@ public class RecommendedPopProtocol extends BaseProtocol<ArrayList<RecommandPosi
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-
                 result= null;
                 waitflag=false;
                 UIUtils.showToastSafe(volleyError.toString());
-                LogUtils.log2File(volleyError.toString(), FileUtils.getDownloadDir() + "abc.txt");
             }
         }){
             @Override
