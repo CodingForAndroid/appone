@@ -26,6 +26,10 @@ import java.util.List;
 public class ChapterFragment  extends BaseFragment{
 
 
+    @Override
+    protected void initViewsAndEvents() {
+
+    }
 
     @Override
     protected LoadingPage.LoadResult load() {

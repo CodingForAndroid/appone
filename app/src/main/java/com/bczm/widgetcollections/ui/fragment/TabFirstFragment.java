@@ -65,6 +65,11 @@ public class TabFirstFragment extends BaseFragment {
     private ScrollView scollVoew;
 
     @Override
+    protected void initViewsAndEvents() {
+
+    }
+
+    @Override
     protected LoadResult load() {
         // 顶部轮播
         RecommandTopProtocol protocol = new RecommandTopProtocol();
@@ -106,7 +111,7 @@ public class TabFirstFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
-        show();
+//        show();
     }
 
     @Override

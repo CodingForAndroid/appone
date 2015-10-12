@@ -20,4 +20,7 @@
     <color name="orange">#EE9A00</color>
     <color name="orange_light">#FFE4C4</color>
     <color name="comm_gray_low_small">#f4f4f4</color>
+    <color name="half_transparent">#40ffffff</color>
+    <color name="second_progress_color">#0683A3</color>
+
 </resources>

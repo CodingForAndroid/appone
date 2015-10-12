@@ -29,13 +29,24 @@ public abstract class BaseFragment extends Fragment {
 
                 @Override
                 public View createLoadedView() {
-                    return BaseFragment.this.createLoadedView();
+                    View view=   BaseFragment.this.createLoadedView();
+                    initViewsAndEvents();
+                    return view;
                 }
             };
         } else {//不为null时，需要把自身从父布局中移除，因为ViewPager会再次添加
             ViewUtils.removeSelfFromParent(mContentView);
         }
+
         return mContentView;
+    }
+
+    protected abstract void initViewsAndEvents();
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        show();
     }
 
     /** 当显示的时候，加载该页面 */
@@ -64,11 +75,7 @@ public abstract class BaseFragment extends Fragment {
     /** 加载完成的View */
     protected abstract View createLoadedView();
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        show();
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

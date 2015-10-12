@@ -46,6 +46,8 @@
         <activity
         android:configChanges="orientation|keyboardHidden|screenSize"
         android:name=".ui.fragment.VideoPlayerActivity"/>
+
+        <service android:name=".player.MusicPlayService"/>
     </application>
 
 </manifest>

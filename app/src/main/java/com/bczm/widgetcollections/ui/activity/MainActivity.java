@@ -88,10 +88,10 @@ public class MainActivity extends BaseActivity {
     protected void setListeners() {
         pagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(pagerAdapter);
-//        mViewPager.setOffscreenPageLimit(0);
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setOnPageChangeListener(new MyOnPageChangeListener());
 
-
+//        mViewPager.setOffscreenPageLimit();
     }
     @Override
     protected void free() {

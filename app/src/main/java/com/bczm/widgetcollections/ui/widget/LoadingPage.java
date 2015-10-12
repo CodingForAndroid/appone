@@ -104,8 +104,9 @@ public abstract class LoadingPage extends FrameLayout {
             mState = STATE_LOADING;
             LoadingTask task = new LoadingTask();
             ThreadManager.getLongPool().execute(task);
-        }
+        }else{
         showPageSafe();
+        }
     }
 
     protected View createLoadingView() {

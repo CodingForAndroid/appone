@@ -29,6 +29,11 @@ public class DetailFragment extends BaseFragment {
     private String desc;
 
     @Override
+    protected void initViewsAndEvents() {
+
+    }
+
+    @Override
     protected LoadingPage.LoadResult load() {
 //        Boolean b = null
         VideoDetailProtocol videoDetailProtocol = new VideoDetailProtocol();

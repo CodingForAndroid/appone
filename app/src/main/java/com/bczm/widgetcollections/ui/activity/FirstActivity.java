@@ -11,26 +11,7 @@ import android.view.TextureView;
 public class FirstActivity extends BaseActivity implements TextureView.SurfaceTextureListener {
     @Override
     protected void createContent() {
-//        UIUtils.showToastSafe("0");
-//        ConfigManage.HOME_DATA
-//        RequestQueue mQueue=       HttpUtil.getRequestQueue();
-//        JsonObjectRequest request=new JsonObjectRequest(ConfigManage.HOME_DATA, null, new SuccessListener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject jsonObject) {
-//                UIUtils.showToastSafe("2");
-//                UIUtils.showToastSafe(jsonObject.toString());
-//              String lcoalpaht=  FileUtils.getDownloadDir()+"a.txt";
-//                UIUtils.showToastSafe(lcoalpaht);
-//                LogUtils.log2File(jsonObject.toString(),lcoalpaht);
-//            }
-//        }, new ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError volleyError) {
-//                UIUtils.showToastSafe("3");
-//            }
-//        });
-//        UIUtils.showToastSafe("1");
-//        mQueue.add(request);
+
 
     }
 

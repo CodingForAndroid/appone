@@ -19,6 +19,12 @@ public class TabSecondFragment extends BaseFragment implements View.OnClickListe
     private LinearLayout parentView;
 
     @Override
+    protected void initViewsAndEvents() {
+
+
+    }
+
+    @Override
     protected LoadingPage.LoadResult load() {
 //        iniVideo();
         return LoadingPage.LoadResult.SUCCEED;
@@ -39,7 +45,7 @@ public class TabSecondFragment extends BaseFragment implements View.OnClickListe
     @Override
     public void onResume() {
         super.onResume();
-        show();
+//        show();
     }
 
     @Override

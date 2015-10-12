@@ -34,8 +34,6 @@ public class ImageLoader {
 
         RequestQueue mQueue = Volley.newRequestQueue(UIUtils.getContext());
         com.android.volley.toolbox.ImageLoader imageLoader = new com.android.volley.toolbox.ImageLoader(mQueue, new BitmapCache());
-
-
         imageview.setImageUrl(path,imageLoader);
     }
      class BitmapCache implements com.android.volley.toolbox.ImageLoader.ImageCache {
