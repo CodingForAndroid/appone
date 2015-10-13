@@ -28,6 +28,10 @@ public class ImageLoaderHelper {
     public ImageLoaderHelper(){
         init();
     }
+
+    /**
+     * 配置 imagloader 基本信息
+     */
     private void init(){
         options = new DisplayImageOptions.Builder()
                 .showStubImage(R.mipmap.loadingpic)

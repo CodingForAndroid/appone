@@ -236,7 +236,6 @@ public class MainActivity extends BaseActivity {
         BaseFragment fragment = FragmentFactory.createFragment(index);
         // 当页面被选中 再显示要加载的页面....防止ViewPager提前加载(ViewPager一般加载三个，自己，左一个，右一个)
         fragment.show();// 调用show方法加载pager里面的数据
-
         tabChange(index);
     }
 
