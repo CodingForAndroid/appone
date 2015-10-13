@@ -9,10 +9,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.bean.GuessFavoriteBean;
-import com.bczm.widgetcollections.manager.ImageLoader;
+import com.bczm.widgetcollections.manager.ImageLoaderHelper;
 import com.bczm.widgetcollections.utils.SystemUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
-import com.bczm.widgetcollections.utils.ViewUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,7 +42,8 @@ public class HorizontalAdapter extends ArrayAdapter<GuessFavoriteBean> {
         convertView.setLayoutParams(params);
         GuessFavoriteBean guessFavorite= getItem(position);
 //        holder.imageView
-        ImageLoader.getInstance().imageLoaderRequest(holder.imageView,guessFavorite.cover.split("\\?")[0]);
+        ImageLoaderHelper.getInstance().loadImage(guessFavorite.cover.split("\\?")[0],holder.imageView);
+//        ImageLoader1.getInstance().imageLoaderRequest(holder.imageView,);
         holder.textView.setText(guessFavorite.title);
         return  convertView;
     }

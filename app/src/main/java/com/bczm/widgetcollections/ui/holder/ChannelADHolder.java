@@ -2,11 +2,10 @@ package com.bczm.widgetcollections.ui.holder;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.bean.Channel;
-import com.bczm.widgetcollections.manager.ImageLoader;
+import com.bczm.widgetcollections.manager.ImageLoaderHelper;
 import com.bczm.widgetcollections.utils.UIUtils;
 
 import butterknife.Bind;
@@ -30,7 +29,8 @@ public class ChannelADHolder extends BaseHolder<Channel> {
     @Override
     public void refreshView() {
         String cover = getData().data_cover.split("\\?")[0];
-        ImageLoader.getInstance().imageLoaderRequest(ivAD, cover);
+        ImageLoaderHelper.getInstance().loadImage(cover,ivAD);
+//        ImageLoader1.getInstance().imageLoaderRequest(ivAD, cover);
 
     }
 }

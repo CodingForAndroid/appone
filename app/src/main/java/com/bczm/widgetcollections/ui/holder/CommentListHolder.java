@@ -1,20 +1,14 @@
 package com.bczm.widgetcollections.ui.holder;
 
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.bean.CommentBean;
-import com.bczm.widgetcollections.manager.ImageLoader;
+import com.bczm.widgetcollections.manager.ImageLoaderHelper;
 import com.bczm.widgetcollections.utils.DateFormatUtil;
-import com.bczm.widgetcollections.utils.LogUtils;
-import com.bczm.widgetcollections.utils.SystemUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
-
-import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -48,7 +42,8 @@ public class CommentListHolder extends BaseHolder<CommentBean> {
     public void refreshView() {
         CommentBean commentBean = getData();
         // 头像
-        ImageLoader.getInstance().imageLoaderRequest(profileImage, commentBean.photo);
+        ImageLoaderHelper.getInstance().loadImage( commentBean.photo,profileImage);
+//        ImageLoader1.getInstance().imageLoaderRequest(profileImage,);
         // 昵称 时间 内容
         tvNick.setText(commentBean.nickname);
         tvNick.setTextColor(UIUtils.getColor(R.color.blue));

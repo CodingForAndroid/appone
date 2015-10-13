@@ -15,7 +15,7 @@ public class FileUtils {
 	public static final String ROOT_DIR = "WC";
 	public static final String DOWNLOAD_DIR = "download";
 	public static final String CACHE_DIR = "cache";
-	public static final String ICON_DIR = "icon";
+	public static final String ICON_DIR = "pics";
 
 	/** 判断SD卡是否挂载 */
 	public static boolean isSDCardAvailable() {

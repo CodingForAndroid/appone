@@ -7,6 +7,15 @@ import android.os.Looper;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.bczm.widgetcollections.http.HttpUtil;
+import com.bczm.widgetcollections.utils.FileUtils;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+
+import java.io.File;
 
 /**
  * @author Jorge on 2015/8/26 17:52
@@ -32,6 +41,8 @@ public class BaseApplication extends Application{
         mInstance = this;
         super.onCreate();
         HttpUtil.init(this);
+        initImageLoader();
+
     }
 
 
@@ -59,8 +70,24 @@ public class BaseApplication extends Application{
         return mMainLooper;
     }
 
+
+    public void initImageLoader(){
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(mInstance)
+                .threadPriority(Thread.NORM_PRIORITY + 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .threadPoolSize(10)
+                .discCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .diskCache(new UnlimitedDiskCache(new File(FileUtils.getIconDir())))
+                .memoryCache(new LRULimitedMemoryCache(2*1024*1024))
+                .build();
+
+        ImageLoader.getInstance().init(config);
+    }
     public void exitApp() {
         System.gc();
         android.os.Process.killProcess(android.os.Process.myPid());
     }
+
+
 }

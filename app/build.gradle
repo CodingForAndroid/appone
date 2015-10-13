@@ -34,5 +34,6 @@ dependencies {
     compile files('libs/Volley.jar')
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile files('libs/imageloder_1.9.4_4cartoon.jar')
 }
 

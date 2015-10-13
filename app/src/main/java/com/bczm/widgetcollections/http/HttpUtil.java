@@ -24,6 +24,10 @@ public class HttpUtil {
 
     private  static   RequestQueue mRequestQueue;
 
+    /**
+     * 初始化 Volley
+     * @param context
+     */
     public static void init(Context context) {
         mRequestQueue  = Volley.newRequestQueue(context,new OkHttpStack(new OkHttpClient()));
 //        mImageLoader = new SimpleImageLoader(mRequestQueue, BitmapImageCache.getInstance(null));

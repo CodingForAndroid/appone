@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.bean.Channel;
 import com.bczm.widgetcollections.bean.ChannelItemDetail;
-import com.bczm.widgetcollections.manager.ImageLoader;
+import com.bczm.widgetcollections.manager.ImageLoaderHelper;
 import com.bczm.widgetcollections.utils.UIUtils;
 
 import java.util.List;
@@ -113,10 +113,12 @@ public class ChannelHolder extends BaseHolder<Channel> {
         }
         String cover = getData().data_cover.split("\\?")[0];
         List<ChannelItemDetail> itemDetailList = getData().contents;
-        ImageLoader.getInstance().imageLoaderRequest(iv1, cover);
+        ImageLoaderHelper.getInstance().loadImage(cover, iv1);
+//        ImageLoader1.getInstance().imageLoaderRequest(iv1, );
         for (int i = 0; i < itemDetailList.size(); i++) {
             ChannelItemDetail item = itemDetailList.get(i);
-            ImageLoader.getInstance().imageLoaderRequest(covers[i], item.cover.split("\\?")[0]);
+            ImageLoaderHelper.getInstance().loadImage(item.cover.split("\\?")[0],covers[i]);
+//            ImageLoader1.getInstance().imageLoaderRequest(covers[i], item.cover.split("\\?")[0]);
             titles[i].setText(item.title);
             subTitles[i].setText(item.sub_title);
             layouts[i].setVisibility(View.VISIBLE);

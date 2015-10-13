@@ -21,7 +21,6 @@ import com.bczm.widgetcollections.controller.AudioController;
 import com.bczm.widgetcollections.controller.AudioControllerImp;
 import com.bczm.widgetcollections.controller.AudioDeclare;
 import com.bczm.widgetcollections.http.protocol.AudioProtocol;
-import com.bczm.widgetcollections.manager.ImageLoader;
 import com.bczm.widgetcollections.player.MusicPlayService;
 import com.bczm.widgetcollections.player.MusicPlayState;
 import com.bczm.widgetcollections.ui.widget.LoadingPage;

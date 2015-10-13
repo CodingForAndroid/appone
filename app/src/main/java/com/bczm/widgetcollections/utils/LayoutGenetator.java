@@ -7,13 +7,9 @@ import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.bean.CommentBean;
@@ -21,7 +17,7 @@ import com.bczm.widgetcollections.bean.GuessFavoriteBean;
 import com.bczm.widgetcollections.bean.RecommandPositionInfo;
 import com.bczm.widgetcollections.bean.RecommendAppInfo;
 import com.bczm.widgetcollections.http.ConfigManage;
-import com.bczm.widgetcollections.manager.ImageLoader;
+import com.bczm.widgetcollections.manager.ImageLoaderHelper;
 import com.bczm.widgetcollections.ui.activity.VideoDetialActivity;
 import com.bczm.widgetcollections.ui.adapter.CommentListAdapter;
 import com.bczm.widgetcollections.ui.adapter.HorizontalAdapter;
@@ -31,8 +27,6 @@ import com.bczm.widgetcollections.ui.widget.ClickableImageView;
 import com.bczm.widgetcollections.ui.widget.HorizontalListView;
 import com.bczm.widgetcollections.ui.widget.ImageCycleView;
 import com.bczm.widgetcollections.ui.widget.MyGridView;
-
-import org.w3c.dom.Comment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,7 +99,8 @@ public class LayoutGenetator {
             }
             @Override
             public void displayImage(String imageURL,ImageView imageView) {
-                ImageLoader.getInstance().imageLoaderRequest(imageView,imageURL);
+                ImageLoaderHelper.getInstance().loadImage(imageURL, imageView);
+//                ImageLoader1.getInstance().imageLoaderRequest(imageView,);
             }
         };
         mImageCycleView.setImageResources(mImageUrl, mImageName, mAdCycleViewListener);
@@ -194,7 +189,8 @@ public class LayoutGenetator {
             // 图片
             ClickableImageView imageView=new ClickableImageView(UIUtils.getContext());
             LogUtils.e(appInfo.cover.split("\\?")[0]);
-            ImageLoader.getInstance().imageLoaderRequest(imageView,appInfo.cover.split("\\?")[0]);
+            ImageLoaderHelper.getInstance().loadImage(appInfo.cover.split("\\?")[0],imageView);
+//            ImageLoader1.getInstance().imageLoaderRequest(imageView,appInfo.cover.split("\\?")[0]);
             // 文字
             TextView appNameText=new TextView(UIUtils.getContext());
             appNameText.setTextAppearance(UIUtils.getContext(), R.style.ChannelTextStyle);

@@ -1,28 +1,21 @@
 package com.bczm.widgetcollections.ui.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.bean.RecommandPositionInfo;
-import com.bczm.widgetcollections.manager.ImageLoader;
+import com.bczm.widgetcollections.manager.ImageLoaderHelper;
 import com.bczm.widgetcollections.utils.SystemUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * 推荐6个 展示位置适配数据
@@ -69,7 +62,8 @@ public class RecommendedPositionAdapter extends ArrayAdapter implements View.OnC
 //        convertView.setPadding(0,5,0,0);
         RecommandPositionInfo info=  mList.get(position);
         // 显示图片
-        ImageLoader.getInstance().imageLoaderRequest(holder.mImageView, info.pic.split("\\?")[0]);
+        ImageLoaderHelper.getInstance().loadImage( info.pic.split("\\?")[0],holder.mImageView);
+//        ImageLoader1.getInstance().imageLoaderRequest(holder.mImageView, info.pic.split("\\?")[0]);
         // 设置文字信息
         holder.upDate.setText(String.format(UIUtils.getString(R.string.update_set),info.update_set));
         holder.title.setText(info.title);
