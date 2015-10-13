@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.bean.RecommandPositionInfo;
 import com.bczm.widgetcollections.manager.ImageLoader;
-import com.bczm.widgetcollections.ui.activity.FirstActivity;
 import com.bczm.widgetcollections.utils.SystemUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
 

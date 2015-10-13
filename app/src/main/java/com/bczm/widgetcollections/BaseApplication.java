@@ -58,4 +58,9 @@ public class BaseApplication extends Application{
     public static Looper getMainThreadLooper() {
         return mMainLooper;
     }
+
+    public void exitApp() {
+        System.gc();
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
 }

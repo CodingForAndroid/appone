@@ -25,9 +25,8 @@
         android:icon="@mipmap/acfun_login_btn_bg"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".ui.activity.SplashActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.VideoDetialActivity"/>
-        <activity android:name=".ui.activity.FirstActivity"/>
+        <activity android:name=".ui.activity.MainActivity"/>
         <activity
             android:name="io.vov.vitamio.activity.InitActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
