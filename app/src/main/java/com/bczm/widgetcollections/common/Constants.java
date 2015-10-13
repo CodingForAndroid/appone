@@ -38,5 +38,7 @@ public class Constants {
 
 
     //  bundle key  for  卫视
-    public  static  final  String  INTENT_BUNDLE_KEY_CHANNEL="intent_bundle_key_channel";
+    public  static  final  String  INTENT_BUNDLE_KEY_CHANNEL_PATH="intent_bundle_key_channel_path";
+   // w卫视名称
+    public  static  final  String  INTENT_BUNDLE_KEY_CHANNEL_TITLE="intent_bundle_key_channel_title";
 }

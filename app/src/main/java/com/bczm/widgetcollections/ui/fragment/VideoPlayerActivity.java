@@ -43,8 +43,8 @@ import com.bczm.widgetcollections.utils.UIUtils;
 
 public class VideoPlayerActivity extends Activity implements OnCompletionListener, OnInfoListener {
 
-	private String mPath;
-	private String mTitle;
+	private String mPath="";
+	private String mTitle="";
 	private VideoView mVideoView;
 	private View mVolumeBrightnessLayout;
 	private ImageView mOperationBg;
@@ -65,7 +65,8 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 	@Override
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
-		mPath=getIntent().getStringExtra(Constants.INTENT_BUNDLE_KEY_CHANNEL);
+		mPath=getIntent().getStringExtra(Constants.INTENT_BUNDLE_KEY_CHANNEL_PATH);
+		mTitle=getIntent().getStringExtra(Constants.INTENT_BUNDLE_KEY_CHANNEL_TITLE);
 		// ~~~ 检测Vitamio是否解压解码包
 //		LibsChecker.checkVitamioLibs()Error:Execution failed for task ':app:dexDebug'.
 //		> com.android.ide.common.process.ProcessException: org.gradle.process.internal.ExecException: Process 'command 'E:\Work Space\Java\jdk1.7.0_13\bin\java.exe'' finished with non-zero exit value 2
@@ -76,7 +77,7 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 //		Intent intent = getIntent();
 //		mPath = intent.getStringExtra("path");
 //		mPath="rtmp://live.hkstv.hk.lxdns.com/live/hks";
-		mTitle = "-------------------------title";
+//		mTitle = "-------------------------title";
 //		mTitle = intent.getStringExtra("title");
 		if (TextUtils.isEmpty(mPath)) {
 			mPath = ConfigManage.URL_SPLASH; // 如果 url　null   传递  splash video
@@ -170,8 +171,9 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 
 
 		});
-		mMediaController.setFileName(mTitle);
+		LogUtils.e("------------------------------------mTitle--------------------------------:" + mTitle);
 		mVideoView.setMediaController(mMediaController);
+		mMediaController.setFileName(mTitle);
 		mVideoView.requestFocus();
 
 

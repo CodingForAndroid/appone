@@ -83,15 +83,17 @@ public class TabThirdFragment extends BaseFragment implements AudioDeclare, View
     @Override
     protected void initViewsAndEvents() {
 
+        //监听 上一首
         musicsPlayerPlayPrevBtn.setOnClickListener(this);
-
+        // 下一首
         musicsPlayerPlayNextBtn.setOnClickListener(this);
-
+        //播放
         musicsPlayerPlayCtrlBtn.setOnClickListener(this);
     }
 
     @Override
     protected LoadingPage.LoadResult load() {
+        // 获取数据
         audioProtocol = new AudioProtocol();
         responseMusicsListentity = audioProtocol.load(0, false);
 
@@ -105,9 +107,7 @@ public class TabThirdFragment extends BaseFragment implements AudioDeclare, View
         ButterKnife.bind(this, view);
         //mvp模式
         audioContoller = new AudioControllerImp(UIUtils.getContext(), this);
-        LogUtils.e("97");
         if (responseMusicsListentity != null) {
-            LogUtils.e("99");
             refreshMusicsList(responseMusicsListentity);
         }
         AnimationUtil.runAnimation(ivCover);
@@ -120,11 +120,12 @@ public class TabThirdFragment extends BaseFragment implements AudioDeclare, View
         mContext = activity;
 
     }
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         LogUtils.e("87：" + (responseMusicsListentity == null));
+
+            //        监听广播
             mBundleBroadCast = new PlayBundleBroadCast();
             IntentFilter bundleFilter = new IntentFilter();
             bundleFilter.addAction(Constants.ACTION_MUSIC_BUNDLE_BROADCAST);

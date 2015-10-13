@@ -41,6 +41,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.bczm.widgetcollections.R;
+import com.bczm.widgetcollections.utils.LogUtils;
 
 import java.lang.reflect.Method;
 
@@ -309,6 +310,7 @@ public class MediaController extends FrameLayout {
     mCurrentTime = (TextView) v.findViewById(getResources().getIdentifier("mediacontroller_time_current", "id", mContext.getPackageName()));
     mFileName = (TextView) v.findViewById(getResources().getIdentifier("mediacontroller_file_name", "id", mContext.getPackageName()));
     if (mFileName != null)
+      LogUtils.e("----------------------------controller 313-----mFileName------------------------------"+mTitle);
       mFileName.setText(mTitle);
   }
 
@@ -339,6 +341,7 @@ public class MediaController extends FrameLayout {
     mTitle = name;
     if (mFileName != null)
       mFileName.setText(mTitle);
+    LogUtils.e("----------------------------controller 344-----mFileName------------------------------"+mTitle);
   }
 
   /**

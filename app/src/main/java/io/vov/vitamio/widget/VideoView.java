@@ -52,6 +52,7 @@ import io.vov.vitamio.Vitamio;
 import io.vov.vitamio.utils.Log;
 import io.vov.vitamio.utils.ScreenResolution;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -461,11 +462,11 @@ public class VideoView extends SurfaceView implements MediaController.MediaPlaye
       mMediaController.setAnchorView(anchorView);
       mMediaController.setEnabled(isInPlaybackState());
 
-      if (mUri != null) {
-        List<String> paths = mUri.getPathSegments();
-        String name = paths == null || paths.isEmpty() ? "null" : paths.get(paths.size() - 1);
-        mMediaController.setFileName(name);
-      }
+//      if (mUri != null) {
+//        List<String> paths = mUri.getPathSegments();
+//        String name = paths == null || paths.isEmpty() ? "null" : paths.get(paths.size() - 1);
+////        mMediaController.setFileName(name);
+//      }
     }
   }
 
