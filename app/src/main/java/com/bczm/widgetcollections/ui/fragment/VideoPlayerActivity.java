@@ -35,6 +35,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.bczm.widgetcollections.R;
+import com.bczm.widgetcollections.common.Constants;
+import com.bczm.widgetcollections.http.ConfigManage;
 import com.bczm.widgetcollections.utils.LogUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
 
@@ -55,7 +57,7 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 	/** 当前亮度 */
 	private float mBrightness = -1f;
 	/** 当前缩放模式 */
-	private int mLayout = VideoView.VIDEO_LAYOUT_ORIGIN;
+	private int mLayout = VideoView.VIDEO_LAYOUT_STRETCH;
 	private GestureDetector mGestureDetector;
 	private MediaController mMediaController;
 	private View mLoadingView;
@@ -63,6 +65,7 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 	@Override
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
+		mPath=getIntent().getStringExtra(Constants.INTENT_BUNDLE_KEY_CHANNEL);
 		// ~~~ 检测Vitamio是否解压解码包
 //		LibsChecker.checkVitamioLibs()Error:Execution failed for task ':app:dexDebug'.
 //		> com.android.ide.common.process.ProcessException: org.gradle.process.internal.ExecException: Process 'command 'E:\Work Space\Java\jdk1.7.0_13\bin\java.exe'' finished with non-zero exit value 2
@@ -70,16 +73,17 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 //		if (!LibsChecker.checkVitamioLibs(this, R.string.init_decoders))
 			return;
 		// ~~~ 获取播放地址和标题
-		Intent intent = getIntent();
+//		Intent intent = getIntent();
 //		mPath = intent.getStringExtra("path");
-		mPath="rtmp://live.hkstv.hk.lxdns.com/live/hks";
+//		mPath="rtmp://live.hkstv.hk.lxdns.com/live/hks";
 		mTitle = "-------------------------title";
 //		mTitle = intent.getStringExtra("title");
 		if (TextUtils.isEmpty(mPath)) {
-			mPath = Environment.getExternalStorageDirectory() + "/video/你太猖狂.flv";
+			mPath = ConfigManage.URL_SPLASH; // 如果 url　null   传递  splash video
 
-		} else if (intent.getData() != null)
-			mPath = intent.getData().toString();
+		}
+//		else if (intent.getData() != null)
+//			mPath = intent.getData().toString();
 		// ~~~ 绑定控件
 		setContentView(R.layout.videoview);
 		mVideoView = (VideoView) findViewById(R.id.surface_view);

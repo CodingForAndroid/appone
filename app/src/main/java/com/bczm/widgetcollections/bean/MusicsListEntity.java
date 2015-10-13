@@ -19,12 +19,6 @@ package com.bczm.widgetcollections.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Author:  Tau.Chen
- * Email:   1076559197@qq.com | tauchen1990@gmail.com
- * Date:    2015/4/16.
- * Description:
- */
 public class MusicsListEntity implements Parcelable {
 
     private String album;

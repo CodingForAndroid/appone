@@ -1,7 +1,7 @@
 package com.bczm.widgetcollections.controller;
 
 import com.bczm.widgetcollections.bean.MusicsListEntity;
-import com.bczm.widgetcollections.bean.ResponseMusicsListentity;
+import com.bczm.widgetcollections.bean.MusicsListPackage;
 
 /**
  * 播放音乐界面的 方法
@@ -12,13 +12,13 @@ import com.bczm.widgetcollections.bean.ResponseMusicsListentity;
     *    刷新播放列表
     * @param responseMusicsListentity  : 音乐信息
     */
-    void refreshMusicsList(ResponseMusicsListentity responseMusicsListentity);
+    void refreshMusicsList(MusicsListPackage responseMusicsListentity);
 
    /**
     * 加载更多音乐
     * @param responseMusicsListentity
     */
-    void addMoreMusicsList(ResponseMusicsListentity responseMusicsListentity);
+    void addMoreMusicsList(MusicsListPackage responseMusicsListentity);
 
    /**
     * 由暂停到播放音乐

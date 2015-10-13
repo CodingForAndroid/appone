@@ -15,7 +15,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.bean.MusicsListEntity;
-import com.bczm.widgetcollections.bean.ResponseMusicsListentity;
+import com.bczm.widgetcollections.bean.MusicsListPackage;
 import com.bczm.widgetcollections.common.Constants;
 import com.bczm.widgetcollections.controller.AudioController;
 import com.bczm.widgetcollections.controller.AudioControllerImp;
@@ -44,7 +44,7 @@ import butterknife.ButterKnife;
  */
 public class TabThirdFragment extends BaseFragment implements AudioDeclare, View.OnClickListener {
 
-    ResponseMusicsListentity responseMusicsListentity;
+    MusicsListPackage responseMusicsListentity;
     @Bind(R.id.iv_cover)  // 封面背景
             ImageView ivCover;
     @Bind(R.id.ll_content)  // 封面背景
@@ -155,7 +155,7 @@ public class TabThirdFragment extends BaseFragment implements AudioDeclare, View
 
 
     @Override
-    public void refreshMusicsList(ResponseMusicsListentity data) {
+    public void refreshMusicsList(MusicsListPackage data) {
         if (null != data) {
             List<MusicsListEntity> mPlayListData = data.getSong();
             if (null != mPlayListData && !mPlayListData.isEmpty()) {
@@ -166,7 +166,7 @@ public class TabThirdFragment extends BaseFragment implements AudioDeclare, View
     }
 
     @Override
-    public void addMoreMusicsList(ResponseMusicsListentity data) {
+    public void addMoreMusicsList(MusicsListPackage data) {
 
     }
 

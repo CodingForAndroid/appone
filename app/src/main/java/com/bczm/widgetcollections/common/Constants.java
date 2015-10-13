@@ -16,12 +16,7 @@
 
 package com.bczm.widgetcollections.common;
 
-/**
- * Author:  Tau.Chen
- * Email:   1076559197@qq.com | tauchen1990@gmail.com
- * Date:    15/5/28.
- * Description:
- */
+
 public class Constants {
 
     public static final String KEY_MUSIC_PARCELABLE_DATA = "KEY_MUSIC_PARCELABLE_DATA";
@@ -39,4 +34,9 @@ public class Constants {
     public static final int EVENT_LOAD_MORE_DATA = EVENT_BEGIN + 20;
     public static final int EVENT_START_PLAY_MUSIC = EVENT_BEGIN + 30;
     public static final int EVENT_STOP_PLAY_MUSIC = EVENT_BEGIN + 40;
+
+
+
+    //  bundle key  for  卫视
+    public  static  final  String  INTENT_BUNDLE_KEY_CHANNEL="intent_bundle_key_channel";
 }

@@ -7,7 +7,7 @@
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"/>
     <ImageView
-        android:layout_margin="20dp"
+        android:layout_margin="30dp"
         android:id="@+id/iv_close"
         android:src="@mipmap/search_cancel"
         android:layout_width="wrap_content"

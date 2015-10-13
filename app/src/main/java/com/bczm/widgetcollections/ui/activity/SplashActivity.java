@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
 import com.bczm.widgetcollections.R;
+import com.bczm.widgetcollections.http.ConfigManage;
 import com.bczm.widgetcollections.utils.UIUtils;
 
 import butterknife.Bind;
@@ -31,8 +32,6 @@ public class SplashActivity extends BaseActivity implements MediaPlayer.OnPrepar
     protected void createContent() {
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-
-
         initVideoView();
     }
 
@@ -40,7 +39,7 @@ public class SplashActivity extends BaseActivity implements MediaPlayer.OnPrepar
      * 准备播放工作
      */
     private void initVideoView() {
-        String uri = "android.resource://" + getPackageName() + "/" + R.raw.welcome;
+        String uri = ConfigManage.URL_SPLASH;
         videoView.setVideoURI(Uri.parse(uri));
         videoView.setOnPreparedListener(this);
 

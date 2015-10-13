@@ -1,6 +1,10 @@
 package com.bczm.widgetcollections.http;
 
+import com.bczm.widgetcollections.R;
+import com.bczm.widgetcollections.utils.PackageUtils;
 import com.bczm.widgetcollections.utils.SharedPreferenceUtils;
+import com.bczm.widgetcollections.utils.SystemUtils;
+import com.bczm.widgetcollections.utils.UIUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +17,49 @@ public class ConfigManage {
     // 点击  进入视频界面 传递 的intent 参数   trackid,content_id
     public static final String INTENT_EXTRA_TRACKID="trackid";
     public static final String INTENT_EXTRA_CONTENT_ID="content_id";
+    // splash video
+    public  static final  String  URL_SPLASH= "android.resource://" + UIUtils.getContext().getPackageName()+ "/" + R.raw.welcome;
 
+
+//    亞洲聯合衛視臺,http://tv.unbtv.tv/app_2/ls_1.stream/playlist.m3u8
+//
+//    河北卫视高清,http://live01.hebtv.com/channels/hebtv/video_channel_04/ts:2000k/live
+//    河南国际,http://live.hntv.tv/channels/tvie/video_channel_10/flv:300k/live
+//    河南国际,http://live.hntv.tv/channels/tvie/video_channel_10/flv:300k/live
+//    河南新农村,http://live.hntv.tv/channels/tvie/video_channel_09/flv:hntv9_apple_250k/live
+//    河南都市,http://live.hntv.tv/channels/tvie/video_channel_02/flv:hntv2_apple_200k/live
+//    河南民生,http://live.hntv.tv/channels/tvie/video_channel_03/flv:hntv3_apple_200k/live
+//    河南法制,http://live.hntv.tv/channels/tvie/video_channel_04/flv:hntv4_apple_200k/live
+//    河南公共,http://live.hntv.tv/channels/tvie/video_channel_08/flv:hntv8_apple_200k/live
+//    黑龙江都市,http://125.211.216.198/channels/hljtv/dspd/flv:sd
+//    黑龙江影视,http://125.211.216.198/channels/hljtv/yspd/flv:sd
+//    黑龙江少儿,http://125.211.216.198/channels/hljtv/dqpd/flv:sd
+//    河北卫视高清,http://live01.hebtv.com/channels/hebtv/video_channel_04/ts:1200k/live
+
+
+
+
+
+
+//    高清流畅
+// 香港卫视
+public static final String CHANNEL_HK ="rtmp://live.hkstv.hk.lxdns.com/live/hks";
+//    CIBN 经典影视
+public static final String CHANNEL_CIBN ="http://sohucao.duapp.com/proxy/sohuatv2.php/cibn_jingdian";
+//    华视HD
+public static final String CHANNEL_HSHD ="http://59.120.43.180:17835";
+//     Fox 台
+public static final String CHANNEL_FOX ="http://lag1.tv-mobile.org/prgl.m3u8";
+//    橙子影院
+public static final String CHANNEL_CZYS ="rtmp://121.17.123.229/dlrtmp.cdn.zhanqi.tv/zqlive/21333_CvnhE";
+//    泰国中文台
+public static final String CHANNEL_TAI ="http://110.164.48.237:1935/tcctv_ch002/tcctv02.stream_live1/playlist.m3u8";
+//    香港卫视"rtmp://live.hkstv.hk.lxdns.com/live/hks";
+//   CIBN 经典影视 http://sohucao.duapp.com/proxy/sohuatv2.php/cibn_jingdian
+//    华视HD,http://59.120.43.180:17835
+//    Fox 台  http://lag1.tv-mobile.org/prgl.m3u8
+//    橙子影院,rtmp://121.17.123.229/dlrtmp.cdn.zhanqi.tv/zqlive/21333_CvnhE
+//    泰国中文台,http://110.164.48.237:1935/tcctv_ch002/tcctv02.stream_live1/playlist.m3u8
     /**
      *  api  get请求服务器  传递的 头信息
      * @return

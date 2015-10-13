@@ -3,7 +3,6 @@ package com.bczm.widgetcollections.controller;
 import android.content.Context;
 
 import com.bczm.widgetcollections.bean.MusicsListEntity;
-import com.bczm.widgetcollections.bean.ResponseMusicsListentity;
 
 /**
  * 控制实现

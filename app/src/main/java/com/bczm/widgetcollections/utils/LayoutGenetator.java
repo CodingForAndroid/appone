@@ -443,7 +443,7 @@ public class LayoutGenetator {
         headerBottmp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         mItemLayout.addView(headerBottm, headerBottmp);
         mItemLayout.setClickable(true);
-        mItemLayout.setBackgroundResource(R.drawable.selector_shape_white_gray_low_small);
+        mItemLayout.setBackgroundResource(R.drawable.channel_selector);
         parentView.addView(mItemLayout);
     }
 

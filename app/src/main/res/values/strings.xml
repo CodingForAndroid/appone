@@ -48,6 +48,12 @@
 
 
     <string name="channel_hk">香港卫视</string>
+    <string name="channel_cibn">CIBN 经典影视</string>
+    <string name="channel_hs">华视HD</string>
+    <string name="channel_fox">Fox 台</string>
+    <string name="channel_czys"> 橙子影院</string>
+    <string name="channel_tai">泰国中文台</string>
+
 
     <!--vitamio-->
 

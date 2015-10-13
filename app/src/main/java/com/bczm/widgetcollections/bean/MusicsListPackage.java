@@ -18,13 +18,7 @@ package com.bczm.widgetcollections.bean;
 
 import java.util.List;
 
-/**
- * Author:  Tau.Chen
- * Email:   1076559197@qq.com | tauchen1990@gmail.com
- * Date:    2015/4/16.
- * Description:
- */
-public class ResponseMusicsListentity {
+public class MusicsListPackage {
     private int r;
     private int version_max;
     private int is_show_quick_start;
