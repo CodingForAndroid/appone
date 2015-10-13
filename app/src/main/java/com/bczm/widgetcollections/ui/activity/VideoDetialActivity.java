@@ -127,7 +127,7 @@ public class VideoDetialActivity extends BaseActivity {
         MediaController mc = new MediaController(this);
         mc.setAnchorView(videoView);
         mc.setKeepScreenOn(true);
-        mc.setPadding(0, 0, 0, 1280 - UIUtils.dip2px(200));
+        mc.setPadding(0, 0, 0, 1280 - UIUtils.dip2px(250));
 //        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
 //                LinearLayout.LayoutParams.FILL_PARENT,
 //                SystemUtils.getScreenHeight()*2/5);
@@ -144,7 +144,7 @@ public class VideoDetialActivity extends BaseActivity {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 //播放结束后的动作
-                UIUtils.showToastSafe("播放結束");
+                UIUtils.showToastSafe(R.string.txt_finish_play);
 
             }
         });
