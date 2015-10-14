@@ -6,12 +6,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.http.ConfigManage;
+import com.bczm.widgetcollections.utils.SystemUtils;
 import com.bczm.widgetcollections.utils.UIUtils;
 
 import butterknife.Bind;
@@ -25,9 +28,11 @@ import butterknife.ButterKnife;
 public class SplashActivity extends BaseActivity implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
     @Bind(R.id.videoView)
     VideoView videoView;
+    @Bind(R.id.ic_music_on)
+    ImageView ivMusic;
     @Bind(R.id.iv_close)
-    ImageView ivClose;
-
+    TextView ivClose;
+    public  boolean slince=true;
     @Override
     protected void createContent() {
         setContentView(R.layout.activity_splash);
@@ -64,6 +69,20 @@ public class SplashActivity extends BaseActivity implements MediaPlayer.OnPrepar
                 goToMainActivity();
             }
         });
+
+        ivMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {// 是否静音
+                if(slince){
+                    slince=false;
+                    SystemUtils.setVolumeSilence();
+                }else{
+                    slince=true;
+                    SystemUtils.setVolumeNormal();
+                }
+
+            }
+        });
     }
 
     @Override
@@ -91,6 +110,7 @@ public class SplashActivity extends BaseActivity implements MediaPlayer.OnPrepar
         Intent intent = new Intent(this, MainActivity.class);
         UIUtils.startActivity(intent);
 //        startActivity(intent);
+        SystemUtils.setVolumeNormal();
         finish();
     }
 

@@ -7,11 +7,24 @@
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"/>
     <ImageView
+        android:scaleType="center"
+        android:background="@mipmap/ic_welcome_skip_bg"
         android:layout_margin="30dp"
-        android:id="@+id/iv_close"
-        android:src="@mipmap/search_cancel"
-        android:layout_width="wrap_content"
+        android:id="@+id/ic_music_on"
+        android:src="@mipmap/ic_music_on"
+        android:layout_width="30dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_height="30dp" />
+    <TextView
+        android:gravity="center"
+        android:layout_margin="30dp"
+        android:id="@+id/iv_close"
+        android:background="@mipmap/poi_comment_tag_select"
+        android:text="跳过"
+        android:layout_width="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_height="wrap_content" />
+
 </RelativeLayout>

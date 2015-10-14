@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Debug;
@@ -552,5 +553,37 @@ public class SystemUtils {
 		ActivityManager.MemoryInfo info = new ActivityManager.MemoryInfo();
 		activityManager.getMemoryInfo(info);
 		return info.lowMemory;
+	}
+
+	/**
+	 * 设置播放静音
+	 */
+	public  static void  setVolumeSilence(){
+		Context context = UIUtils.getContext();
+		if (context == null) {
+			return ;
+		}
+		//音量控制,初始化定义
+		AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+		mAudioManager.setStreamMute(AudioManager.STREAM_MUSIC, true);
+////最大音量
+//		int maxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+////当前音量
+//		int currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+
+
+	}
+
+	/**
+	 * 取消静音
+	 */
+	public  static void  setVolumeNormal(){
+		Context context = UIUtils.getContext();
+		if (context == null) {
+			return ;
+		}
+		//音量控制,初始化定义
+		AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+		mAudioManager.setStreamMute(AudioManager.STREAM_MUSIC, false);
 	}
 }

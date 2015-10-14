@@ -30,11 +30,11 @@ public class VideoDetailProtocol {
 
 
     //获取 猜你喜欢
-    public  List<GuessFavoriteBean>    getGuessFavorite() {
+    public  List<GuessFavoriteBean>  getGuessFavorite() {
 
         List<GuessFavoriteBean> list = null;
         try {
-            list = new ArrayList<GuessFavoriteBean>();
+            list = new ArrayList<>();
             JSONObject jsonObject = new JSONObject(ConfigManage.GUESS_FAVOURIATE);
             JSONArray jsonArray = (JSONArray) jsonObject.opt("items");
             JsonHelper.JSONArrayToList(jsonArray, list, GuessFavoriteBean.class);
@@ -47,7 +47,7 @@ public class VideoDetailProtocol {
     //获取 猜你喜欢
     public  GuessFavoriteBean[] getGuessFavoriteArray() {
         try {
-            List<GuessFavoriteBean> list  = new ArrayList<GuessFavoriteBean>();
+            List<GuessFavoriteBean> list  = new ArrayList<>();
             JSONObject jsonObject = new JSONObject(ConfigManage.GUESS_FAVOURIATE);
             JSONArray jsonArray = (JSONArray) jsonObject.opt("items");
             JsonHelper.JSONArrayToList(jsonArray, list, GuessFavoriteBean.class);
