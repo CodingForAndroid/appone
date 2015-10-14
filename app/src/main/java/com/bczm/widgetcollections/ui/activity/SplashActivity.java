@@ -32,7 +32,7 @@ public class SplashActivity extends BaseActivity implements MediaPlayer.OnPrepar
     ImageView ivMusic;
     @Bind(R.id.iv_close)
     TextView ivClose;
-    public  boolean slince=true;
+    public  boolean shouldSilence=true;
     @Override
     protected void createContent() {
         setContentView(R.layout.activity_splash);
@@ -73,11 +73,11 @@ public class SplashActivity extends BaseActivity implements MediaPlayer.OnPrepar
         ivMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {// 是否静音
-                if(slince){
-                    slince=false;
+                if(shouldSilence){
+                    shouldSilence=false;
                     SystemUtils.setVolumeSilence();
                 }else{
-                    slince=true;
+                    shouldSilence=true;
                     SystemUtils.setVolumeNormal();
                 }
 

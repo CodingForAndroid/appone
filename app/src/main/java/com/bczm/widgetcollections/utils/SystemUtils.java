@@ -583,6 +583,7 @@ public class SystemUtils {
 			return ;
 		}
 		//音量控制,初始化定义
+
 		AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		mAudioManager.setStreamMute(AudioManager.STREAM_MUSIC, false);
 	}
