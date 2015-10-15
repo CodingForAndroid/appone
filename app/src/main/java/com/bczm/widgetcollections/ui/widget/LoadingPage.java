@@ -2,6 +2,8 @@ package com.bczm.widgetcollections.ui.widget;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.ThreadManager;
 import com.bczm.widgetcollections.utils.UIUtils;
@@ -110,7 +112,12 @@ public abstract class LoadingPage extends FrameLayout {
     }
 
     protected View createLoadingView() {
-        return UIUtils.inflate(R.layout.loading_page_loading);
+        String[] names= UIUtils.getStringArray(R.array.marks);
+        int  num= (int) (Math.random()*names.length);
+        View view=  UIUtils.inflate(R.layout.loading_page_loading);
+        TextView tv= (TextView) view.findViewById(R.id.tv_mark);
+        tv.setText(names[num]);
+        return view;
 
 
     }

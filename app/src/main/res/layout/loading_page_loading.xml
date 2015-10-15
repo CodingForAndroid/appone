@@ -1,8 +1,17 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_margin="40dp"
     android:layout_height="match_parent" >
 
+    <TextView
+     android:textColor="@color/blue"
+        android:id="@+id/tv_mark"
+        android:textSize="@dimen/txt_size_classify_high"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <ProgressBar
+        android:layout_above="@+id/tv_mark"
         android:layout_gravity="center"
         android:id="@+id/progressbar"
         style="@android:style/Widget.ProgressBar"
@@ -12,4 +21,5 @@
         android:indeterminate="false"
         android:indeterminateDrawable="@drawable/loading"
         android:padding="5dp" />
-</FrameLayout>
+</RelativeLayout>
+

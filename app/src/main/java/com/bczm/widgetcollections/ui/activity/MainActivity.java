@@ -35,6 +35,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -93,8 +94,6 @@ public class MainActivity extends BaseActivity {
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setOnPageChangeListener(new MyOnPageChangeListener());
-
-//        mViewPager.setOffscreenPageLimit();
     }
     @Override
     protected void free() {
