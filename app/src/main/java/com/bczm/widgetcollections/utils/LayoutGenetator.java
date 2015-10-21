@@ -71,36 +71,18 @@ public class LayoutGenetator {
         ImageCycleView.ImageCycleViewListener mAdCycleViewListener = new ImageCycleView.ImageCycleViewListener() {
             @Override
             public void onImageClick(int position, View imageView) {
-//                setRecommandEvent(imageView, model.getData().get(position), mActivity ) ;
                Intent intent=  new Intent(UIUtils.getContext(), VideoDetialActivity.class);
-                //trackid
-//                intent.putExtra(ConfigManage.INTENT_EXTRA_TRACKID,list.get(position).trackid);
                 intent.putExtra(ConfigManage.INTENT_EXTRA_TRACKID,"1442539345286084715c74b5215cc4b3-c1-2-5-");
-                //serial_id
-//                intent.putExtra(ConfigManage.INTENT_EXTRA_CONTENT_ID,list.get(position).serial_id);
                 intent.putExtra(ConfigManage.INTENT_EXTRA_CONTENT_ID,"2S201507052200092708");
                 //拿这两个参数去请求服务器获取 数据
                 UIUtils.startActivity(intent);
-//                RecommadPositonInfo{
-//                    click_action='2',
-//                            data_type='1',
-//                            title='六花的勇者',
-//                            sub_title='每周日3:30更新',
-//                            cover='http://img0.icartoons.cn/opftp/c4x_pic/c4x_position/201509/20150912221221976879.jpg?flow_flag=74559208&flow_type=1&flow_channel=api&dm_sid=1442539345286084715c74b5215cc4b3&trackid=1442539345286084715c74b5215cc4b3----&loginfo=74559208|68a0f6a3d862|4|68a0f6a3d862|000000000000000|68a0f6a3d862',
-//                            url='',
-//                            trackid='1442539345286084715c74b5215cc4b3-c1-2-5-',
-//                            serial_id='2S201507052200092708',
-//                            serial_status='0',
-//                            update_set='11',
-//                            desc='【爱动漫日漫新番同步首发】传说，当魔物从黑暗深渊觉醒，世间化为地狱之时，命运之神会选出六位勇者并将授予此六人拯救世界之力。现在开始所要讲述的，便是背负着拯救世界使命的勇者们的故事。',
-//                            pic='http://img0.icartoons.cn/spftp/temp/2015070610364100000062612542/720x405.jpg?flow_flag=74559208&flow_type=1&flow_channel=api&dm_sid=1442539345286084715c74b5215cc4b3&trackid=1442539345286084715c74b5215cc4b3----&loginfo=74559208|68a0f6a3d862|4|68a0f6a3d862|000000000000000|68a0f6a3d862'}
 
                 LogUtils.e(list.get(position).toString());
             }
             @Override
             public void displayImage(String imageURL,ImageView imageView) {
                 ImageLoaderHelper.getInstance().loadImage(imageURL, imageView);
-//                ImageLoader1.getInstance().imageLoaderRequest(imageView,);
+//                ImageLoader1.getInstance().imageLoaderRequest(imageView,);a
             }
         };
         mImageCycleView.setImageResources(mImageUrl, mImageName, mAdCycleViewListener);

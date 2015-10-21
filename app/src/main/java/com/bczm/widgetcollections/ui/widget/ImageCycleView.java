@@ -88,7 +88,7 @@ public class ImageCycleView extends LinearLayout {
 		mScale = context.getResources().getDisplayMetrics().density;
 		LayoutInflater.from(context).inflate(R.layout.ad_cycle_view, this);
 		mAdvPager = (ViewPager) findViewById(R.id.adv_pager);
-		mAdvPager.setOnPageChangeListener(new GuidePageChangeListener());
+		mAdvPager.addOnPageChangeListener(new GuidePageChangeListener());
 		mAdvPager.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
@@ -239,8 +239,8 @@ public class ImageCycleView extends LinearLayout {
 		/**
 		 * 图片资源列表
 		 */
-		private ArrayList<String> mAdList = new ArrayList<String>();
-		private ArrayList<String> nameList = new ArrayList<String>();
+		private ArrayList<String> mAdList = new ArrayList<>();
+		private ArrayList<String> nameList = new ArrayList<>();
 
 		/**
 		 * 广告图片点击监听
@@ -253,7 +253,7 @@ public class ImageCycleView extends LinearLayout {
 			this.mAdList = adList;
 			this.nameList = nameList;
 			mImageCycleViewListener = imageCycleViewListener;
-			mImageViewCacheList = new ArrayList<ClickableImageView>();
+			mImageViewCacheList = new ArrayList<>();
 		}
 
 		@Override
@@ -269,7 +269,7 @@ public class ImageCycleView extends LinearLayout {
 		@Override
 		public Object instantiateItem(ViewGroup container, final int position) {
 			String imageUrl = mAdList.get(position%mAdList.size());
-			ClickableImageView imageView = null;
+			ClickableImageView imageView ;
 			if (mImageViewCacheList.isEmpty()) {
 				imageView = new ClickableImageView(mContext);
 				imageView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
@@ -307,14 +307,14 @@ public class ImageCycleView extends LinearLayout {
 	 * 
 	 * @author minking
 	 */
-	public static interface ImageCycleViewListener {
+	public  interface ImageCycleViewListener {
 		/**
 		 * 加载图片资源
 		 * 
 		 * @param imageURL
 		 * @param imageView
 		 */
-		public void displayImage(String imageURL, ImageView imageView);
+		 void displayImage(String imageURL, ImageView imageView);
 
 		/**
 		 * 单击图片事件
@@ -322,7 +322,7 @@ public class ImageCycleView extends LinearLayout {
 		 * @param position
 		 * @param imageView
 		 */
-		public void onImageClick(int position, View imageView);
+		 void onImageClick(int position, View imageView);
 	}
 
 }
