@@ -44,7 +44,7 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
         android:configChanges="orientation|keyboardHidden|screenSize"
-        android:name=".ui.fragment.VideoPlayerActivity"/>
+        android:name=".ui.activity.VideoPlayerActivity"/>
 
         <service android:name=".player.MusicPlayService"/>
     </application>

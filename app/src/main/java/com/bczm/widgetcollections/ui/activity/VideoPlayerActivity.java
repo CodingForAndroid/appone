@@ -2,7 +2,7 @@
  * Copyright (C) 2011 VOV IO (http://vov.io/)
  */
 
-package com.bczm.widgetcollections.ui.fragment;
+package com.bczm.widgetcollections.ui.activity;
 
 import io.vov.vitamio.LibsChecker;
 import io.vov.vitamio.MediaPlayer;
@@ -13,13 +13,11 @@ import io.vov.vitamio.widget.VideoView;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;

@@ -2,7 +2,7 @@
  * Copyright (C) 2011 VOV IO (http://vov.io/)
  */
 
-package com.bczm.widgetcollections.ui.fragment;
+package com.bczm.widgetcollections.ui.activity;
 
 
 

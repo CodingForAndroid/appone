@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import com.bczm.widgetcollections.R;
 import com.bczm.widgetcollections.common.Constants;
 import com.bczm.widgetcollections.http.ConfigManage;
+import com.bczm.widgetcollections.ui.activity.VideoPlayerActivity;
 import com.bczm.widgetcollections.ui.widget.LoadingPage;
 import com.bczm.widgetcollections.utils.LayoutGenetator;
 import com.bczm.widgetcollections.utils.UIUtils;

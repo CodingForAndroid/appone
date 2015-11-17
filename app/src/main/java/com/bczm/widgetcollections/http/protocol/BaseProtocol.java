@@ -15,7 +15,7 @@ import java.io.FileWriter;
  */
 public abstract class BaseProtocol<Data> {
 
-    /** 加载协议 */
+    /** 默认加载协议，先取本地 */
     public Data load(int index) {
         return load(index,true);
     }
@@ -85,6 +85,7 @@ public abstract class BaseProtocol<Data> {
             IOUtils.close(writer);
         }
     }
+
 
     /** 该协议的访问地址 */
     protected abstract String getKey();

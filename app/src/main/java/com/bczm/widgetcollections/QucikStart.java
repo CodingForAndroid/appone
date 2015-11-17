@@ -24,7 +24,7 @@ public class QucikStart {
 
 //    根据 文件名 查找            3 Shift/ Shift + Shift + Shift
 
-
+//    重命名 变量                 shift+F6
     // 项目 记录
 //    参考网络项目 ，用于交流学习，若有问题请联系我。
 //    1 尝试把 vitamio 打成jar包 使用   最后还是导入的 java 文件 ， 耦合性不好。

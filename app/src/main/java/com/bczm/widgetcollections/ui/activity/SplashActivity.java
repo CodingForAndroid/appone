@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -112,6 +113,7 @@ public class SplashActivity extends BaseActivity implements MediaPlayer.OnPrepar
 //        startActivity(intent);
         SystemUtils.setVolumeNormal();
         finish();
+
     }
 
     @Override
@@ -121,4 +123,12 @@ public class SplashActivity extends BaseActivity implements MediaPlayer.OnPrepar
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+    }
+
+
 }

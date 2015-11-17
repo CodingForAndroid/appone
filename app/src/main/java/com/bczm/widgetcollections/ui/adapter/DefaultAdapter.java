@@ -100,11 +100,9 @@ public abstract class DefaultAdapter<Data> extends BaseAdapter implements Recycl
 			return getItemViewTypeInner(position);
 		}
 	}
-
 	public int getItemViewTypeInner(int position) {
 		return ITEM_VIEW_TYPE;// 普通item的布局
 	}
-
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		BaseHolder<Data> holder;
