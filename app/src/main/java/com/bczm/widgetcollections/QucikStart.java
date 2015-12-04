@@ -5,7 +5,8 @@ package com.bczm.widgetcollections;
  * @author：Jorge on 2015/9/15 14:48
  */
 public class QucikStart {
-
+ //   局部变量 变成员变量         Ctrl+ shift+ f
+ 
 //   大小写 转换 快捷键           Ctrl + shift + U
 
 //   复制当前行到下一行           Ctrl+D
