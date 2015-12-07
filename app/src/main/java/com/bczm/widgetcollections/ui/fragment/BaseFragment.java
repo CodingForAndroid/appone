@@ -80,7 +80,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (!LibsChecker.checkVitamioLibs(getActivity()))
-//            return;
+        if (!LibsChecker.checkVitamioLibs(getActivity()))
+            return;
     }
 }

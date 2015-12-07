@@ -94,8 +94,6 @@ public class SplashActivity extends BaseActivity implements MediaPlayer.OnPrepar
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
         videoView.start();
-
-
         videoView.requestFocus();
     }
 

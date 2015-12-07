@@ -43,7 +43,6 @@ public class CommentListHolder extends BaseHolder<CommentBean> {
         CommentBean commentBean = getData();
         // 头像
         ImageLoaderHelper.getInstance().loadImage( commentBean.photo,profileImage);
-//        ImageLoader1.getInstance().imageLoaderRequest(profileImage,);
         // 昵称 时间 内容
         tvNick.setText(commentBean.nickname);
         tvNick.setTextColor(UIUtils.getColor(R.color.blue));
